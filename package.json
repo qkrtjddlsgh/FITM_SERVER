@@ -1,0 +1,11 @@
+{
+  "name": "fitm_server",
+  "version": "1.0.0",
+  "description": "server for fitm s/w system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ryeong-min",
+  "license": "ISC"
+}
