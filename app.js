@@ -7,8 +7,25 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var register_new_member = require('./routes/register_member/register_new_member');
 
 var app = express();
+
+// mongodb connection
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+// CONNECT TO MONGODB SERVER
+// 여기선 딱히 건드릴 부분이 없음
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
+});
+
+mongoose.connect('mongodb://localhost/fitm_db');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/register_new_member', register_new_member);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
