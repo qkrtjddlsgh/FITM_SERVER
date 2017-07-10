@@ -13,7 +13,6 @@ var app = express();
 
 // mongodb connection
 var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 // CONNECT TO MONGODB SERVER
 // 여기선 딱히 건드릴 부분이 없음
