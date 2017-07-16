@@ -9,6 +9,11 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var register_new_member = require('./routes/check_dup_member/register_new_member');
 var chk_email = require('./routes/check_dup_member/check_user_email');
+var res_get_member_data = require('./routes/get_data_member/res_member_data'); // 등록된 회원의 세부 정보(회원 정보)의 목록을 받음
+var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 등록된 회원의 참조 정보(액세스 키)의 목록을 받음
+var res_get_member_access_key_stod = require('./routes/modify_member/get_member_key/get_member_access_key');
+var res_get_member_data_stod = require('./routes/modify_member/get_member_key/get_member_data');
+var udt_member_data = require('./routes/modify_member/update_member_data/udt_member_data');
 
 var app = express();
 
@@ -43,6 +48,11 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/register_new_member', register_new_member);
 app.use('/check_email', chk_email);
+app.use('/get_member_data', res_get_member_data);
+app.use('/get_member_ref', res_get_member_ref);
+app.use('/get_member_access_key_stod', res_get_member_access_key_stod); // stod 의 의미는 server <-> desktop app. 이라는 의미이다.
+app.use('/get_member_data_stod', res_get_member_data_stod);
+app.use('/udt_member_data', udt_member_data); // members 콜렉션의 document의 특정 필드를 update
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

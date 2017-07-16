@@ -12,9 +12,13 @@ var memberData = new Schema({
     phone_number : String,
     start_date : String,
     end_date : String,
-    certification : String
+    certification : String,
+    doc_type : String
 });
 
+// model 함수의 arg1 : docuement type
+// model 함수의 arg2 : 스키마 객체
+// model 함수의 arg3 : collection name
 var member = mongoose.model('member', memberData, 'members');
 
 module.exports = member;

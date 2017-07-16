@@ -1,6 +1,11 @@
 /**
  * Created by Myown on 2017-07-14.
  */
+
+// 로그인을 위한 모듈
+// 회원의 정보(key는 email)가 등록되어 있지 않으면 docment를 생성한다.
+// (서버 <-> 모바일 어플리케이션)
+
 var express = require('express');
 var router = express.Router();
 var chk = require('../../models/CheckEmail');
@@ -18,6 +23,7 @@ router.post('/', function(req, res){
        if(doc.length == 0){
            var new_member = new chk();
            new_member.id_email = recv_data.id_email;
+           new_member.doc_type = "member_ref";
 
            var add_data = new Object();
 
@@ -48,6 +54,7 @@ router.post('/', function(req, res){
            new_member_data.start_date = null;
            new_member_data.end_date = null;
            new_member_data.certification = "false";
+           new_member_data.doc_type = "member_data";
            new_member_data.save();
 
            res.send(res_data);
@@ -60,7 +67,7 @@ router.post('/', function(req, res){
            res_data.code = "1100";
 
            var add_data = new Object();
-           add_data.access_key = doc[0]._id;
+           add_data.id_access_key = doc[0]._id;
            res_data.response = add_data;
 
            // access_key로 DB의 Object의 id값을 리턴함
