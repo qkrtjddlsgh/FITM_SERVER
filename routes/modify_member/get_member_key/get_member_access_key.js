@@ -20,7 +20,7 @@ router.post('/', function(req, res){
         res_data.code = "1200";
 
         var add_data2 = new Object();
-        add_data2.id_access_key = doc[0]._id;
+        add_data2.access_key = doc[0]._id;
 
         res_data.response = add_data2;
         res.send(res_data);

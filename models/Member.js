@@ -6,14 +6,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var memberData = new Schema({
-    id_access_key : String,
+    access_key : String,
     id_email : String,
     name : String,
     phone_number : String,
     start_date : String,
-    end_date : String,
+    finish_date : String,
+    remain_break_day : Number,
     certification : String,
-    doc_type : String
+    doc_type : String,
+    birthday : String,
+    gender: String,
+    locker_num : String,
+    locker_start : String,
+    locker_finish : String
 });
 
 // model 함수의 arg1 : docuement type

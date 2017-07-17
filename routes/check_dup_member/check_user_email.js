@@ -46,15 +46,22 @@ router.post('/', function(req, res){
            res_data.response = add_data;
 
            // 새로운 member의 정보에 대한 전체 정보 document를 저장
+           // 170717 : 스키마 변경에 의한 코드 수정(birthday 등 5개 키 추가)
            var new_member_data = new member();
-           new_member_data.id_access_key = new_member._id;
+           new_member_data.access_key = new_member._id;
            new_member_data.id_email = recv_data.id_email;
            new_member_data.name = null;
            new_member_data.phone_number = null;
            new_member_data.start_date = null;
-           new_member_data.end_date = null;
+           new_member_data.finish_date = null;
+           new_member_data.remain_break_day = 0;
            new_member_data.certification = "false";
            new_member_data.doc_type = "member_data";
+           new_member_data.birthday = null;
+           new_member_data.gender = null;
+           new_member_data.locker_num = null;
+           new_member_data.locker_start = null;
+           new_member_data.locker_finish = null;
            new_member_data.save();
 
            res.send(res_data);
@@ -67,7 +74,7 @@ router.post('/', function(req, res){
            res_data.code = "1100";
 
            var add_data = new Object();
-           add_data.id_access_key = doc[0]._id;
+           add_data.access_key = doc[0]._id;
            res_data.response = add_data;
 
            // access_key로 DB의 Object의 id값을 리턴함

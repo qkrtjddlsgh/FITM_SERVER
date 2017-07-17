@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var app = express();
 
+/*
 // redis test
 var redis = require('redis');
 var JSON = require('JSON');
@@ -47,6 +49,7 @@ app.get('/profile/:name',function(req,res,next){
         res.json(value);
     });
 });
+*/
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -58,7 +61,6 @@ var res_get_member_access_key_stod = require('./routes/modify_member/get_member_
 var res_get_member_data_stod = require('./routes/modify_member/get_member_key/get_member_data');
 var udt_member_data = require('./routes/modify_member/update_member_data/udt_member_data');
 
-var app = express();
 
 // mongodb connection
 var mongoose = require('mongoose');
