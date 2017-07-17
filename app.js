@@ -5,49 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// redis test
-var redis = require('redis');
-var JSON = require('JSON');
-client = redis.createClient(6379,'127.0.0.1');
-
-app.use(function(req,res,next){
-    req.cache = client;
-    next();
-})
-
-app.post('/profile',function(req,res,next){
-    req.accepts('application/json');
-
-    var key = req.body.name;
-    var value = JSON.stringify(req.body);
-
-    req.cache.set(key,value,function(err,data){
-        if(err){
-            console.log(err);
-            res.send("error "+err);
-            return;
-        }
-        req.cache.expire(key,10);
-        res.json(value);
-        //console.log(value);
-    });
-})
-
-app.get('/profile/:name',function(req,res,next){
-    var key = req.params.name;
-
-    req.cache.get(key,function(err,data){
-        if(err){
-            console.log(err);
-            res.send("error "+err);
-            return;
-        }
-
-        var value = JSON.parse(data);
-        res.json(value);
-    });
-});
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var register_new_member = require('./routes/check_dup_member/register_new_member');
@@ -73,6 +30,7 @@ db.once('open', function(){
 });
 
 mongoose.connect('mongodb://localhost/fitm_db');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
