@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 
+<<<<<<< HEAD
 /*
 // redis test
 var redis = require('redis');
@@ -51,6 +52,8 @@ app.get('/profile/:name',function(req,res,next){
 });
 */
 
+=======
+>>>>>>> 079f4b054e92f501c6ff7767d8e5cdb1e2f85c88
 var index = require('./routes/index');
 var users = require('./routes/users');
 var register_new_member = require('./routes/check_dup_member/register_new_member');
@@ -75,6 +78,7 @@ db.once('open', function(){
 });
 
 mongoose.connect('mongodb://localhost/fitm_db');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
