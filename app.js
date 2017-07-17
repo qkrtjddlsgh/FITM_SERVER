@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var app = express();
 
-<<<<<<< HEAD
 /*
 // redis test
 var redis = require('redis');
@@ -52,11 +51,8 @@ app.get('/profile/:name',function(req,res,next){
 });
 */
 
-=======
->>>>>>> 079f4b054e92f501c6ff7767d8e5cdb1e2f85c88
 var index = require('./routes/index');
 var users = require('./routes/users');
-var register_new_member = require('./routes/check_dup_member/register_new_member');
 var chk_email = require('./routes/check_dup_member/check_user_email');
 var res_get_member_data = require('./routes/get_data_member/res_member_data'); // 등록된 회원의 세부 정보(회원 정보)의 목록을 받음
 var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 등록된 회원의 참조 정보(액세스 키)의 목록을 받음
@@ -94,7 +90,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/register_new_member', register_new_member);
 app.use('/check_email', chk_email);
 app.use('/get_member_data', res_get_member_data);
 app.use('/get_member_ref', res_get_member_ref);
