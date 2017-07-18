@@ -2,10 +2,7 @@
  * Created by Myown on 2017-07-17.
  */
 
-// 현재 시간을 YYYYMMDD 의 형태로 받아오는 모듈
-
-var getToday = function () {
-
+var getTodayObj = function(){
     var today = new Date();
     today.setHours(today.getHours() + 9)
     var yyyy = today.getUTCFullYear();
@@ -28,7 +25,12 @@ var getToday = function () {
         str_dd = dd.toString();
     }
 
-    return str_yyyy + str_mm + str_dd;
+    var ret = new Object();
+    ret.year = str_yyyy;
+    ret.month = str_mm;
+    ret.date = str_dd;
+
+    return ret;
 }
 
-module.exports = getToday();
+module.exports = getTodayObj;

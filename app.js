@@ -59,7 +59,7 @@ var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 
 var res_get_member_access_key_stod = require('./routes/modify_member/get_member_key/get_member_access_key');
 var res_get_member_data_stod = require('./routes/modify_member/get_member_key/get_member_data');
 var udt_member_data = require('./routes/modify_member/update_member_data/udt_member_data');
-
+var reg_member_data = require('./routes/modify_member/register_member_data/reg_member_data');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -97,6 +97,7 @@ app.use('/get_member_ref', res_get_member_ref);
 app.use('/get_member_access_key_stod', res_get_member_access_key_stod); // stod 의 의미는 server <-> desktop app. 이라는 의미이다.
 app.use('/get_member_data_stod', res_get_member_data_stod);
 app.use('/udt_member_data', udt_member_data); // members 콜렉션의 document의 특정 필드를 update
+app.use('/register_member_data', reg_member_data); // Register 과정에서 추가적인 데이터를 받음
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
