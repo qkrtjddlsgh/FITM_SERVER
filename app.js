@@ -73,7 +73,6 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/fitm_db');
 
 
