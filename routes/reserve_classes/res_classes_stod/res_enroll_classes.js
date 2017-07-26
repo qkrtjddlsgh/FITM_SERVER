@@ -11,18 +11,6 @@ var member = require('../../models/Member');
 
 router.post('/', function(req, res){
 
-    var recv_data = req.body;
-
-    var date = recv_data.date;
-    var class_num = recv_data.class_num;
-    var access_key = recv_data.access_key;
-    // var name = recv_data.name;
-
-    time_table.find({date:date, class_num:class_num })
-
-
-
-
 });
 
 module.exports = router;

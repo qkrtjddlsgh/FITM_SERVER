@@ -16,8 +16,6 @@ var res_get_member_data_stod = require('./routes/modify_member/get_member_key/ge
 var udt_member_data = require('./routes/modify_member/update_member_data_stod/udt_member_data');
 var reg_member_data = require('./routes/modify_member/register_member_data_stom/reg_member_data');
 var get_member_total_data = require('./routes/modify_member/get_member_total_stod/get_member_total_stod');
-var res_cancel_classes = require('./routes/reserve_classes/cancel_classes');
-var res_enroll_classes = require('./routes/reserve_classes/enroll_classes');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -55,8 +53,6 @@ app.use('/get_member_data_stod', res_get_member_data_stod);
 app.use('/udt_member_data', udt_member_data); // members 콜렉션의 document의 특정 필드를 update
 app.use('/register_member_data_stom', reg_member_data); // Register 과정에서 추가적인 데이터를 받음
 app.use('/get_member_data_total_stod', get_member_total_data);
-app.use('/cancel_classes',res_cancel_classes);
-app.use('/enroll_classes',res_enroll_classes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
