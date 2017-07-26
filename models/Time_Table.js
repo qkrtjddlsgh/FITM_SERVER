@@ -9,15 +9,16 @@ var classesData = new Schema({
     // 수업시간의 날짜
     // 수업시간의 개수
     date : String,
-    num_of_classes : String,
+    num_of_classes : Number,
     
     // 각 수업에 대한 정보
     classes : [
         {
             class_num: String,
             start_time: String,
-            end_time: String,
-            participant: [{ }]
+            finish_time: String,
+            max_participant : Number,
+            participant: []
         }]
 });
 
