@@ -6,19 +6,20 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     var date = recv_data.date;
-    var access_key = recv_data.access_key;
-    var class_num = recv_data.class_num;
 
-    var query = {$push : {"classes.$.participant" : access_key}};
-
-    time_table.update({date:date, classes:{$elemMatch : {class_num : class_num}}},query,function (err, result) {
+    time_table.find({date : date}, function (err, result) {
         if(err){
             console.error(err.message);
         }
         else{
-            console.log(result[0]);
+            var send_data = new Object();
+            send_data.code = "1150";
+            send_data.response = result;
+
+            res.send(send_data);
+            res.end();
         }
-    });
+    })
 });
 
 module.exports = router;
