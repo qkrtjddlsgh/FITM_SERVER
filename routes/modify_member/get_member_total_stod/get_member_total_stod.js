@@ -6,7 +6,6 @@ var express = require('express');
 var router = express.Router();
 var members = require('../../../models/Member');
 
-
 router.post('/', function (req, res) {
     var recv_data = req.body;
     if(recv_data.password == "master"){
