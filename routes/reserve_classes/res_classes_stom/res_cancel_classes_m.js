@@ -14,6 +14,7 @@ router.post('/', function(req, res){
             console.error(err.message);
         }else {
             var add_data = new Object();
+            add_data.message = "Canceled Class";
             add_data.access_key = recv_data.access_key;
 
             var res_data = new Object();
