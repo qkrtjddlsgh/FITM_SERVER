@@ -13,7 +13,16 @@ router.post('/', function(req, res){
         if(err){
             console.error(err.message);
         }else {
-            console.log(result);
+            var add_data = new Object();
+            add_data.access_key = recv_data.access_key;
+
+            var res_data = new Object();
+            // 성공적으로 수업 삭제 시
+            res_data.code = "1270";
+            res_data.response = add_data;
+
+            res.send(res_data);
+            res.end();
         }
     })
 });
