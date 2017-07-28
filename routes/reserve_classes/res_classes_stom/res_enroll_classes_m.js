@@ -6,12 +6,14 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     var date = recv_data.date;
-    var access_key = recv_data.access_key;
     var class_num = recv_data.class_num;
+    var name = recv_data.name;
+    var access_key = recv_data.access_key;
+    var comments = recv_data.comments;
 
-    var query = {$addToSet : {"classes.$.participant" : access_key}};
+    var query = {$addToSet : {"classes.$.participant" : {"name" : name, "access_key" : access_key, "comments" : comments}}};
 
-    time_table.update({date:date, classes:{$elemMatch : {class_num : class_num}}},query,function (err, result) {
+    time_table.update({classes : {$elemMatch : {participant : {"name" : name, "access_key" : access_key, "comments" : comments}}}}, query, function (err , result) {
         if(err){
             console.error(err.message);
         }
@@ -24,10 +26,10 @@ router.post('/', function (req, res) {
             if(err){
                 console.error(err.message);
             }
-            if(chk_data.count > chk_data.max_participant){
-               var query = {$pull : { "classes.$.participant" : access_key}};
+            if(chk_data.count >= chk_data.max_participant){
+                var query = {$addToSet : {"classes.$.participant" : {"name" : name, "access_key" : access_key, "comments" : comments}}};
 
-                time_table.update({classes : {$elemMatch : {participant : access_key}}}, query, function (err , result) {
+                time_table.update({classes : {$elemMatch : {participant : {"name" : name, "access_key" : access_key, "comments" : comments}}}}, query, function (err , result) {
                     if(err){
                         console.error(err.message);
                     }
@@ -35,6 +37,8 @@ router.post('/', function (req, res) {
                         var add_data = new Object();
                         add_data.message = "Full reservation";
                         add_data.access_key = recv_data.access_key;
+                        add_data.name = recv_data.name;
+                        add_data.comments = recv_data.comments;
 
                         var res_data = new Object();
                         // 참가인원이 꽉차서 더 못받는 경우
@@ -55,6 +59,8 @@ router.post('/', function (req, res) {
                     add_data.start_time = result[0].classes[class_num-1].start_time;
                     add_data.finish_time = result[0].classes[class_num-1].finish_time;
                     add_data.access_key = recv_data.access_key;
+                    add_data.name = recv_data.name;
+                    add_data.comments = recv_data.comments;
 
                     var res_data = new Object();
                     // 성공적으로 수업 등록 시

@@ -21,6 +21,7 @@ var res_enroll_classes_m = require('./routes/reserve_classes/res_classes_stom/re
 var res_cancel_classes_m = require('./routes/reserve_classes/res_classes_stom/res_cancel_classes_m');
 var res_check_class_by_date_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_date_m');
 var res_check_class_by_key_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_key_m');
+var res_check_classes =  require('./routes/reserve_classes/res_classes_stod/res_check_classes');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -59,10 +60,11 @@ app.use('/udt_member_data', udt_member_data); // members 콜렉션의 document�
 app.use('/register_member_data_stom', reg_member_data); // Register 과정에서 추가적인 데이터를 받음
 app.use('/get_member_data_total_stod', get_member_total_data);
 app.use('/res_make_new_time_table', res_make_new_time_table);
-app.use('/res_enroll_classes_m',res_enroll_classes_m);
+app.use('/res_enroll_classes_m', res_enroll_classes_m);
 app.use('/res_cancel_classes_m', res_cancel_classes_m);
 app.use('/res_check_class_by_date_m', res_check_class_by_date_m);
 app.use('/res_check_class_by_key_m', res_check_class_by_key_m);
+app.use('/res_check_classes', res_check_classes);
 
 
 // catch 404 and forward to error handler
