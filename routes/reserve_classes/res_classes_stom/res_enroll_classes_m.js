@@ -13,29 +13,33 @@ router.post('/', function (req, res) {
 
     var query = {$addToSet : {"classes.$.participant" : {"name" : name, "access_key" : access_key, "comments" : comments}}};
 
-    time_table.update({classes : {$elemMatch : {participant : {"name" : name, "access_key" : access_key, "comments" : comments}}}}, query, function (err , result) {
+    time_table.update({date:date, classes:{$elemMatch : {class_num : class_num}}},query,function (err, result) {
         if(err){
             console.error(err.message);
         }
 
         time_table.find({date : date},function(err, result){
             var chk_data = new Object();
+
             chk_data.count =  result[0].classes[class_num-1].participant.length;
             chk_data.max_participant = result[0].classes[class_num-1].max_participant;
+
+            console.log(chk_data.count);
+            console.log(chk_data.max_participant);
 
             if(err){
                 console.error(err.message);
             }
-            if(chk_data.count >= chk_data.max_participant){
-                var query = {$addToSet : {"classes.$.participant" : {"name" : name, "access_key" : access_key, "comments" : comments}}};
+            if(chk_data.count > chk_data.max_participant){
+                var qquery = {$pull : { "classes.$.participant" : {"name" : name, "access_key" : access_key, "comments" : comments}}};
 
-                time_table.update({classes : {$elemMatch : {participant : {"name" : name, "access_key" : access_key, "comments" : comments}}}}, query, function (err , result) {
+                time_table.update({classes : {$elemMatch : {participant : {"name" : name, "access_key" : access_key, "comments" : comments}}}}, qquery, function (err , result) {
                     if(err){
                         console.error(err.message);
                     }
                     else {
                         var add_data = new Object();
-                        add_data.message = "Full reservation";
+                        add_data.message = "Full Reservation";
                         add_data.access_key = recv_data.access_key;
                         add_data.name = recv_data.name;
                         add_data.comments = recv_data.comments;
