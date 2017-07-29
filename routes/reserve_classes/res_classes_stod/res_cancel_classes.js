@@ -1,4 +1,5 @@
-// 수업 예약취소를 위한 모듈
+// 수업 일정 삭제를 위한 모듈
+// 작업중..
 
 var express = require('express');
 var router = express.Router();
