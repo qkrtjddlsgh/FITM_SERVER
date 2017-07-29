@@ -1,6 +1,7 @@
 /**
  * Created by Myown on 2017-07-16.
  */
+
 var express = require('express');
 var router = express.Router();
 var chk = require('../../models/CheckEmail');

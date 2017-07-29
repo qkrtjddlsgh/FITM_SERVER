@@ -1,6 +1,7 @@
 /**
  * Created by Myown on 2017-07-16.
  */
+
 // data의 update를 위해서
 // 등록된 memeber의 access key를 받음
 // ( 서버 <-> 매니저 프로그램)

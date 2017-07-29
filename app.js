@@ -22,6 +22,8 @@ var res_cancel_classes_m = require('./routes/reserve_classes/res_classes_stom/re
 var res_check_class_by_date_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_date_m');
 var res_check_class_by_key_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_key_m');
 var res_check_classes =  require('./routes/reserve_classes/res_classes_stod/res_check_classes');
+var res_enroll_classes = require('./routes/reserve_classes/res_classes_stod/res_enroll_classes');
+var res_cancel_classes = require('./routes/reserve_classes/res_classes_stod/res_cancel_classes');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -65,7 +67,8 @@ app.use('/res_cancel_classes_m', res_cancel_classes_m);
 app.use('/res_check_class_by_date_m', res_check_class_by_date_m);
 app.use('/res_check_class_by_key_m', res_check_class_by_key_m);
 app.use('/res_check_classes', res_check_classes);
-
+app.use('/res_enroll_classes', res_enroll_classes)
+app.use('/res_cancel_classes', res_cancel_classes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

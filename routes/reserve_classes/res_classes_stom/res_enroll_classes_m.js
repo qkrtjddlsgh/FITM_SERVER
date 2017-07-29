@@ -24,9 +24,6 @@ router.post('/', function (req, res) {
             chk_data.count =  result[0].classes[class_num-1].participant.length;
             chk_data.max_participant = result[0].classes[class_num-1].max_participant;
 
-            console.log(chk_data.count);
-            console.log(chk_data.max_participant);
-
             if(err){
                 console.error(err.message);
             }

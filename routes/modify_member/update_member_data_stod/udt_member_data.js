@@ -1,6 +1,7 @@
 /**
  * Created by Myown on 2017-07-16.
  */
+
 // data의 update 기능을 수행하는 모듈
 // 전달된 post는 다음과 같음
 // id_access_key : 액세스키, data : 교체할 doc 정보
@@ -69,7 +70,6 @@ router.post('/', function(req, res){
             });
         }
     });
-
 });
 
 module.exports = router;

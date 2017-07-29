@@ -8,6 +8,7 @@ var members = require('../../../models/Member');
 
 router.post('/', function (req, res) {
     var recv_data = req.body;
+
     if(recv_data.password == "master"){
         members.find({doc_type:"member_data"}, function (err, result) {
             if(err){

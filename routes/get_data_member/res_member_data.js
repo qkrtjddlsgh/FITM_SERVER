@@ -1,6 +1,7 @@
 /**
  * Created by Myown on 2017-07-10.
  */
+
 var express = require('express');
 var router = express.Router();
 var member = require('../../models/Member');

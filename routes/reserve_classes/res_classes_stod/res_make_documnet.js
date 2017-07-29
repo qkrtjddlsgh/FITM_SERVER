@@ -1,4 +1,3 @@
-
 var express = require('express');
 var router =  express.Router();
 var time_table = require('../../../models/Time_Table');
