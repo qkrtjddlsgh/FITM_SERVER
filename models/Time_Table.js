@@ -4,6 +4,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var classInfo = require('./classInfo.js');
 
 var classesData = new Schema({
     // 수업시간의 날짜
@@ -13,13 +14,8 @@ var classesData = new Schema({
     
     // 각 수업에 대한 정보
     classes : [
-        {
-            class_num: String,
-            start_time: String,
-            finish_time: String,
-            max_participant : Number,
-            participant: []
-        }]
+        classInfo
+    ]
 });
 
 // model 함수의 arg1 : docuement type

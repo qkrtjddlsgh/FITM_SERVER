@@ -41,7 +41,7 @@ router.post('/', function (req, res) {
 
                         var add_data = new Object();
                         add_data.result = result;
-                        add_data.table = make_time_table;
+                        //add_data.table = make_time_table; // 중복이라 지움
 
                         send_data.response = add_data;
 

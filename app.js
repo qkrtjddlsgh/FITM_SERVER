@@ -22,7 +22,7 @@ var res_cancel_classes_m = require('./routes/reserve_classes/res_classes_stom/re
 var res_check_class_by_date_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_date_m');
 var res_check_class_by_key_m = require('./routes/reserve_classes/res_classes_stom/res_check_class_by_key_m');
 var res_check_classes =  require('./routes/reserve_classes/res_classes_stod/res_check_classes');
-var res_enroll_classes = require('./routes/reserve_classes/res_classes_stod/res_enroll_classes');
+var res_change_time_of_class = require('./routes/reserve_classes/res_classes_stod/res_change_time_of_class');
 var res_cancel_classes = require('./routes/reserve_classes/res_classes_stod/res_cancel_classes');
 var res_remove_time_table = require('./routes/reserve_classes/res_classes_stod/res_remove_document');
 
@@ -68,7 +68,7 @@ app.use('/res_cancel_classes_m', res_cancel_classes_m);
 app.use('/res_check_class_by_date_m', res_check_class_by_date_m);
 app.use('/res_check_class_by_key_m', res_check_class_by_key_m);
 app.use('/res_check_classes', res_check_classes);
-app.use('/res_enroll_classes', res_enroll_classes);
+app.use('/res_change_time_of_class', res_change_time_of_class);
 app.use('/res_cancel_classes', res_cancel_classes);
 app.use('/res_remove_document', res_remove_time_table);
 
