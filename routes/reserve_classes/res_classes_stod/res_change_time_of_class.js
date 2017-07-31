@@ -1,5 +1,4 @@
-// 수업 정보 등록을 위한 모듈
-// 작업중..
+// 수업 정보 등록 및 수정을 위한 모듈
 
 var express = require('express');
 var router =  express.Router();
@@ -52,30 +51,6 @@ router.post('/', function(req, res){
             }
         }
     });
-    /*
-    time_table.update({date: chk_date}, set_data, function(err, result){
-        console.log(result);
-        if(err){
-            console.error(err.message);
-        }
-        else{
-            var add_data = new Object();
-
-            add_data.date = recv_data.date;
-            add_data.class_num = recv_data.class_num;
-            add_data.start_time = recv_data.start_time;
-            add_data.finish_time = recv_data.finish_time;
-
-            var res_data = new Object();
-            // 성공적으로 수업 등록 시
-            res_data.code = "9999";
-            res_data.response = add_data;
-
-            res.send(res_data);
-            res.end();
-        }
-    })
-    */
 });
 
 module.exports = router;
