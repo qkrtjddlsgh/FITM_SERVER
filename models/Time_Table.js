@@ -7,8 +7,8 @@ var Schema = mongoose.Schema;
 var classInfo = require('./classInfo.js');
 
 var classesData = new Schema({
-    // 수업시간의 날짜
-    // 수업시간의 개수
+    // 오늘의 와드 정보
+    today_wod : String,
     date : String,
     num_of_classes : Number,
     

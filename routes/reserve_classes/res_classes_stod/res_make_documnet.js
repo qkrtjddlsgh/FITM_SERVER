@@ -7,6 +7,7 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     var date = recv_data.date;
+    var today_wod = recv_data.today_wod;
     var num_of_classes = recv_data.num_of_classes;
     var max_participant = recv_data.max_participant;
 
@@ -19,7 +20,9 @@ router.post('/', function (req, res) {
                 // 겹치는 날짜가 없기 때문에 시간표를 만들 수 있다.
                 var make_time_table = new time_table();
                 make_time_table.date = date;
+                make_time_table.today_wod = today_wod;
                 make_time_table.num_of_classes = num_of_classes;
+
                 for(var i = 0; i < num_of_classes; i++){
                     var tmp = new Object();
                     tmp.class_num = i + 1;
@@ -41,7 +44,6 @@ router.post('/', function (req, res) {
 
                         var add_data = new Object();
                         add_data.result = result;
-                        //add_data.table = make_time_table; // 중복이라 지움
 
                         send_data.response = add_data;
 

@@ -39,6 +39,7 @@ router.post('/', function (req, res){
                             var add_data = new Object();
 
                             add_data.date = result[0].date;
+                            add_data.today_wod = result[0].today_wod;
                             add_data.name = result[0].classes[i].participant[j].name;
                             add_data.class_num = result[0].classes[i].class_num;
                             add_data.start_time = result[0].classes[i].start_time;
