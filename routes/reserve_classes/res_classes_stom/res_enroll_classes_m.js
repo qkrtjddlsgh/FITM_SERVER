@@ -62,6 +62,7 @@ router.post('/', function (req, res) {
                     add_data.access_key = recv_data.access_key;
                     add_data.name = recv_data.name;
                     add_data.comments = recv_data.comments;
+                    add_data.cur_count = result[0].classes[class_num-1].participant.length;
 
                     var res_data = new Object();
                     // 성공적으로 수업 등록 시

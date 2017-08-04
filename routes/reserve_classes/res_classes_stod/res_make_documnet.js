@@ -11,6 +11,9 @@ router.post('/', function (req, res) {
     var num_of_classes = recv_data.num_of_classes;
     var max_participant = recv_data.max_participant;
 
+    var start_time = recv_data.start_time;
+    var finish_time = recv_data.finish_time;
+
     time_table.find({date: date}, function (err, result) {
         if(err){
             console.error(err.message);
@@ -26,8 +29,8 @@ router.post('/', function (req, res) {
                 for(var i = 0; i < num_of_classes; i++){
                     var tmp = new Object();
                     tmp.class_num = i + 1;
-                    tmp.start_time = null;
-                    tmp.finish_time = null;
+                    tmp.start_time = start_time[i];
+                    tmp.finish_time = finish_time[i];
                     tmp.max_participant = max_participant;
                     tmp.participant = [];
 
