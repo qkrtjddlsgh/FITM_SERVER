@@ -10,6 +10,7 @@ var express = require('express');
 var router = express.Router();
 var chk = require('../../models/CheckEmail');
 var member = require('../../models/Member');
+var loginLogger = require('../../logger/log_modules/login_logger');
 
 router.post('/', function(req, res){
 
@@ -76,6 +77,13 @@ router.post('/', function(req, res){
            var add_data = new Object();
            add_data.access_key = doc[0]._id;
            res_data.response = add_data;
+
+           // Login 과정에 대한 logger
+           var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+           if (user_ip.substr(0, 7) == "::ffff:") {
+               user_ip = user_ip.substr(7)
+           }
+           loginLogger(user_ip, 'check_user_email', add_data.access_key);
 
            // access_key로 DB의 Object의 id값을 리턴함
            res.send(res_data);

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var today = require('../utils/date_manip/getToday');
-var obj = require('../utils/date_manip/getTodayObj');
+var today = require('../util_modules/date_manip/getToday');
+var obj = require('../util_modules/date_manip/getTodayObj');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
