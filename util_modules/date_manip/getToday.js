@@ -7,7 +7,7 @@
 var getToday = function () {
 
     var today = new Date();
-    today.setHours(today.getHours() + 9)
+    today.setHours(today.getHours() + 9);
     var yyyy = today.getUTCFullYear();
     var mm = today.getUTCMonth() + 1;
     var dd = today.getUTCDate();
@@ -29,6 +29,6 @@ var getToday = function () {
     }
 
     return str_yyyy + str_mm + str_dd;
-}
+};
 
 module.exports = getToday();

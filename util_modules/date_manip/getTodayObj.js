@@ -4,7 +4,7 @@
 
 var getTodayObj = function(){
     var today = new Date();
-    today.setHours(today.getHours() + 9)
+    today.setHours(today.getHours() + 9);
     var yyyy = today.getUTCFullYear();
     var mm = today.getUTCMonth() + 1;
     var dd = today.getUTCDate();
@@ -31,6 +31,6 @@ var getTodayObj = function(){
     ret.date = str_dd;
 
     return ret;
-}
+};
 
 module.exports = getTodayObj;
