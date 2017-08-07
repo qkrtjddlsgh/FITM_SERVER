@@ -14,7 +14,7 @@ router.post('/', function (req, res) {
         else{
             var send_data = new Object();
             send_data.code = "1150";
-            send_data.response = result;
+            send_data.response = result[0];
 
             res.send(send_data);
             res.end();
