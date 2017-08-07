@@ -25,6 +25,8 @@ var res_check_classes =  require('./routes/reserve_classes/res_classes_stod/res_
 var res_change_time_of_class = require('./routes/reserve_classes/res_classes_stod/res_change_time_of_class');
 var res_remove_time_table = require('./routes/reserve_classes/res_classes_stod/res_remove_document');
 var res_check_calendar = require('./routes/reserve_classes/res_classes_stod/res_check_calendar');
+var get_image_member = require('./routes/get_image_stod/get_image_member');
+var get_image_list = require('./routes/get_image_stod/get_image_list');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -71,6 +73,8 @@ app.use('/res_check_classes', res_check_classes);
 app.use('/res_change_time_of_class', res_change_time_of_class);
 app.use('/res_remove_document', res_remove_time_table);
 app.use('/res_check_calendar', res_check_calendar);
+app.use('/get_image_member', get_image_member);
+app.use('/get_image_list', get_image_list);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
