@@ -1,24 +1,23 @@
 var express = require('express');
 var router = express.Router();
-var time_table = require('../../../models/Time_Table');
+var members = require('../../../models/Member');
 
-router.post('/', function (req, res) {
+router.post('/', function(req, res){
     var recv_data = req.body;
 
-    var date = recv_data.date;
+    var id_email = recv_data.id_email;
 
-    time_table.find({date : date}, function (err, result) {
+    members.find({id_email: id_email, doc_type: "member_data"}, function(err, result) {
         if(err){
             console.error(err.message);
         }
         else{
             if(result.length == 0){
-                // date에 해당되는 수업이 없을때
                 var send_data = new Object();
-                send_data.code = "2170";
+                send_data.code = "1300";
 
                 var add_data = new Object();
-                add_data.message = "not classes in this date!!";
+                add_data.message = "Not exist id_eamil!!";
                 send_data.response = add_data;
 
                 res.send(send_data);
@@ -26,14 +25,15 @@ router.post('/', function (req, res) {
             }
             else{
                 var send_data = new Object();
-                send_data.code = "1150";
+
+                send_data.code = "2300";
                 send_data.response = result[0];
 
                 res.send(send_data);
                 res.end();
             }
         }
-    })
+    });
 });
 
 module.exports = router;

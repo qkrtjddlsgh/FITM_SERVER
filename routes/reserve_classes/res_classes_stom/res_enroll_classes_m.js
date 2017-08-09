@@ -37,7 +37,6 @@ router.post('/', function (req, res) {
                     else {
                         var add_data = new Object();
                         add_data.message = "Full Reservation";
-                        add_data.access_key = recv_data.access_key;
                         add_data.name = recv_data.name;
                         add_data.comments = recv_data.comments;
 
@@ -59,7 +58,6 @@ router.post('/', function (req, res) {
                     add_data.class_num = recv_data.class_num;
                     add_data.start_time = result[0].classes[class_num-1].start_time;
                     add_data.finish_time = result[0].classes[class_num-1].finish_time;
-                    add_data.access_key = recv_data.access_key;
                     add_data.name = recv_data.name;
                     add_data.comments = recv_data.comments;
                     add_data.cur_count = result[0].classes[class_num-1].participant.length;
