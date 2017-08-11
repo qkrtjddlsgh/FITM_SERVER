@@ -28,6 +28,9 @@ var res_remove_time_table = require('./routes/reserve_classes/res_classes_stod/r
 var res_check_calendar = require('./routes/reserve_classes/res_classes_stod/res_check_calendar');
 var get_image_member = require('./routes/get_image_stod/get_image_member');
 var get_image_list = require('./routes/get_image_stod/get_image_list');
+var make_movement = require('./routes/reserve_classes/reg_wod_data/make_movement');
+var delete_movement = require('./routes/reserve_classes/reg_wod_data/delete_movement');
+var list_movement = require('./routes/reserve_classes/reg_wod_data/list_movement');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -77,6 +80,9 @@ app.use('/res_remove_document', res_remove_time_table);
 app.use('/res_check_calendar', res_check_calendar);
 app.use('/get_image_member', get_image_member);
 app.use('/get_image_list', get_image_list);
+app.use('/make_movement', make_movement);
+app.use('/delete_movement', delete_movement);
+app.use('/list_movement', list_movement);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
