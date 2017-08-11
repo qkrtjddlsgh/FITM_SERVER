@@ -7,8 +7,6 @@ router.post('/', function(req, res){
 
     var date = recv_data.date;
     var access_key = recv_data.access_key;
-    var name = recv_data.name;
-    var comments = recv_data.comments;
 
     var chk_data = new Object();
     chk_data.found = 0;
@@ -20,6 +18,9 @@ router.post('/', function(req, res){
                 if (result[0].classes[i].participant[j].access_key == access_key) {
                     // access_key가 들어있는 수업을 찾았을때
                     chk_data.found = 1;
+
+                    var name = result[0].classes[i].participant[j].name;
+                    var comments = result[0].classes[i].participant[j].comments;
 
                     var add_data = new Object();
 
