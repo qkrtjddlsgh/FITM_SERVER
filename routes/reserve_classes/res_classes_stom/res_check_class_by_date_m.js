@@ -25,7 +25,15 @@ router.post('/', function (req, res) {
                 res.end();
             }
             else{
+
+                for (var i = 0; i < result[0].classes.length; i++) {
+                    for (var j = 0; j < result[0].classes[i].participant.length; j++) {
+                        result[0].classes[i].participant[j].access_key = null;
+                    }
+                }
+
                 var send_data = new Object();
+
                 send_data.code = "1150";
                 send_data.response = result[0];
 
