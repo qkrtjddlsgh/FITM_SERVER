@@ -16,80 +16,88 @@ router.post('/', function(req, res){
 
     var recv_data = req.body;
 
-    chk.find({id_email:recv_data.id_email}, function (err, doc) {
-       if(err){
-           console.error(err.message);
-       }
+    if(!req.body.id_email){
+        var send_data = new Object();
+        send_data.code = "5000";
+        send_data.message = "Incorrect Request";
 
-       if(doc.length == 0){
-           var new_member = new chk();
-           new_member.id_email = recv_data.id_email;
-           new_member.doc_type = "member_ref";
+        res.send(send_data);
+        res.end();
+    }
+    else {
+        chk.find({id_email: recv_data.id_email}, function (err, doc) {
+            if (err) {
+                console.error(err.message);
+            }
+            if (doc.length == 0) {
+                var new_member = new chk();
+                new_member.id_email = recv_data.id_email;
+                new_member.doc_type = "member_ref";
 
-           var add_data = new Object();
+                var add_data = new Object();
 
-          new_member.save(function(err, room){
-              // 새로운 member의 정보에 대한 참조 document를 저장
-               if(err){
-                   console.error(err.message);
-               }
-               else{
-                   return room;
-               }
-           });
+                new_member.save(function (err, room) {
+                    // 새로운 member의 정보에 대한 참조 document를 저장
+                    if (err) {
+                        console.error(err.message);
+                    }
+                    else {
+                        return room;
+                    }
+                });
 
-           add_data.access_key = new_member._id;
+                add_data.access_key = new_member._id;
 
-           var res_data = new Object();
-           // 응답코드 1101 - DB에 저장되어있지 않은 유저의 정보
-           res_data.code = "1101";
+                var res_data = new Object();
+                // 응답코드 1101 - DB에 저장되어있지 않은 유저의 정보
+                res_data.code = "1101";
 
-           res_data.response = add_data;
+                res_data.response = add_data;
 
-           // 새로운 member의 정보에 대한 전체 정보 document를 저장
-           // 170717 : 스키마 변경에 의한 코드 수정(birthday 등 5개 키 추가)
-           var new_member_data = new member();
-           new_member_data.access_key = new_member._id;
-           new_member_data.id_email = recv_data.id_email;
-           new_member_data.name = null;
-           new_member_data.phone_number = null;
-           new_member_data.start_date = null;
-           new_member_data.finish_date = null;
-           new_member_data.remain_break_day = 0;
-           new_member_data.certification = "false";
-           new_member_data.doc_type = "member_data";
-           new_member_data.birthday = null;
-           new_member_data.gender = null;
-           new_member_data.locker_num = null;
-           new_member_data.locker_start = null;
-           new_member_data.locker_finish = null;
-           new_member_data.save();
+                // 새로운 member의 정보에 대한 전체 정보 document를 저장
+                // 170717 : 스키마 변경에 의한 코드 수정(birthday 등 5개 키 추가)
+                var new_member_data = new member();
+                new_member_data.access_key = new_member._id;
+                new_member_data.id_email = recv_data.id_email;
+                new_member_data.name = null;
+                new_member_data.phone_number = null;
+                new_member_data.start_date = null;
+                new_member_data.finish_date = null;
+                new_member_data.remain_break_day = 0;
+                new_member_data.certification = "false";
+                new_member_data.doc_type = "member_data";
+                new_member_data.birthday = null;
+                new_member_data.gender = null;
+                new_member_data.locker_num = null;
+                new_member_data.locker_start = null;
+                new_member_data.locker_finish = null;
+                new_member_data.save();
 
-           res.send(res_data);
-           res.end();
-       }
-       else{
+                res.send(res_data);
+                res.end();
+            }
+            else {
+                var res_data = new Object();
+                // 응답코드 1100 - DB에 저장된(등록된) 회원
+                res_data.code = "1100";
 
-           var res_data = new Object();
-           // 응답코드 1100 - DB에 저장된(등록된) 회원
-           res_data.code = "1100";
+                var add_data = new Object();
+                add_data.access_key = doc[0]._id;
+                res_data.response = add_data;
 
-           var add_data = new Object();
-           add_data.access_key = doc[0]._id;
-           res_data.response = add_data;
+                // Login 과정에 대한 logger
+                var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+                if (user_ip.substr(0, 7) == "::ffff:") {
+                    user_ip = user_ip.substr(7)
+                }
+                loginLogger(user_ip, 'check_user_email', add_data.access_key);
 
-           // Login 과정에 대한 logger
-           var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-           if (user_ip.substr(0, 7) == "::ffff:") {
-               user_ip = user_ip.substr(7)
-           }
-           loginLogger(user_ip, 'check_user_email', add_data.access_key);
-
-           // access_key로 DB의 Object의 id값을 리턴함
-           res.send(res_data);
-           res.end();
-       }
-    });
+                // access_key로 DB의 Object의 id값을 리턴함
+                res.send(res_data);
+                res.end();
+            }
+        });
+    }
 });
 
 module.exports = router;

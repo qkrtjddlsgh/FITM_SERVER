@@ -7,41 +7,51 @@ router.post('/', function (req, res) {
 
     var date = recv_data.date;
 
-    time_table.find({date : date}, function (err, result) {
-        if(err){
-            console.error(err.message);
-        }
-        else{
-            if(result.length == 0){
-                // date에 해당되는 수업이 없을때
-                var send_data = new Object();
-                send_data.code = "2170";
+    if(!req.body.date){
+        var send_data = new Object();
+        send_data.code = "5000";
+        send_data.message = "Incorrect Request";
 
-                var add_data = new Object();
-                add_data.message = "not classes in this date!!";
-                send_data.response = add_data;
-
-                res.send(send_data);
-                res.end();
+        res.send(send_data);
+        res.end();
+    }
+    else {
+        time_table.find({date: date}, function (err, result) {
+            if (err) {
+                console.error(err.message);
             }
-            else{
+            else {
+                if (result.length == 0) {
+                    // date에 해당되는 수업이 없을때
+                    var send_data = new Object();
+                    send_data.code = "2170";
 
-                for (var i = 0; i < result[0].classes.length; i++) {
-                    for (var j = 0; j < result[0].classes[i].participant.length; j++) {
-                        result[0].classes[i].participant[j].access_key = null;
-                    }
+                    var add_data = new Object();
+                    add_data.message = "not classes in this date!!";
+                    send_data.response = add_data;
+
+                    res.send(send_data);
+                    res.end();
                 }
+                else {
 
-                var send_data = new Object();
+                    for (var i = 0; i < result[0].classes.length; i++) {
+                        for (var j = 0; j < result[0].classes[i].participant.length; j++) {
+                            result[0].classes[i].participant[j].access_key = null;
+                        }
+                    }
 
-                send_data.code = "1150";
-                send_data.response = result[0];
+                    var send_data = new Object();
 
-                res.send(send_data);
-                res.end();
+                    send_data.code = "1150";
+                    send_data.response = result[0];
+
+                    res.send(send_data);
+                    res.end();
+                }
             }
-        }
-    })
+        })
+    }
 });
 
 module.exports = router;

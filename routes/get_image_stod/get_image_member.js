@@ -13,18 +13,29 @@ var s3 = new AWS.S3();
 
 router.post('/', function(req, res){
     var recv_data = req.body;
+
     var name = recv_data.name;
 
-    var file = require('fs').createWriteStream(name);
-    var params = {Bucket:'fitmbucket', Key: name};
-    s3.getObject(params).createReadStream().pipe(file);
+    if(!req.body.name){
+        var send_data = new Object();
+        send_data.code = "5000";
+        send_data.message = "Incorrect Request";
 
-    var send_data = new Object();
-    send_data.code = "9999";
-    send_data.response = name;
+        res.send(send_data);
+        res.end();
+    }
+    else {
+        var file = require('fs').createWriteStream(name);
+        var params = {Bucket: 'fitmbucket', Key: name};
+        s3.getObject(params).createReadStream().pipe(file);
 
-    res.send(send_data);
-    res.end();
+        var send_data = new Object();
+        send_data.code = "9999";
+        send_data.response = name;
+
+        res.send(send_data);
+        res.end();
+    }
 });
 
 module.exports = router;

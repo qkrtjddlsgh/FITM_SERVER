@@ -36,40 +36,68 @@ router.post('/', function(req, res){
     var udt_data_start_date = recv_data.start_date;
     var udt_data_finish_date = recv_data.finish_date;
     var udt_data_remain_break_day = recv_data.remain_break_day;
-    var set_data = { $set: {gender:udt_data_gender, name : udt_data_name, phone_number: udt_data_phone_number, start_date: udt_data_start_date, finish_date:udt_data_finish_date,locker_finish:udt_data_locker_finish, locker_start:udt_data_locker_start, locker_num:udt_data_locker_num, certification: udt_data_certification, birthday:udt_data_birthday, remain_break_day:udt_data_remain_break_day}};
 
-    members.update({access_key:udt_data_id, doc_type:"member_data"}, set_data, function (err, result) {
-        console.log("update");
-        if(err){
-            console.log(err.message);
-        }
-        if(result.n == 0){
-            console.log("no docs");
-            var send_data = new Object();
-            send_data.code = "5100";
-            send_data.response = {error_msg : "not exist access_key"};
-            res.send(send_data);
-            res.end();
-        }
-        else{
-            console.log(result);
-            members.find({access_key:udt_data_id, doc_type:"member_data"}, function (err, result) {
-                console.log("find");
-                if(err){
-                    console.error(err.message);
-                }
+    if(!req.body.access_key || !req.body.locker_finish || !req.body.locker_start || !req.body.locker_num || !req.body.gender ||
+        !req.body.birthday || !req.body.certification || !req.body.name || !req.body.phone_number || !req.body.start_date ||
+        !req.body.finish_date || !req.body.remain_break_day){
 
-                // 응답코드 : 2100
-                // (Server <-> Desktop App.) 에서 회원 정보 변경이 성공적으로 수행됨.
+        var send_data = new Object();
+        send_data.code = "5000";
+        send_data.message = "Incorrect Request";
 
+        res.send(send_data);
+        res.end();
+    }
+    else {
+        var set_data = {
+            $set: {
+                gender: udt_data_gender,
+                name: udt_data_name,
+                phone_number: udt_data_phone_number,
+                start_date: udt_data_start_date,
+                finish_date: udt_data_finish_date,
+                locker_finish: udt_data_locker_finish,
+                locker_start: udt_data_locker_start,
+                locker_num: udt_data_locker_num,
+                certification: udt_data_certification,
+                birthday: udt_data_birthday,
+                remain_break_day: udt_data_remain_break_day
+            }
+        };
+
+        members.update({access_key: udt_data_id, doc_type: "member_data"}, set_data, function (err, result) {
+            console.log("update");
+            if (err) {
+                console.log(err.message);
+            }
+            if (result.n == 0) {
+                console.log("no docs");
                 var send_data = new Object();
-                send_data.code = "2100";
-                send_data.response = result[0];
+                send_data.code = "5100";
+                send_data.response = {error_msg: "not exist access_key"};
                 res.send(send_data);
                 res.end();
-            });
-        }
-    });
+            }
+            else {
+                console.log(result);
+                members.find({access_key: udt_data_id, doc_type: "member_data"}, function (err, result) {
+                    console.log("find");
+                    if (err) {
+                        console.error(err.message);
+                    }
+
+                    // 응답코드 : 2100
+                    // (Server <-> Desktop App.) 에서 회원 정보 변경이 성공적으로 수행됨.
+
+                    var send_data = new Object();
+                    send_data.code = "2100";
+                    send_data.response = result[0];
+                    res.send(send_data);
+                    res.end();
+                });
+            }
+        });
+    }
 });
 
 module.exports = router;
