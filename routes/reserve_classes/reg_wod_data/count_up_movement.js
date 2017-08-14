@@ -39,8 +39,9 @@ router.post('/', function(req, res){
                 else {
                     // movement_data를 찾았을 때
                     var new_count = doc[0].movement_count + 1;
+                    var query = {$set: {movement_count: new_count}};
 
-                    movement.update({movement_count: new_count}, function(err, result){
+                    movement.update({movement_name: movement_name}, query, function(err, result){
                         if (err) {
                             console.error(err.message);
                         }

@@ -8,7 +8,8 @@ var classInfo = require('./classInfo.js');
 
 var classesData = new Schema({
     // 오늘의 와드 정보
-    today_wod : String,
+    today_wod_name : String,
+    today_wod_content : String,
     date : String,
     num_of_classes : Number,
     

@@ -3,6 +3,8 @@ var Schema  = mongoose.Schema;
 
 var Wod_List_data = new Schema({
     wod_name : String,
+    // recent : 모든 today_wod, naming : 상용 wod
+    doc_type : String,
     num_of_movements : Number,
 
     // today_wod의 movement_list

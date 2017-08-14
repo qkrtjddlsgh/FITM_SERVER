@@ -8,8 +8,9 @@ router.post('/', function(req, res){
     var wod_name = recv_data.wod_name;
     var num_of_movements = recv_data.num_of_movements;
     var movement_list = recv_data.movement_list;
+    var doc_type = recv_data.doc_type;
 
-    if(!req.body.wod_name || !req.body.num_of_movements || !req.body.movement_list){
+    if(!req.body.wod_name || !req.body.num_of_movements || !req.body.movement_list || !req.body.doc_type){
         var send_data = new Object();
         send_data.code = "5000";
         send_data.message = "Incorrect Request";
@@ -29,6 +30,7 @@ router.post('/', function(req, res){
                     var make_wod = new wod_list();
                     make_wod.wod_name = wod_name;
                     make_wod.num_of_movements = num_of_movements;
+                    make_wod.doc_type = doc_type;
 
                     for (var i = 0; i < num_of_movements; i++) {
                         make_wod.movement_list[i] = movement_list[i];
