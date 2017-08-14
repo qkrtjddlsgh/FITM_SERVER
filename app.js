@@ -31,6 +31,9 @@ var get_image_list = require('./routes/get_image_stod/get_image_list');
 var make_movement = require('./routes/reserve_classes/reg_wod_data/make_movement');
 var delete_movement = require('./routes/reserve_classes/reg_wod_data/delete_movement');
 var list_movement = require('./routes/reserve_classes/reg_wod_data/list_movement');
+var make_wod = require('./routes/reserve_classes/reg_wod_data/make_wod');
+var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
+var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -83,6 +86,9 @@ app.use('/get_image_list', get_image_list);
 app.use('/make_movement', make_movement);
 app.use('/delete_movement', delete_movement);
 app.use('/list_movement', list_movement);
+app.use('/make_wod', make_wod);
+app.use('/count_up_movement', count_up_movement);
+app.use('/count_down_movement', count_down_movement);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

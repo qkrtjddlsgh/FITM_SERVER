@@ -6,7 +6,7 @@ router.post('/', function (req, res) {
 
     var recv_data = req.body;
 
-    var movement_data = recv_data.movement_name;
+    var movement_name = recv_data.movement_name;
 
     if(!req.body.movement_name){
         var send_data = new Object();
@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
         res.end();
     }
     else {
-        movement.find({movement_name: movement_data}, function (err, doc) {
+        movement.find({movement_name: movement_name}, function (err, doc) {
             if (err) {
                 console.error(err.message);
             }
@@ -25,7 +25,8 @@ router.post('/', function (req, res) {
                 if (doc.length == 0) {
                     // 겹치는 movement_data가 없을 때
                     var make_movement = new movement();
-                    make_movement.movement_name = movement_data;
+                    make_movement.movement_name = movement_name;
+                    make_movement.movement_count = 0;
 
                     make_movement.save(function (err, room) {
                         // 새로운 movement_data의 정보에 대한 document를 저장
@@ -39,7 +40,7 @@ router.post('/', function (req, res) {
 
                     var add_data = new Object();
 
-                    add_data.movement_name = movement_data;
+                    add_data.movement_name = movement_name;
 
                     var res_data = new Object();
 
