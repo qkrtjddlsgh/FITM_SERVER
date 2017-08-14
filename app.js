@@ -32,6 +32,8 @@ var make_movement = require('./routes/reserve_classes/reg_wod_data/make_movement
 var delete_movement = require('./routes/reserve_classes/reg_wod_data/delete_movement');
 var list_movement = require('./routes/reserve_classes/reg_wod_data/list_movement');
 var make_wod = require('./routes/reserve_classes/reg_wod_data/make_wod');
+var delete_wod = require('./routes/reserve_classes/reg_wod_data/delete_wod');
+var list_wod = require('./routes/reserve_classes/reg_wod_data/list_wod');
 var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
 var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
 
@@ -87,6 +89,8 @@ app.use('/make_movement', make_movement);
 app.use('/delete_movement', delete_movement);
 app.use('/list_movement', list_movement);
 app.use('/make_wod', make_wod);
+app.use('/delete_wod', delete_wod);
+app.use('/list_wod', list_wod);
 app.use('/count_up_movement', count_up_movement);
 app.use('/count_down_movement', count_down_movement);
 
