@@ -7,11 +7,12 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     var date = recv_data.date;
-    var today_wod = recv_data.today_wod;
+    var today_wod_name = recv_data.today_wod_name;
+    var today_wod_content = recv_data.today_wod_content;
     var num_of_classes = recv_data.num_of_classes;
     var max_participant = recv_data.max_participant;
 
-    if(!req.body.today_wod || !req.body.date || !req.body.num_of_classes || !req.body.max_participant){
+    if(!req.body.today_wod_name || !req.body.today_wod_content || !req.body.date || !req.body.num_of_classes || !req.body.max_participant){
         var send_data = new Object();
         send_data.code = "5000";
         send_data.message = "Incorrect Request";
@@ -32,7 +33,8 @@ router.post('/', function (req, res) {
                     // 겹치는 날짜가 없기 때문에 시간표를 만들 수 있다.
                     var make_time_table = new time_table();
                     make_time_table.date = date;
-                    make_time_table.today_wod = today_wod;
+                    make_time_table.today_wod_name = today_wod_name;
+                    make_time_table.today_wod_content = today_wod_content;
                     make_time_table.num_of_classes = num_of_classes;
 
                     for (var i = 0; i < num_of_classes; i++) {
