@@ -50,15 +50,15 @@ router.post('/', function (req, res) {
             var send_obj = new Object();
             send_obj.code = "5300";
             send_obj.response = { message : "sent failed" };
-            res.send(send_obj);
-            res.end();
+            //res.send(send_obj);
+            //res.end();
        }else {
             console.log(JSON.stringify(obj) + "\nSuccessfully sent with response : " + response);
             var send_obj = new Object();
             send_obj.code = "3300";
             send_obj.response = { message : "push message sent successfully"};
-            res.send(send_obj);
-            res.end();
+            //res.send(send_obj);
+            //res.end();
        }
         ios_message.data = obj;
         fcm.send(ios_message, function (err, response) {
