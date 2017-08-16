@@ -36,6 +36,7 @@ var delete_wod = require('./routes/reserve_classes/reg_wod_data/delete_wod');
 var list_wod = require('./routes/reserve_classes/reg_wod_data/list_wod');
 var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
 var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
+var simple_push_to_m = require('./push_modules/simple_push_to_m');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -93,6 +94,7 @@ app.use('/delete_wod', delete_wod);
 app.use('/list_wod', list_wod);
 app.use('/count_up_movement', count_up_movement);
 app.use('/count_down_movement', count_down_movement);
+app.use('/simple_push_to_m', simple_push_to_m);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
