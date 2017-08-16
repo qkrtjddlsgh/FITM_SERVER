@@ -6,11 +6,12 @@ router.post('/', function(req, res){
     var recv_data = req.body;
 
     var wod_name = recv_data.wod_name;
+    var wod_content = recv_data.wod_content;
     var num_of_movements = recv_data.num_of_movements;
     var movement_list = recv_data.movement_list;
     var doc_type = recv_data.doc_type;
 
-    if(!req.body.wod_name || !req.body.num_of_movements || !req.body.movement_list || !req.body.doc_type){
+    if(!req.body.wod_name || !req.body.wod_content || !req.body.num_of_movements || !req.body.movement_list || !req.body.doc_type){
         var send_data = new Object();
         send_data.code = "5000";
         send_data.message = "Incorrect Request";
@@ -29,6 +30,7 @@ router.post('/', function(req, res){
                     // 겹치는 wod_name이 없을 때
                     var make_wod = new wod_list();
                     make_wod.wod_name = wod_name;
+                    make_wod.wod_content = wod_content;
                     make_wod.num_of_movements = num_of_movements;
                     make_wod.doc_type = doc_type;
 
