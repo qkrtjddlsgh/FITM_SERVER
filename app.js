@@ -37,16 +37,12 @@ var list_wod_by_doc = require('./routes/reserve_classes/reg_wod_data/list_wod_by
 var list_wod_by_name = require('./routes/reserve_classes/reg_wod_data/list_wod_by_name');
 var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
 var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
-<<<<<<< HEAD
 //var simple_push_to_m = require('./push_modules/simple_push_to_m');
 var udt_device_token = require('./routes/check_dup_member/udt_device_token');
 var push_to_certain_user = require('./push_modules/push_to_certain_user');
 var push_to_certification_group = require('./push_modules/push_to_certification_group');
-=======
 var count_reset_movement = require('./routes/reserve_classes/reg_wod_data/count_reset_movement');
 var remove_recent = require('./routes/reserve_classes/reg_wod_data/remove_recent');
-var simple_push_to_m = require('./push_modules/simple_push_to_m');
->>>>>>> 307cc101bfdea5dea8fd4d531123b818d74a2974
 
 // mongodb connection
 var mongoose = require('mongoose');
