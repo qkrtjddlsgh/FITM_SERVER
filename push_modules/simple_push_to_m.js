@@ -24,15 +24,6 @@ var message = {
     }
 };
 
-var ios_message = {
-    to : 'F007EC387069262805F735C7FA2825CD3595E25B8D44982AFFDA713DE6F54116',
-    data : null,
-    notification : {
-        title : 'title of your push notification',
-        body : 'body of your push notification'
-    }
-}
-
 router.post('/', function (req, res) {
     var recv_data = req.body;
     var push_title = recv_data.title;
@@ -60,26 +51,6 @@ router.post('/', function (req, res) {
             res.send(send_obj);
             res.end();
        }
-       /*
-        ios_message.data = obj;
-        fcm.send(ios_message, function (err, response) {
-            if(err){
-                console.error(JSON.stringify(err));
-                var send_obj = new Object();
-                send_obj.code = "5300";
-                send_obj.response = { message : "sent failed" };
-                res.send(send_obj);
-                res.end();
-            }else {
-                console.log(JSON.stringify(obj) + "\nSuccessfully sent with response : " + response);
-                var send_obj = new Object();
-                send_obj.code = "3300";
-                send_obj.response = { message : "push message sent successfully"};
-                res.send(send_obj);
-                res.end();
-            }
-        });
-        */
     });
 
 

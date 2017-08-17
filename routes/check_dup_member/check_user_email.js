@@ -64,7 +64,7 @@ router.post('/', function(req, res){
                 new_member_data.start_date = null;
                 new_member_data.finish_date = null;
                 new_member_data.remain_break_day = 0;
-                new_member_data.certification = "false";
+                new_member_data.certification = 0;
                 new_member_data.doc_type = "member_data";
                 new_member_data.birthday = null;
                 new_member_data.gender = null;
@@ -72,6 +72,8 @@ router.post('/', function(req, res){
                 new_member_data.locker_start = null;
                 new_member_data.locker_finish = null;
                 new_member_data.save();
+
+                console.log("new member is registered");
 
                 res.send(res_data);
                 res.end();

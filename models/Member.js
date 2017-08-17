@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var memberData = new Schema({
+    device_token : String,
     access_key : String,
     id_email : String,
     name : String,
@@ -13,7 +14,7 @@ var memberData = new Schema({
     start_date : String,
     finish_date : String,
     remain_break_day : Number,
-    certification : String,
+    certification : Number,
     doc_type : String,
     birthday : String,
     gender: String,

@@ -37,7 +37,10 @@ var list_wod_by_doc = require('./routes/reserve_classes/reg_wod_data/list_wod_by
 var list_wod_by_name = require('./routes/reserve_classes/reg_wod_data/list_wod_by_name');
 var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
 var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
-var simple_push_to_m = require('./push_modules/simple_push_to_m');
+//var simple_push_to_m = require('./push_modules/simple_push_to_m');
+var udt_device_token = require('./routes/check_dup_member/udt_device_token');
+var push_to_certain_user = require('./push_modules/push_to_certain_user');
+var push_to_certification_group = require('./push_modules/push_to_certification_group');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -96,7 +99,11 @@ app.use('/list_wod_by_doc', list_wod_by_doc);
 app.use('/list_wod_by_name', list_wod_by_name);
 app.use('/count_up_movement', count_up_movement);
 app.use('/count_down_movement', count_down_movement);
-app.use('/simple_push_to_m', simple_push_to_m);
+//app.use('/simple_push_to_m', simple_push_to_m);
+app.use('/udt_device_token', udt_device_token);
+app.use('/push_to_certain_user', push_to_certain_user);
+app.use('/push_to_certification_group', push_to_certification_group);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
