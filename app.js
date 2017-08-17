@@ -38,7 +38,7 @@ var list_wod_by_name = require('./routes/reserve_classes/reg_wod_data/list_wod_b
 var count_up_movement = require('./routes/reserve_classes/reg_wod_data/count_up_movement');
 var count_down_movement = require('./routes/reserve_classes/reg_wod_data/count_down_movement');
 var count_reset_movement = require('./routes/reserve_classes/reg_wod_data/count_reset_movement');
-//var remove_recent = require('./routes/reserve_classes/reg_wod_data/remove_recent');
+var remove_recent = require('./routes/reserve_classes/reg_wod_data/remove_recent');
 var simple_push_to_m = require('./push_modules/simple_push_to_m');
 
 // mongodb connection
@@ -99,7 +99,7 @@ app.use('/list_wod_by_name', list_wod_by_name);
 app.use('/count_up_movement', count_up_movement);
 app.use('/count_down_movement', count_down_movement);
 app.use('/count_reset_movement', count_reset_movement);
-//app.use('/remove_recent', remove_recent);
+app.use('/remove_recent', remove_recent);
 app.use('/simple_push_to_m', simple_push_to_m);
 
 // catch 404 and forward to error handler
