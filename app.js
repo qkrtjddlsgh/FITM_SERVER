@@ -44,6 +44,8 @@ var push_to_certification_group = require('./push_modules/push_to_certification_
 var count_reset_movement = require('./routes/reserve_classes/reg_wod_data/count_reset_movement');
 var remove_recent = require('./routes/reserve_classes/reg_wod_data/remove_recent');
 
+var push_with_device_token = require('./push_modules/push_with_device_token');
+
 // mongodb connection
 var mongoose = require('mongoose');
 
@@ -107,6 +109,7 @@ app.use('/push_to_certain_user', push_to_certain_user);
 app.use('/push_to_certification_group', push_to_certification_group);
 app.use('/count_reset_movement', count_reset_movement);
 app.use('/remove_recent', remove_recent);
+app.use('/push_with_device_token', push_with_device_token);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
