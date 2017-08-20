@@ -24,7 +24,7 @@ router.post('/', function (req, res) {
         res.end();
     }
     else {
-        var set_data = {$set: {name: name, phone_number: phone_number, gender: gender, birthday: birthday}};
+        var set_data = {$set: {name: name, phone_number: phone_number, gender: gender, birthday: birthday, check_register: 1}};
 
         members.update({access_key: access_key, doc_type: "member_data"}, set_data, function (err, result) {
             if (err) {
@@ -39,20 +39,31 @@ router.post('/', function (req, res) {
                 res.end();
             }
             else {
-                console.log(result);
-                members.findOne({access_key: access_key}, function (err, result) {
+                members.find({access_key: access_key, doc_type: "member_data"}, function (err, result) {
+                    if(result[0].check_register == 0){
+                        var add_data = new Object();
+                        add_data.message = "Not completely registered";
 
-                    var send_data = new Object();
-                    var add_data = new Object();
-                    add_data.access_key = result.access_key;
-                    add_data.name = result.name;
-                    add_data.phone_number = result.phone_number;
-                    add_data.gender = result.gender;
-                    add_data.birthday = result.birthday;
-                    send_data.response = add_data;
-                    send_data.code = "1110";
-                    res.send(send_data);
-                    res.end();
+                        var send_data = new Object();
+                        send_data.code = "1120";
+                        send_data.response = add_data;
+
+                        res.send(send_data);
+                        res.end();
+                    }
+                    else {
+                        var send_data = new Object();
+                        var add_data = new Object();
+                        add_data.access_key = result[0].access_key;
+                        add_data.name = result[0].name;
+                        add_data.phone_number = result[0].phone_number;
+                        add_data.gender = result[0].gender;
+                        add_data.birthday = result[0].birthday;
+                        send_data.response = add_data;
+                        send_data.code = "1110";
+                        res.send(send_data);
+                        res.end();
+                    }
                 });
             }
         })

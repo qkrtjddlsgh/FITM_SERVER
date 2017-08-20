@@ -71,6 +71,7 @@ router.post('/', function(req, res){
                 new_member_data.locker_num = null;
                 new_member_data.locker_start = null;
                 new_member_data.locker_finish = null;
+                new_member_data.check_register = 0;
                 new_member_data.save();
 
                 console.log("new member is registered");

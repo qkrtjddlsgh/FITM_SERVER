@@ -20,7 +20,9 @@ var memberData = new Schema({
     gender: String,
     locker_num : String,
     locker_start : String,
-    locker_finish : String
+    locker_finish : String,
+    // 회원가입 여부를 확인. 안되있을시 0, 되있을시 1
+    check_register : Number
 });
 
 // model 함수의 arg1 : docuement type
