@@ -8,6 +8,7 @@ var app = express();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var check_cron = require('./routes/check_cron');
 var chk_email = require('./routes/check_dup_member/check_user_email');
 var res_get_member_data = require('./routes/get_data_member/res_member_data'); // 등록된 회원의 세부 정보(회원 정보)의 목록을 받음
 var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 등록된 회원의 참조 정보(액세스 키)의 목록을 받음
@@ -74,6 +75,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/check_cron', check_cron);
 app.use('/check_email', chk_email);
 app.use('/get_member_data', res_get_member_data);
 app.use('/get_member_ref', res_get_member_ref);
