@@ -38,8 +38,7 @@ router.post('/', function(req, res){
     var udt_data_remain_break_day = recv_data.remain_break_day;
 
     if(!req.body.access_key || !req.body.locker_finish || !req.body.locker_start || !req.body.locker_num || !req.body.gender ||
-        !req.body.birthday || !req.body.certification || !req.body.name || !req.body.phone_number || !req.body.start_date ||
-        !req.body.finish_date || !req.body.remain_break_day){
+        !req.body.birthday || !req.body.name || !req.body.phone_number || !req.body.start_date || !req.body.finish_date){
 
         var send_data = new Object();
         send_data.code = "5000";
