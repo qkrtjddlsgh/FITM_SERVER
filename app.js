@@ -46,6 +46,8 @@ var count_reset_movement = require('./routes/reserve_classes/reg_wod_data/count_
 var remove_recent = require('./routes/reserve_classes/reg_wod_data/remove_recent');
 
 var push_with_device_token = require('./push_modules/push_with_device_token');
+var sync_message_log = require('./chat_modules/sync_message_log'); // 170821 채팅 테스트 모듈 1 추가
+var test_message_input = require('./chat_modules/test_message_input'); // 170821 채팅 테스트 모듈 2 추가
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -112,6 +114,8 @@ app.use('/push_to_certification_group', push_to_certification_group);
 app.use('/count_reset_movement', count_reset_movement);
 app.use('/remove_recent', remove_recent);
 app.use('/push_with_device_token', push_with_device_token);
+app.use('/sync_message_log', sync_message_log); // 170821 채팅 테스트 모듈 1 추가
+app.use('/test_message_input', test_message_input); // 170821 채팅 테스트 모듈 2 추가
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

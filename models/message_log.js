@@ -8,8 +8,10 @@ var messageLog = new Schema({
     message_list : [{
         time : {type : Date, default : Date.now()},
         access_key : String,
-        sender_name : String,
-        message : String
+        sender : String,
+        message : String,
+        message_idx : Number,
+        idx_time : Number
     }]
 });
 
