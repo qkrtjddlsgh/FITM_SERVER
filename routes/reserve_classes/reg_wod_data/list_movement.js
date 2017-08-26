@@ -4,7 +4,7 @@ var movement = require('../../../models/Movement');
 
 router.post('/', function (req, res) {
 
-    movement.find().sort("submitted").exec(function(err, doc){
+    movement.find().sort({movement_count: -1}).exec(function(err, doc){
         if(err){
             console.error(err.message);
         }
