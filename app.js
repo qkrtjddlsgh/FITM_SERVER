@@ -8,7 +8,7 @@ var app = express();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var check_cron = require('./routes/check_cron');
+var check_certification = require('./routes/check_cron/check_certification');
 var chk_email = require('./routes/check_dup_member/check_user_email');
 var res_get_member_data = require('./routes/get_data_member/res_member_data'); // 등록된 회원의 세부 정보(회원 정보)의 목록을 받음
 var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 등록된 회원의 참조 정보(액세스 키)의 목록을 받음
@@ -16,6 +16,7 @@ var res_get_member_access_key_stod = require('./routes/modify_member/get_member_
 var res_get_member_data_stod = require('./routes/modify_member/get_member_key/get_member_data');
 var get_member_data_stom = require('./routes/modify_member/get_member_key/get_member_data_stom');
 var udt_member_data = require('./routes/modify_member/update_member_data_stod/udt_member_data');
+var udt_member_certification = require('./routes/modify_member/update_member_data_stod/udt_member_certification');
 var reg_member_data = require('./routes/modify_member/register_member_data_stom/reg_member_data');
 var get_member_total_data = require('./routes/modify_member/get_member_total_stod/get_member_total_stod');
 var res_make_new_time_table = require('./routes/reserve_classes/res_classes_stod/res_make_documnet');
@@ -77,7 +78,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/check_cron', check_cron);
+app.use('/check_certification', check_certification);
 app.use('/check_email', chk_email);
 app.use('/get_member_data', res_get_member_data);
 app.use('/get_member_ref', res_get_member_ref);
@@ -85,6 +86,7 @@ app.use('/get_member_access_key_stod', res_get_member_access_key_stod); // stod 
 app.use('/get_member_data_stod', res_get_member_data_stod);
 app.use('/get_member_data_stom', get_member_data_stom);
 app.use('/udt_member_data', udt_member_data); // members 콜렉션의 document의 특정 필드를 update
+app.use('/udt_member_certification', udt_member_certification);
 app.use('/register_member_data_stom', reg_member_data); // Register 과정에서 추가적인 데이터를 받음
 app.use('/get_member_data_total_stod', get_member_total_data);
 app.use('/res_make_new_time_table', res_make_new_time_table);
