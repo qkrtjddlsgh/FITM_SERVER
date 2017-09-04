@@ -15,12 +15,17 @@ io.on('connection', function (socket) {
     socket.on('join_room', function (data) {
         socket.join(data.room_name);
         socket.leave(socket.id); // 소켓이 생성되면, 소켓의 id 값을 가진 디폴트 룸이 생성되는데, 디폴트 룸을 나가는 명령
+        if(data.access_key == 'admin'){
+            console.log('admin is join room to ' + data.room_name);
+            return;
+        }
         console.log(JSON.stringify(data));
 
         messageLog.find({room_name : data.room_name}, function (err, result) {
             if(err){
                 console.error(err.message);
                 // DB 접속 간의 에러 발생 - 처리 코드 필요
+                socket.emit('get_result', {message : 'database error'});
             } else{
                 if(result.length == 0){
 
