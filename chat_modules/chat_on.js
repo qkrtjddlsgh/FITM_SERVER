@@ -29,10 +29,11 @@ io.on('connection', function (socket) {
                     newLog.room_name = data.room_name;
                     newLog.message_list = [];
                     newLog.save();
-
+                    socket.emit('get_result', {message : 'no documents'});
                     // document 가 없으면 에러가 발생하는 상황이다.
                 } else{
                     var result_data = result[0];
+                    /*
                     var result_arr = result_data.message_list;
                     for(var i = 0; i < result_arr.length; i++){
                         var send_data = new Object();
@@ -43,6 +44,8 @@ io.on('connection', function (socket) {
                         //socket.emit('get_room_log', send_data);
                         io.to(data.room_name).emit('get_room_log', send_data);
                     }
+                    */
+                    socket.emit('get_result', {message : 'document exits'});
                 }
             }
         })

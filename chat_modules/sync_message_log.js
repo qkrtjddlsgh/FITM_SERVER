@@ -16,6 +16,7 @@ function cmp(a ,b){
 router.post('/', function (req, res) {
     var recv_data = req.body;
 
+    // 클라이언트(ios, android)에서는 room_name 이 사용자의 email 이다.
     var access_key = recv_data.access_key;
     var room_name = recv_data.room_name;
     var latest_idx_time = recv_data.latest_idx_time;
