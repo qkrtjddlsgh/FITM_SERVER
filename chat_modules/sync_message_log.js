@@ -17,11 +17,10 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     var access_key = recv_data.access_key;
+    var room_name = recv_data.room_name;
+    var latest_idx_time = recv_data.latest_idx_time;
 
-    var first_idx_time = recv_data.first_idx_time;
-    var last_idx_time = recv_data.last_idx_time;
-
-    message_log.find({access_key : access_key}, function (err, result) {
+    message_log.find({access_key : access_key, room_name : room_name}, function (err, result) {
        if(err){
             console.error(JSON.stringify(err));
             var send_obj = new Object();
@@ -48,50 +47,21 @@ router.post('/', function (req, res) {
            }else{
                // 저장된 로그 document 가 있음
                 var tmp_arr = result[0].message_list;
-                tmp_arr.sort(cmp);
                 var msg_arr = new Array();
+                tmp_arr.sort(cmp);
 
-                var max_capacity = 5000;
-
-                if(tmp_arr.length > max_capacity){
-                    var remove_cnt = tmp_arr.length - max_capacity - 1;
-                }
-                else{
-                    var remove_cnt = 0;
-                }
-
-                //var remove_idx = tmp_arr[remove_cnt-1].idx_time
-                console.log(remove_cnt);
-                var remove_time = tmp_arr[remove_cnt].idx_time;
-                console.log(remove_time);
-
-                // 메시지의 저장 용량의 한도를 초과하면 초과한만큼 지운다. ( 현재 허용량 : 5000개 )
-                var remove_query = { $pull : { message_list : { idx_time : { $lt : remove_time}}}};
-                message_log.update({access_key : access_key}, remove_query, function (err, result) {
-                    if(err){
-                        console.error(JSON.stringify(err));
-                    }else{
-                        console.log(JSON.stringify(result));
-                    }
-                });
-
-                if(first_idx_time == -1 && last_idx_time == -1){
-                    for(var i = 0; i < tmp_arr.length; i++){
+                for(var i = 0; i < tmp_arr.length; i++){
+                    if(tmp_arr[i].idx_time > latest_idx_time){
                         msg_arr.push(tmp_arr[i]);
-                    }
-                }else {
-                    for (var i = remove_cnt; i < tmp_arr.length; i++) {
-                        if (last_idx_time <= tmp_arr[i].idx_time) {
-                            msg_arr.push(tmp_arr[i]);
-                        }
                     }
                 }
 
                 var send_obj = new Object();
                 send_obj.code = "3334";
-                send_obj.response = { message : "load message log", logs :msg_arr };
+                send_obj.response = { message : "load message log", message_list :msg_arr };
                 res.send(send_obj);
                 res.end();
+
            }
        }
     });
