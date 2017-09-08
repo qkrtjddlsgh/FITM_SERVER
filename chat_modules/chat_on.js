@@ -63,11 +63,13 @@ io.on('connection', function (socket) {
         console.log(JSON.stringify(data));
         var send_data = new Object();
         var timeObj = getTime();
+        var unixTime = new Date().getTime();
         var cur_time = {year : timeObj.year, month : timeObj.month, day : timeObj.day, hour : timeObj.hour, minute : timeObj.minute};
         send_data.access_key = data.access_key;
         send_data.sender = data.sender;
         send_data.room_name = data.room_name;
         send_data.message = data.message;
+        send_data.idx_time = unixTime;
         send_data.message_time = cur_time;
         console.log(JSON.stringify(send_data));
         io.sockets.in(send_data.room_name).emit('send_message', send_data);
@@ -78,7 +80,7 @@ io.on('connection', function (socket) {
                 // DB 연결 에러 시
             }
             else{
-                var query = {$push : {message_list : {access_key : data.access_key, sender : data.sender, message : data.message, idx_time : new Date().getTime(), message_time : cur_time}}};
+                var query = {$push : {message_list : {access_key : data.access_key, sender : data.sender, message : data.message, idx_time : unixTime, message_time : cur_time}}};
                 messageLog.update({room_name : data.room_name}, query, function (err, result) {
                     if(err){
                         console.error(err.message);
