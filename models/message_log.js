@@ -11,6 +11,13 @@ var messageLog = new Schema({
         sender : String,
         message : String,
         message_idx : Number,
+        message_time : {
+            year : String,
+            month : String,
+            day : String,
+            hour : String,
+            minute : String
+        },
         idx_time : Number
     }]
 });

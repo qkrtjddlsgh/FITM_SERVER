@@ -8,6 +8,8 @@ var getTodayObj = function(){
     var yyyy = today.getUTCFullYear();
     var mm = today.getUTCMonth() + 1;
     var dd = today.getUTCDate();
+    var h = today.getUTCHours();
+    var m = today.getUTCMinutes();
 
     var str_yyyy = yyyy.toString();
     var str_mm;
@@ -28,7 +30,9 @@ var getTodayObj = function(){
     var ret = new Object();
     ret.year = str_yyyy;
     ret.month = str_mm;
-    ret.date = str_dd;
+    ret.day = str_dd;
+    ret.hour = h;
+    ret.minute = m;
 
     return ret;
 };

@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var message_log = require('../models/message_log');
+var getTime = require('../util_modules/date_manip/getTodayObj');
 
 router.post('/', function (req, res) {
     var recv_data = req.body;
