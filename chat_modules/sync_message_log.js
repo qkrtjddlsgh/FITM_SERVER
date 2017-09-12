@@ -17,11 +17,11 @@ router.post('/', function (req, res) {
     var recv_data = req.body;
 
     // 클라이언트(ios, android)에서는 room_name 이 사용자의 email 이다.
-    var access_key = recv_data.access_key;
+    //var access_key = recv_data.access_key;
     var room_name = recv_data.room_name;
     var latest_idx_time = recv_data.latest_idx_time;
 
-    message_log.find({access_key : access_key, room_name : room_name}, function (err, result) {
+    message_log.find({room_name : room_name}, function (err, result) {
        if(err){
             console.error(JSON.stringify(err));
             var send_obj = new Object();
