@@ -34,7 +34,7 @@ router.post('/', function (req, res) {
            if(result.length == 0){
                 // 저장된 로그 document 가 없음
                 var new_log = new message_log();
-                new_log.access_key = access_key;
+                //new_log.access_key = access_key;
                 new_log.room_name = room_name;
                 new_log.message_list = [];
                 // 코드 추가 해야함
