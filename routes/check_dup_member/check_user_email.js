@@ -80,24 +80,34 @@ router.post('/', function(req, res){
                 res.end();
             }
             else {
-                var res_data = new Object();
-                // 응답코드 1100 - DB에 저장된(등록된) 회원
-                res_data.code = "1100";
+                member.find({id_email: recv_data.id_email, doc_type: 'member_data'}, function(err, result){
+                    if(err){
+                        console.error(err.message);
+                    }
+                    else{
+                        var res_data = new Object();
+                        // 응답코드 1100 - DB에 저장된(등록된) 회원
+                        res_data.code = "1100";
 
-                var add_data = new Object();
-                add_data.access_key = doc[0]._id;
-                res_data.response = add_data;
+                        console.log(result);
 
-                // Login 과정에 대한 logger
-                var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-                if (user_ip.substr(0, 7) == "::ffff:") {
-                    user_ip = user_ip.substr(7)
-                }
-                loginLogger(user_ip, 'check_user_email', add_data.access_key);
+                        var add_data = new Object();
+                        add_data.access_key = result[0].access_key;
+                        add_data.check_register = result[0].check_register;
+                        res_data.response = add_data;
 
-                // access_key로 DB의 Object의 id값을 리턴함
-                res.send(res_data);
-                res.end();
+                        // Login 과정에 대한 logger
+                        var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+                        if (user_ip.substr(0, 7) == "::ffff:") {
+                            user_ip = user_ip.substr(7)
+                        }
+                        loginLogger(user_ip, 'check_user_email', add_data.access_key);
+
+                        // access_key로 DB의 Object의 id값을 리턴함
+                        res.send(res_data);
+                        res.end();
+                    }
+                })
             }
         });
     }
