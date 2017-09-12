@@ -22,7 +22,7 @@ router.post('/', function (req, res) {
             }else{
                 var tmp_arr = new Array();
                 for(var i = 0; i < result.length ; i++){
-                    tmp_arr.push(result[i].room_name);
+                    tmp_arr.push({room_name : result[i].room_name, name : result[i].name });
                 }
                 var send_obj = new Object();
                 send_obj.room_list = tmp_arr;
