@@ -39,6 +39,12 @@ io.on('connection', function (socket) {
                     // document 가 없으면 에러가 발생하는 상황이다.
                 } else{
                     var result_data = result[0];
+                    // join_room 전송 이벤트가 도착하면
+                    var find_query = result_data.room_name;
+                    var update_query = {$set : {name : data.sender}};
+                    messageLog.update(find_query, update_query,function (err, result) {
+
+                    });
                     /*
                     var result_arr = result_data.message_list;
                     for(var i = 0; i < result_arr.length; i++){
