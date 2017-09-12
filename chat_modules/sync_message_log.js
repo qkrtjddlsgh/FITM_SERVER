@@ -5,6 +5,7 @@
 var express = require('express');
 var router = express.Router();
 var message_log = require('../models/message_log');
+var member = require('../models/Member');
 
 function cmp(a ,b){
     if(a.idx_time == b.idx_time){
@@ -19,6 +20,7 @@ router.post('/', function (req, res) {
     // 클라이언트(ios, android)에서는 room_name 이 사용자의 email 이다.
     //var access_key = recv_data.access_key;
     var room_name = recv_data.room_name;
+    var name = recv_data.name;
     var latest_idx_time = recv_data.latest_idx_time;
 
     message_log.find({room_name : room_name}, function (err, result) {
@@ -37,6 +39,7 @@ router.post('/', function (req, res) {
                 //new_log.access_key = access_key;
                 new_log.room_name = room_name;
                 new_log.message_list = [];
+                new_log.name = name;
                 // 코드 추가 해야함
 
                 new_log.save();
