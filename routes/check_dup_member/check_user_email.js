@@ -92,9 +92,9 @@ router.post('/', function(req, res){
                         console.log(result);
 
                         var add_data = new Object();
-                        add_data.access_key = result[0].access_key;
-                        add_data.check_register = result[0].check_register;
-                        res_data.response = add_data;
+                        //add_data.access_key = result[0].access_key;
+                        //add_data.check_register = result[0].check_register;
+                        res_data.response = result[0];
 
                         // Login 과정에 대한 logger
                         var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
