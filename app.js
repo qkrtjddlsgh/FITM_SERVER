@@ -56,6 +56,14 @@ var read_box_notification = require('./routes/box_notification/read_notification
 var update_box_notification = require('./routes/box_notification/update_notification');
 var delete_box_notification = require('./routes/box_notification/delete_notification');
 
+var register_item = require('./routes/small_market/market_to_desktop/register_item');
+var delete_item = require('./routes/small_market/market_to_desktop/delete_item');
+var update_state = require('./routes/small_market/market_to_desktop/update_state');
+var show_item = require('./routes/small_market/market_to_desktop/show_item');
+var list_item = require('./routes/small_market/market_to_mobile/list_item');
+var add_item = require('./routes/small_market/market_to_mobile/add_item');
+var sub_item = require('./routes/small_market/market_to_mobile/sub_item');
+
 // mongodb connection
 var mongoose = require('mongoose');
 
@@ -130,6 +138,14 @@ app.use('/create_notification', create_box_notification);
 app.use('/read_notification', read_box_notification);
 app.use('/update_notification', update_box_notification);
 app.use('/delete_notification', delete_box_notification);
+
+app.use('/register_item', register_item);
+app.use('/delete_item', delete_item);
+app.use('/update_state', update_state);
+app.use('/show_item', show_item);
+app.use('/list_item', list_item);
+app.use('/add_item', add_item);
+app.use('/sub_item', sub_item);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
