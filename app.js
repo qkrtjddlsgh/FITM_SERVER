@@ -51,6 +51,11 @@ var sync_message_log = require('./chat_modules/sync_message_log'); // 170821 채
 var test_message_input = require('./chat_modules/test_message_input'); // 170821 채팅 테스트 모듈 2 추가
 var get_room_list = require('./chat_modules/get_room_list');
 
+var create_box_notification = require('./routes/box_notification/create_notification');
+var read_box_notification = require('./routes/box_notification/read_notification');
+var update_box_notification = require('./routes/box_notification/update_notification');
+var delete_box_notification = require('./routes/box_notification/delete_notification');
+
 // mongodb connection
 var mongoose = require('mongoose');
 
@@ -120,6 +125,11 @@ app.use('/push_with_device_token', push_with_device_token);
 app.use('/sync_message_log', sync_message_log); // 170821 채팅 테스트 모듈 1 추가
 app.use('/test_message_input', test_message_input); // 170821 채팅 테스트 모듈 2 추가
 app.use('/get_room_list', get_room_list);
+
+app.use('/create_notification', create_box_notification);
+app.use('/read_notification', read_box_notification);
+app.use('/update_notification', update_box_notification);
+app.use('/delete_notification', delete_box_notification);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
