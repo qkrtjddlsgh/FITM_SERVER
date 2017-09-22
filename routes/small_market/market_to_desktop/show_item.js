@@ -12,6 +12,15 @@ router.post('/', function (req, res) {
         if(err){
             console.error(err.message);
         }
+        if(doc.length == 0){
+            var res_data = new Object();
+
+            res_data.code = "8888";
+            res_data.message = "Item is not exist";
+
+            res.send(res_data);
+            res.end();
+        }
         else{
             var send_data = new Object();
             send_data.code = "9999";
