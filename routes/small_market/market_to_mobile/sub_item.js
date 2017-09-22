@@ -16,7 +16,7 @@ router.post('/', function(req, res){
         if(doc.length == 0){
             var res_data = new Object();
             res_data.code = "8888";
-            res_data.message = "Cannot purchase item";
+            res_data.message = "Cannot canceled item";
 
             res.send(res_data);
             res.end();
