@@ -27,7 +27,7 @@ router.post('/list', function (req, res) {
            send_obj.code = "3888";
            var tmp_arr = new Array();
            for(var i = 0 ; i < result.length; i++){
-               tmp_arr.push({title :result[i].title, time_obj : result[i].create_date_obj, notification_idx : result[i].notification_idx});
+               tmp_arr.push({title :result[i].title, time_obj : result[i].create_date_obj, notification_idx : result[i].notification_idx, body : result[i].body});
            }
            send_obj.response = tmp_arr;
            res.send(send_obj);
