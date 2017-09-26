@@ -33,6 +33,7 @@ io.on('connection', function (socket) {
                     var newLog = new messageLog();
                     newLog.access_key = data.access_key;
                     newLog.room_name = data.room_name;
+                    newLog.name = data.name;
                     newLog.message_list = [];
                     newLog.save();
                     socket.emit('get_result', {message : 'no documents'});
