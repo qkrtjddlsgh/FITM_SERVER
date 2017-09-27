@@ -9,7 +9,8 @@ router.post('/', function (req, res) {
 
     var name = recv_data.name;
     var price = recv_data.price;
-    var content = recv_data.content;
+    var out_content = recv_data.out_content;
+    var in_content = recv_data.in_content;
     var num_of_item = recv_data.num_of_item;
 
     smallmarket.find({name : name}, function(err, doc){
@@ -22,9 +23,11 @@ router.post('/', function (req, res) {
             new_item.state = 1;
             new_item.name = name;
             new_item.price = price;
-            new_item.content = content;
+            new_item.out_content = out_content;
+            new_item.in_content = in_content;
             new_item.num_of_item = num_of_item;
             new_item.purchase_list = [];
+            new_item.image_list = [];
             new_item.save();
 
             var res_data = new Object();

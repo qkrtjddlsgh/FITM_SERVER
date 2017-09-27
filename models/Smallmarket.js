@@ -7,9 +7,11 @@ var marketData = new Schema({
     state : String,
     name : String,
     price : String,
-    content : String,
+    out_content : String,
+    in_content : String,
     num_of_item : Number,
-    purchase_list : []
+    purchase_list : [],
+    image_list : []
 });
 
 var smallmarket = mongoose.model('smallmarket', marketData, 'smallmarkets');
