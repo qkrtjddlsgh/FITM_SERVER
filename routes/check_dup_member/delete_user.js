@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var member = require('../../models/Member');
+var message_log  = require('../../models/message_log');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
@@ -20,15 +21,22 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
+            var res_data = new Object();
+
             member.remove({id_email: doc[0].id_email}, function(err, result){
                 if(err){
                     console.error(err.message);
                 }
                 else{
-                    var res_data = new Object();
                     res_data.code = "9999";
-                    res_data.message = "Id_email is removed";
-
+                }
+            })
+            message_log.remove({room_name: doc[0].id_email}, function(err, result){
+                if(err){
+                    console.error(err.message);
+                }
+                else{
+                    res_data.message = "Id_email and Message_log are removed";
                     res.send(res_data);
                     res.end();
                 }
