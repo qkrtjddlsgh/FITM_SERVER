@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var check_certification = require('./routes/check_cron/check_certification');
 var chk_email = require('./routes/check_dup_member/check_user_email');
+var delete_user = require('./routes/check_dup_member/delete_user');
 var res_get_member_data = require('./routes/get_data_member/res_member_data'); // 등록된 회원의 세부 정보(회원 정보)의 목록을 받음
 var res_get_member_ref = require('./routes/get_data_member/res_member_ref'); // 등록된 회원의 참조 정보(액세스 키)의 목록을 받음
 var res_get_member_access_key_stod = require('./routes/modify_member/get_member_key/get_member_access_key');
@@ -95,6 +96,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/check_certification', check_certification);
 app.use('/check_email', chk_email);
+app.use('/delete_user', delete_user);
 app.use('/get_member_data', res_get_member_data);
 app.use('/get_member_ref', res_get_member_ref);
 app.use('/get_member_access_key_stod', res_get_member_access_key_stod); // stod 의 의미는 server <-> desktop app. 이라는 의미이다.
