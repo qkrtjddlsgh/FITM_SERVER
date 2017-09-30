@@ -4,6 +4,11 @@ var smallmarket = require('../../../models/Smallmarket');
 
 router.post('/', function (req, res) {
 
+    var recv_data = req.body;
+
+    var id_email = recv_data.id_email;
+    var purchase_state = 0;
+
     smallmarket.find().sort("submitted").exec(function(err, doc){
         if(err){
             console.error(err.message);
@@ -21,8 +26,28 @@ router.post('/', function (req, res) {
             var send_data = new Object();
             send_data.code = "9999";
 
-            var add_data = new Object();
-            add_data.result = doc;
+            var add_data = new Array();
+
+            for(var i=0; i<doc.length; i++){
+                var temp = new Object();
+                temp.main_image = doc[i].name + "1";
+                temp.name = doc[i].name;
+                temp.price = doc[i].price;
+                temp.out_content = doc[i].out_content;
+                temp.state = doc[i].state;
+                temp.num_of_purchase = doc[i].purchase_list.length;
+
+                for(var j=0; j<doc[i].purchase_list.length; j++){
+                    if(doc[i].purchase_list[j].id_email == id_email){
+                        purchase_state = 1;
+                    }
+                }
+
+                temp.purchase_state = purchase_state;
+                purchase_state = 0;
+
+                add_data.push(temp);
+            }
 
             send_data.response = add_data;
 

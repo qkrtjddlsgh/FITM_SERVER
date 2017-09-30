@@ -6,7 +6,7 @@ router.post('/', function(req, res){
     var recv_data = req.body;
 
     var item = recv_data.item;
-    var name = recv_data.name;
+    var id_email = recv_data.id_email;
     var size = recv_data.size;
 
     smallmarket.find({name: item, state: 1}, function(err, doc){
@@ -22,7 +22,7 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
-            var query = {$addToSet: {purchase_list: {"name": name, "size": size}}};
+            var query = {$addToSet: {purchase_list: {"id_email": id_email, "size": size}}};
 
             smallmarket.update({name: item, state: 1}, query, function(err, result){
                 if(err){
