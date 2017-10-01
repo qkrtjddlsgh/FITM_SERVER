@@ -27,7 +27,7 @@ router.post('/', function (req, res) {
 
             console.log(image_url);
 
-            var query = {$addToSet: {image_list: {"idx": image_url}}};
+            var query = {$addToSet: {image_list: {"image": image_url}}};
 
             smallmarket.update({name: name}, query, function(err, result){
                 if(err){
