@@ -65,6 +65,7 @@ var list_item = require('./routes/small_market/market_to_mobile/list_item');
 var add_item = require('./routes/small_market/market_to_mobile/add_item');
 var sub_item = require('./routes/small_market/market_to_mobile/sub_item');
 var info_item = require('./routes/small_market/market_to_mobile/info_item');
+var check_item = require('./routes/small_market/market_to_mobile/check_item');
 var upload_image = require('./routes/small_market/market_to_desktop/upload_image');
 
 // mongodb connection
@@ -151,6 +152,7 @@ app.use('/list_item', list_item);
 app.use('/add_item', add_item);
 app.use('/sub_item', sub_item);
 app.use('/info_item', info_item);
+app.use('/check_item', check_item);
 app.use('/upload_image', upload_image);
 
 // catch 404 and forward to error handler
