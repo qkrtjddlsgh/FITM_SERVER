@@ -36,6 +36,7 @@ router.post('/', function (req, res) {
                 temp.out_content = doc[i].out_content;
                 temp.state = doc[i].state;
                 temp.num_of_purchase = doc[i].purchase_list.length;
+                temp.remain_item = doc[i].num_of_item - doc[i].purchase_list.length;
 
                 for(var j=0; j<doc[i].purchase_list.length; j++){
                     if(doc[i].purchase_list[j].id_email == id_email){
