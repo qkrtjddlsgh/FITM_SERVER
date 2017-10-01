@@ -27,8 +27,6 @@ router.post('/', function (req, res) {
             var send_data = new Object();
             send_data.code = "9999";
 
-            var add_data = new Array();
-
             for(var i=0; i<doc.length; i++){
                 var temp = new Object();
                 temp.name = doc[0].name;
@@ -42,11 +40,9 @@ router.post('/', function (req, res) {
 
                 temp.purchase_state = purchase_state;
                 purchase_state = 0;
-
-                add_data.push(temp);
             }
 
-            send_data.response = add_data;
+            send_data.response = temp;
 
             res.send(send_data);
             res.end();
