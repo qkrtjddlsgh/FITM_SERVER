@@ -25,6 +25,8 @@ router.post('/', function (req, res) {
             var add_data = new Object();
             add_data.in_content = doc[0].in_content;
             add_data.image_list = doc[0].image_list;
+            add_data.price = doc[0].price;
+            add_data.remain_item = doc[0].num_of_item - doc[0].purchase_list.length;
 
             var send_data = new Object();
             send_data.code = "9999";
