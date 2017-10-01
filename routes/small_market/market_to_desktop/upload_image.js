@@ -23,7 +23,11 @@ router.post('/', function (req, res) {
         else{
             var new_idx = doc[0].image_list.length + 1;
 
-            var query = {$addToSet: {image_list: {"idx": new_idx, "name": name}}};
+            var image_url = "https://s3.ap-northeast-2.amazonaws.com/fitmbucket/"+ name + new_idx + ".png";
+
+            console.log(image_url);
+
+            var query = {$addToSet: {image_list: {"idx": image_url}}};
 
             smallmarket.update({name: name}, query, function(err, result){
                 if(err){

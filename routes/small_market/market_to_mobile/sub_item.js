@@ -7,7 +7,6 @@ router.post('/', function(req, res){
 
     var item = recv_data.item;
     var id_email = recv_data.id_email;
-    //var comment = recv_data.comment;
 
     smallmarket.find({name: item, state: 1}, function(err, doc){
         if(err){
