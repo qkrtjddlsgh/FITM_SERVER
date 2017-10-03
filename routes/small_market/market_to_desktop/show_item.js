@@ -24,9 +24,7 @@ router.post('/', function (req, res) {
         else{
             var send_data = new Object();
             send_data.code = "9999";
-
-            var add_data = new Object();
-            add_data.result = doc[0];
+            send_data.result = doc[0];
 
             res.send(send_data);
             res.end();
