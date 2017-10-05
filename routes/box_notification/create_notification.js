@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var boxNotification = require('../../models/boxNotification');
+var push = require('../../push_modules/push_notification');
 
 router.post('/', function (req, res) {
+
+    //push.pushBoxNotification('a','a'); // 공지사항과 관련되어 push notification 을 보내는 함수
 
     var recv_data = req.body;
 
@@ -28,6 +31,7 @@ router.post('/', function (req, res) {
             send_obj.response = { message : result };
             res.send(send_obj);
             res.end();
+            push.pushBoxNotification(title, body);
         }
     });
 
