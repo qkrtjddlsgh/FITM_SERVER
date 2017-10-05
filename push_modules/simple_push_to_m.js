@@ -13,7 +13,7 @@ var fcm = new FCM(server_key);
 // 3. 키를 얻어서 메시지 전송
 
 var message = {
-    to : 'fDzvpwDk5EU:APA91bEOEz-phJfg37h56iUzRs_IN9AeguERPONf-VpM17qEOTSX_2AX0H8rJwUEWdNekFZPSaSPmBfcChmKZZsY55K5FieapphFpVRDtWLBFsCCnJA7za1HFwSCQncy5uHKomuGBidN',
+    to : 'f7e6LA8RQzI:APA91bEczRXSUXl7HcJhJ5M2sPZNgXr2M_wDMXx5RdHHe-X5eNOct1p6UUi86L9fp1Wb9sAp2fVuPTHWImj6Behbp0eeKmqhNPXQH1lc_xTMSlc_IO11Rlv-P-HZz4Qsx4g8LOkfm6Gx',
     data : {
         message : '테스트 푸시입니다.'
     },
