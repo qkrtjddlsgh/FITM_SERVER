@@ -25,11 +25,12 @@ var pushBoxNotification = function (title, body) {
             }else{
                 for(var i = 0; i < result.length; i++){
                     message.to = result[i].device_token;
+                    var userEmail = result[i].id_email;
                     fcm.send(message, function (err, response) {
                         if(err){
                             console.error(err);
                         }else{
-                            console.log(response + ' to : ' + result[i].id_email);
+                            console.log(response + ' to : ' + userEmail);
                         }
                     });
                 }
