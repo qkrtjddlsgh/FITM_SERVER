@@ -10,7 +10,7 @@ var pushBoxNotification = function (title, body) {
                 console.log('error occur for finding database');
             }else{
                 for(var i = 0; i < result.length; i++){
-                    var userEmail = result[i].id_email;
+                    //var userEmail = result[i].id_email;
                     var message = {
                         data : {
                             title : title,
@@ -23,8 +23,8 @@ var pushBoxNotification = function (title, body) {
                             body : body
                         }
                     };
+                    console.log(JSON.stringify(message));
                     fcm.send(message, function (err, response) {
-                        console.log(userEmail + ' , ' + message.to);
                         if(err){
                             console.error(err);
                         }else{
