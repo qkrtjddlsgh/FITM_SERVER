@@ -26,6 +26,7 @@ router.post('/', function (req, res) {
    message.notification = push_obj;
 
    fcm.send(message, function (err, response) {
+       console.log('RESPONSE : ' + JSON.stringify(response));
       if(err){
           console.error(JSON.stringify(err));
           var send_obj = new Object();
