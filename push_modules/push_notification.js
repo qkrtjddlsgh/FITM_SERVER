@@ -16,7 +16,7 @@ var pushBoxNotification = function (title, body) {
         }
     };
 
-    members.find({}, function (err, result) {
+    members.find({doc_type : 'member_data'}, function (err, result) {
         if(err){
             console.error(JSON.stringify(err));
         }else{
