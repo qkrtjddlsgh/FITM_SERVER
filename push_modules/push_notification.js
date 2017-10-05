@@ -13,14 +13,14 @@ var pushBoxNotification = function (title, body) {
                     //var userEmail = result[i].id_email;
                     var message = {
                         data : {
-                            title : title,
-                            body : body
+                            title : 'data ' + title,
+                            body : 'data ' + body
                         },
                         to : result[i].device_token,
                         notification_type : 0,
                         notification : {
-                            title : title,
-                            body : body
+                            title : 'noti ' + title,
+                            body : 'noti ' + body
                         }
                     };
                     console.log(JSON.stringify(message));
