@@ -14,14 +14,14 @@ var pushBoxNotification = function (title, body) {
                     var message = {
                         data : {
                             title : '[공지사항] 새로운 공지사항이 등록되었습니다.',
-                            body : '공지사항이 등록되었습니다.',
+                            body : '공지사항 : ' + title,
                             notification_type : 0
                         },
                         priority : 'normal',
                         to : result[i].device_token,
                         notification : {
                             title : '[공지사항] 새로운 공지사항이 등록되었습니다.',
-                            body : '공지사항이 등록되었습니다.',
+                            body : '공지사항 : ' + title,
                             notification_type : 0
                         }
                     };
