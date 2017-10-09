@@ -67,6 +67,7 @@ var sub_item = require('./routes/small_market/market_to_mobile/sub_item');
 var info_item = require('./routes/small_market/market_to_mobile/info_item');
 var check_item = require('./routes/small_market/market_to_mobile/check_item');
 var upload_image = require('./routes/small_market/market_to_desktop/upload_image');
+var set_remain_day = require('./routes/modify_member/update_member_data_stod/set_remain_day');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -154,6 +155,7 @@ app.use('/sub_item', sub_item);
 app.use('/info_item', info_item);
 app.use('/check_item', check_item);
 app.use('/upload_image', upload_image);
+app.use('/set_remain_day', set_remain_day);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
