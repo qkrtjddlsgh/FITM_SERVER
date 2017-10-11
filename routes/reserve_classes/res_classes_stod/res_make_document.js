@@ -1,6 +1,7 @@
 var express = require('express');
 var router =  express.Router();
 var time_table = require('../../../models/Time_Table');
+var push = require('../../../push_modules/push_notification');
 
 router.post('/', function (req, res) {
 
@@ -65,7 +66,7 @@ router.post('/', function (req, res) {
                             res.end();
                         }
                     });
-
+                    push.pushClassUploadNotification();
                 }
                 else {
                     // 이미 겹치는 날짜가 있으므로 날짜를 다시 선택해야한다.
