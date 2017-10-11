@@ -17,6 +17,15 @@ router.post('/', function (req, res) {
     newDocs.body = body;
     newDocs.notification_idx = new Date().getTime();
 
+    if(title == null || body == null){
+        var send_obj = new Object();
+        send_obj.code = '4999';
+        send_obj.response = { message : 'title or body is null' };
+        res.send(send_obj);
+        res.end();
+        return;
+    }
+
     newDocs.save(function (err, result) {
         if(err){
             console.error(JSON.stringify(err));
