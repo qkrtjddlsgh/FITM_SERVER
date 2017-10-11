@@ -27,7 +27,7 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
-            var query = {$push: {remain_list: {date:today, state:0, access_key: access_key, comments: comments}}};
+            var query = {$push: {remain_list: {date: today, state: 0, access_key: access_key, comments: comments}}};
 
             members.update({doc_type: "remain_list"}, query, function(err, doc){
                 if(err){

@@ -33,6 +33,11 @@ router.post('/', function (req, res) {
                     res_data.code = "9999";
                     res_data.message = "State is updated";
 
+                    var add_data = new Object();
+                    add_data.name = doc[0].name;
+                    add_data.state = new_state;
+                    res_data.result = add_data;
+
                     res.send(res_data);
                     res.end();
                 }
