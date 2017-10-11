@@ -52,7 +52,7 @@ var pushChatNotification = function (id_email) {
                         body : id_email + ' 님의 1:1 문의에 대한 답변이 등록되었습니다.',
                         notification_type : 2
                     },
-                    to : result[i].device_token,
+                    to : result[0].device_token,
                     priority : 'normal',
                     notification : {
                         title : '[1:1문의] 1:1 문의 답변이 등록되었습니다.',

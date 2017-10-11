@@ -70,6 +70,7 @@ router.post('/', function (req, res) {
     });
     */
     push.pushChatNotification(id_email);
+    res.end();
 });
 
 module.exports = router;
