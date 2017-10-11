@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
         }
         if(doc.length == 0){
             var new_item = new smallmarket();
-            new_item.date = today;
+            new_item.date = today(new Date());
             new_item.state = 1;
             new_item.name = name;
             new_item.price = price;

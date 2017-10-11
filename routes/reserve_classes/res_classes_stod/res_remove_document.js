@@ -17,7 +17,7 @@ router.post('/', function(req, res){
         res.end();
     }
     else {
-        if (date < today) {
+        if (date < today(new Date())) {
             // 현재 날짜 이전의 수업 삭제 시
             var send_data = new Object();
             send_data.code = "5700";
