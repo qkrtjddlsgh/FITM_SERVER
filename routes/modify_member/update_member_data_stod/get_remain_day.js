@@ -21,6 +21,7 @@ router.post('/', function(req, res){
 
                     var add_data = new Object();
                     add_data.access_key = doc[0].remain_list[i].access_key;
+                    // 0이면 승인x 그 외면 승인o
                     add_data.state = doc[0].remain_list[i].state;
 
                     res_data.result = add_data;

@@ -8,6 +8,7 @@ router.post('/', function(req, res){
     var recv_data = req.body;
 
     var access_key = recv_data.access_key;
+    var new_state = recv_data.state;
     var certification = recv_data.certification;
 
     members.find({access_key: access_key}, function(err, result){
@@ -34,7 +35,7 @@ router.post('/', function(req, res){
                 }
             });
 
-            var set_data = {$set: {'remain_list.$.state': 1}};
+            var set_data = {$set: {'remain_list.$.state': new_state}};
 
             members.update({doc_type: "remain_list", remain_list: {$elemMatch: {access_key: access_key}}}, set_data, function(err, doc){
                 if(err){

@@ -23,7 +23,7 @@ router.post('/', function(req, res){
             var add_data = new Array();
 
             for(var i=0; i<doc[0].remain_list.length; i++){
-                if(doc[0].remain_list[i].state == 1){
+                if(doc[0].remain_list[i].state != 0){
                     continue;
                 }
                 else{

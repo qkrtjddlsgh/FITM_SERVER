@@ -7,18 +7,11 @@ router.post('/', function(req, res){
 
     var recv_data = req.body;
 
+    var start_date = recv_data.start_date;
+    var num_of_day = recv_data.num_of_day;
     var access_key = recv_data.access_key;
+    var name = recv_data.name;
     var comments = recv_data.comments;
-    var name = "";
-
-    members.find({doc_type: "member_data", access_key: access_key}, function(err, doc){
-        if(err){
-            console.error(err.message);
-        }
-        else{
-            name = doc[0].name;
-        }
-    });
 
     members.find({doc_type: "remain_list"}, function(err, result){
         if(err){
@@ -28,7 +21,7 @@ router.post('/', function(req, res){
         if(result.length == 0){
             var new_remain_list = new members();
             new_remain_list.doc_type = "remain_list";
-            new_remain_list.remain_list = [{date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments}];
+            new_remain_list.remain_list = [{date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, num_of_day: num_of_day}];
             new_remain_list.save();
 
             var res_data = new Object();
@@ -38,7 +31,7 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
-            var query = {$push: {remain_list: {date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments}}};
+            var query = {$push: {remain_list: {date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, num_of_day: num_of_day}}};
 
             members.update({doc_type: "remain_list"}, query, function(err, doc){
                 if(err){
