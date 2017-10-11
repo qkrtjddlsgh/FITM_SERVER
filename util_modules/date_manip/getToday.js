@@ -4,13 +4,11 @@
 
 // 현재 시간을 YYYYMMDD 의 형태로 받아오는 모듈
 
-var getToday = function () {
-
-    var today = new Date();
-    today.setHours(today.getHours() + 9);
-    var yyyy = today.getUTCFullYear();
-    var mm = today.getUTCMonth() + 1;
-    var dd = today.getUTCDate();
+var getToday = function (dateObj) {
+    var date = new Date(dateObj);
+    var yyyy = date.getUTCFullYear();
+    var mm = date.getUTCMonth() + 1;
+    var dd = date.getUTCDate();
 
     var str_yyyy = yyyy.toString();
     var str_mm;
@@ -31,4 +29,4 @@ var getToday = function () {
     return str_yyyy + str_mm + str_dd;
 };
 
-module.exports = getToday();
+module.exports = getToday;
