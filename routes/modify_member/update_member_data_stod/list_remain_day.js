@@ -22,13 +22,12 @@ router.post('/', function(req, res){
 
             var add_data = new Array();
 
+            doc[0].remain_list.sort(function(a, b){
+                return a.state < b.state ? -1 : a.state > b.state ? 1 : 0;
+            });
+
             for(var i=0; i<doc[0].remain_list.length; i++){
-                if(doc[0].remain_list[i].state != 0){
-                    continue;
-                }
-                else{
-                    add_data.push(doc[0].remain_list[i]);
-                }
+                add_data.push(doc[0].remain_list[i]);
             }
 
             res_data.result = add_data;

@@ -38,14 +38,26 @@ cron.schedule('0 2 * * *', function () {
         }
         else{
             for(var i=0; i<doc[0].remain_list.length; i++){
-                if(doc[0].remain_list[i].state != 0 && doc[0].remain_list[i].state < today(new Date())){
-                    var query = {$set: {certification : 2}};
+                if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].end_date < today(new Date())){
+                    // 휴회기간이 끝났을때
+                    var query = {$set: {certification : 2, finish_date: today(new Date())}};
 
                     member.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
                     });
+                }
+                if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].start_date == today(new Date())){
+                    // 휴회기간이 시작될때
+                    var query = {$set: {certification: 1}};
+
+                    members.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
+                        if(err){
+                            console.error(err.message);
+                        }
+                    });
+
                 }
                 else
                     continue;
