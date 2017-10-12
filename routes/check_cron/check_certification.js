@@ -6,7 +6,7 @@ var today = require('../../util_modules/date_manip/getToday');
 var member = require('../../models/Member');
 
 // 매일 AM 12:00 마다 실행 됨
-cron.schedule('0 2 * * *', function () {
+cron.schedule('0 9 * * *', function () {
     console.log('info', 'running a task every day / ' + new Date());
 
     //console.log(today(new Date());
@@ -38,6 +38,7 @@ cron.schedule('0 2 * * *', function () {
         }
         else{
             for(var i=0; i<doc[0].remain_list.length; i++){
+                // today가 12시넘어도 안바뀜.
                 if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].end_date < today(new Date())){
                     // 휴회기간이 끝났을때
                     var query = {$set: {certification : 2, finish_date: today(new Date())}};
@@ -47,36 +48,25 @@ cron.schedule('0 2 * * *', function () {
                             console.error(err.message);
                         }
                     });
+                    break;
                 }
                 if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].start_date == today(new Date())){
                     // 휴회기간이 시작될때
-                    var diff = 0;
-
-                    member.find({access_key: doc[0].remain_list[i].access_key}, function(err, result){
-                       if(err){
-                           console.error(err.message);
-                       }
-                       else{
-                            diff = result[0].remain_break_day;
-                       }
-                    });
-
-                    var new_remain_break_day = diff - doc[0].remain_list[i].diff;
-
-                    var query = {$set: {certification: 1, remain_break_day: new_remain_break_day}};
+                    var query = {$set: {certification: 1}};
 
                     member.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
                     });
-
+                    break;
                 }
                 else
                     continue;
             }
         }
-    })
+    });
+
 }).start();
 
 module.exports = router;
