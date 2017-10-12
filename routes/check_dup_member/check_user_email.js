@@ -111,7 +111,7 @@ router.post('/', function(req, res){
                         add_data.id_email = result[0].id_email;
                         add_data.access_key = result[0].access_key;
 
-                        send_data.response = add_data;
+                        res_data.response = add_data;
 
                         // Login 과정에 대한 logger
                         var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
