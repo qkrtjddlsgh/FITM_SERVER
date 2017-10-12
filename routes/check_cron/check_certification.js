@@ -63,9 +63,10 @@ cron.schedule('0 2 * * *', function () {
                     continue;
             }
         }
-
-        member.find({})
     })
+
+
+    // remain_break_day 어떻게 처리할것인지
 
 }).start();
 
