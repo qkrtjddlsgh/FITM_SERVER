@@ -50,9 +50,22 @@ cron.schedule('0 2 * * *', function () {
                 }
                 if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].start_date == today(new Date())){
                     // 휴회기간이 시작될때
-                    var query = {$set: {certification: 1}};
+                    var diff = 0;
 
-                    members.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
+                    member.find({access_key: doc[0].remain_list[i].access_key}, function(err, result){
+                       if(err){
+                           console.error(err.message);
+                       }
+                       else{
+                            diff = result[0].remain_break_day;
+                       }
+                    });
+
+                    var new_remain_break_day = diff - doc[0].remain_list[i].diff;
+
+                    var query = {$set: {certification: 1, remain_break_day: new_remain_break_day}};
+
+                    member.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
@@ -64,10 +77,6 @@ cron.schedule('0 2 * * *', function () {
             }
         }
     })
-
-
-    // remain_break_day 어떻게 처리할것인지
-
 }).start();
 
 module.exports = router;

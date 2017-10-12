@@ -23,7 +23,7 @@ router.post('/', function(req, res){
         }
         else{
             for(var i=0; i<doc[0].remain_list.length; i++){
-                if(doc[0].remain_list[i].access_key == access_key && doc[0].remain_list[i].start_date < today(new Date())){
+                if(doc[0].remain_list[i].access_key == access_key){
                     check = 0;
                     var res_data = new Object();
                     res_data.code = "9999";
@@ -31,11 +31,12 @@ router.post('/', function(req, res){
                     var add_data = new Object();
                     add_data.access_key = doc[0].remain_list[i].access_key;
                     // 0이면 미확인 1이면 승인o 2이면 승인x
+                    add_data.date = doc[0].remain_list[i].date;
                     add_data.state = doc[0].remain_list[i].state;
                     add_data.start_date = doc[0].remain_list[i].start_date;
                     add_data.end_date = doc[0].remain_list[i].end_date;
                     add_data.comments = doc[0].remain_list[i].comments;
-                    add_date.message = doc[0].remain_list[i].message;
+                    add_data.message = doc[0].remain_list[i].message;
 
                     res_data.result = add_data;
 
