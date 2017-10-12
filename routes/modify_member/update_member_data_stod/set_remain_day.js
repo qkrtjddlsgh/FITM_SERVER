@@ -21,7 +21,7 @@ router.post('/', function(req, res){
         if(result.length == 0){
             var new_remain_list = new members();
             new_remain_list.doc_type = "remain_list";
-            new_remain_list.remain_list = [{date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, end_date: end_date}];
+            new_remain_list.remain_list = [{date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, end_date: end_date, message: ""}];
             new_remain_list.save();
 
             var res_data = new Object();
@@ -31,7 +31,7 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
-            var query = {$push: {remain_list: {date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, end_date: end_date}}};
+            var query = {$push: {remain_list: {date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, end_date: end_date, message: ""}}};
 
             members.update({doc_type: "remain_list"}, query, function(err, doc){
                 if(err){

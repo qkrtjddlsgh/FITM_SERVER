@@ -9,9 +9,14 @@ router.post('/', function(req, res){
 
     var access_key = recv_data.access_key;
     var new_state = recv_data.state;
+    var new_message = recv_data.message;
     // state 0 : 미확인 state 1 : 수락 state 2 : 거절
 
-    var set_data = {$set: {'remain_list.$.state': new_state}};
+    if(new_state == 1){
+        new_message = "휴회신청이 승인되었습니다.";
+    }
+
+    var set_data = {$set: {'remain_list.$.state': new_state, 'remain_list.$.message': new_message}};
 
     members.update({doc_type: "remain_list", remain_list: {$elemMatch: {access_key: access_key}}}, set_data, function(err, doc){
         if(err){

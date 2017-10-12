@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var remains = require('../../../models/Member');
+var today = require('../../../util_modules/date_manip/getToday');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
@@ -12,9 +13,17 @@ router.post('/', function(req, res){
         if(err){
             console.error(err.message);
         }
+        if(doc.length == 0){
+            var res_data = new Object();
+            res_data.code = "8888";
+            res_data.message = "Not in remain_list";
+
+            res.send(res_data);
+            res.end();
+        }
         else{
             for(var i=0; i<doc[0].remain_list.length; i++){
-                if(doc[0].remain_list[i].access_key == access_key){
+                if(doc[0].remain_list[i].access_key == access_key && doc[0].remain_list[i].start_date < today(new Date())){
                     check = 0;
                     var res_data = new Object();
                     res_data.code = "9999";
@@ -26,6 +35,7 @@ router.post('/', function(req, res){
                     add_data.start_date = doc[0].remain_list[i].start_date;
                     add_data.end_date = doc[0].remain_list[i].end_date;
                     add_data.comments = doc[0].remain_list[i].comments;
+                    add_date.message = doc[0].remain_list[i].message;
 
                     res_data.result = add_data;
 
