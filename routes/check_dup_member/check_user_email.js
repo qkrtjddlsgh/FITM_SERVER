@@ -94,9 +94,9 @@ router.post('/', function(req, res){
                         var add_data = new Object();
                         //add_data.access_key = result[0].access_key;
                         //add_data.check_register = result[0].check_register;
-                        //res_data.response = result[0];
+                        res_data.response = result[0];
 
-                        var send_data = new Object();
+                        /*var send_data = new Object();
                         send_data.check_register = result[0].check_register;
                         send_data.locker_finish = result[0].locker_finish.substr(0,4) + "/" + result[0].locker_finish.substr(4,2) + "/" + result[0].locker_finish.substr(6,2);
                         send_data.locker_start = result[0].locker_start.substr(0,4) + "/" + result[0].locker_start.substr(4,2) + "/" + result[0].locker_start.substr(6,2);
@@ -113,7 +113,7 @@ router.post('/', function(req, res){
                         send_data.id_email = result[0].id_email;
                         send_data.access_key = result[0].access_key;
 
-                        res_data.response = send_data;
+                        res_data.response = send_data;*/
 
                         // Login 과정에 대한 logger
                         var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
