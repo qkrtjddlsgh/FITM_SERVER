@@ -7,7 +7,7 @@ var express = require('express');
 var router = express.Router();
 
 var today = require('../../util_modules/date_manip/getToday');
-var remains = require('../../../models/Remain_List');
+var remains = require('../../models/Remain_List');
 var member = require('../../models/Member');
 
 // 매일 AM 12:00 마다 실행 됨
