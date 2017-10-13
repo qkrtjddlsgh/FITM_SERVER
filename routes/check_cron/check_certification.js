@@ -1,8 +1,13 @@
+// state가 1인 회원
+// state_date에 certification 1과 remain_break_day - diff
+// end_date + 1에 certification 2과 state 3
+
 var cron = require('node-cron');
 var express = require('express');
 var router = express.Router();
 
 var today = require('../../util_modules/date_manip/getToday');
+var remains = require('../../../models/Remain_List');
 var member = require('../../models/Member');
 
 // 매일 AM 12:00 마다 실행 됨
@@ -32,37 +37,86 @@ cron.schedule('0 9 * * *', function () {
         }
     });
 
-    member.find({doc_type: "remain_list"}, function(err, doc){
+    var TODAY = today(new Date());
+    var year = Number(TODAY.substr(0,4));
+    var month = Number(TODAY.substr(4,2))-1;
+    var day = Number(TODAY.substr(6,2))+1;
+
+    // yyyymmdd
+    var ddd = new Date(year, month, day);
+
+    remains.find({state: 1}, function(err, doc){
         if(err){
             console.error(err.message);
         }
+        if(doc.length == 0){
+
+        }
         else{
-            for(var i=0; i<doc[0].remain_list.length; i++){
-                // today가 12시넘어도 안바뀜.
-                if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].end_date < today(new Date())){
-                    // 휴회기간이 끝났을때
-                    var query = {$set: {certification : 2, finish_date: today(new Date())}};
+            for(var i=0; i<doc.length; i++){
 
-                    member.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
+                var sd = doc[i].start_date;
+                var syear = Number(sd.substr(0,4));
+                var smonth = Number(sd.substr(4,2))-1;
+                var sday = Number(sd.substr(6,2))+1;
+
+                // yyyymmdd
+                var sddd = new Date(syear, smonth, sday);
+
+                var ed = doc[i].end_date;
+                var eyear = Number(ed.substr(0,4));
+                var emonth = Number(ed.substr(4,2))-1;
+                var eday = Number(ed.substr(6,2))+1;
+
+                // yyyymmdd
+                var eddd = new Date(eyear, emonth, eday);
+
+                if(sddd - ddd == 0){
+
+                    members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
-                    });
-                    break;
-                }
-                if(doc[0].remain_list[i].state == 1 && doc[0].remain_list[i].start_date == today(new Date())){
-                    // 휴회기간이 시작될때
-                    var query = {$set: {certification: 1}};
+                        else{
+                            var new_remain_break_day = (result[0].remain_break_day*86400000 - doc[0].diff) / 86400000;
 
-                    member.update({access_key: doc[0].remain_list[i].access_key}, query, function(err, result){
+                            var query = {$set: {certification: 1, remain_break_day: new_remain_break_day}};
+
+                            members.update({id_email: doc[0].id_email}, query, function(err, result){
+                                if(err){
+                                    console.error(err.message);
+                                }
+                            });
+                        }
+                    });
+                }
+                else if(eddd + 86400000 == ddd){
+
+                    members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
-                    });
-                    break;
+                        else{
+                            // finish_date 늘리기
+                            var query = {$set: {certification: 2}};
+
+                            members.update({id_email: doc[0].id_email}, query, function(err, result){
+                                if(err){
+                                    console.error(err.message);
+                                }
+                            });
+
+                            var query2 = {$set: {state: 3}};
+
+                            remains.update({id_email: doc[0].id_email}, query2, function(err, result){
+                                if(err){
+                                    console.error(err.message);
+                                }
+                            })
+                        }
+                    })
                 }
-                else
-                    continue;
+
             }
         }
     });
