@@ -75,6 +75,8 @@ var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/
 var createTransactionLog = require('./routes/transactionLog/createLog');
 var readTransactionLog = require('./routes/transactionLog/readLog');
 
+var test = require('./routes/modify_member/update_member_data_stod/test');
+
 // mongodb connection
 var mongoose = require('mongoose');
 
@@ -167,6 +169,8 @@ app.use('/get_remain_day', get_remain_day);
 app.use('/cancel_remain_day', cancel_remain_day);
 app.use('/transactionLog', createTransactionLog);
 app.use('/transactionLog', readTransactionLog);
+
+app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
