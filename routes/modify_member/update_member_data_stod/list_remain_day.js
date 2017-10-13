@@ -1,40 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var remains = require('../../../models/Member');
+var remains = require('../../../models/Remain_List');
 
 router.post('/', function(req, res){
 
-    remains.find({doc_type: "remain_list"}, function(err, doc){
+    remains.find().sort({state: -1}).exec(function(err, doc){
         if(err){
             console.error(err.message);
-        }
-        if(doc.length == 0){
-            var res_data = new Object();
-            res_data.code = "8888";
-            res_data.message = "No data";
-
-            res.send(res_data);
-            res.end();
         }
         else{
             var res_data = new Object();
             res_data.code = "9999";
+            res_data.result = doc;
 
-            var add_data = new Array();
-
-            doc[0].remain_list.sort(function(a, b){
-                return a.state < b.state ? -1 : a.state > b.state ? 1 : 0;
-            });
-
-            for(var i=0; i<doc[0].remain_list.length; i++){
-                add_data.push(doc[0].remain_list[i]);
-            }
-
-            res_data.result = add_data;
             res.send(res_data);
             res.end();
         }
-    });
+    })
 });
 
 module.exports = router;

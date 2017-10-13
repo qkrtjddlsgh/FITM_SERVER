@@ -23,10 +23,7 @@ var memberData = new Schema({
     locker_finish : String,
     // 회원가입 여부를 확인. 안되있을시 0, 되있을시 1
     check_register : Number,
-    chat_room : String,
-
-    // 휴회신청 리스트를 저장
-    remain_list : []
+    chat_room : String
 });
 
 // model 함수의 arg1 : docuement type
