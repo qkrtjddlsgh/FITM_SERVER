@@ -40,6 +40,42 @@ router.post('/', function(req, res){
                     res.send(res_data);
                     res.end();
                 }
+                else if(doc[i].state == 1){
+                    check = 1;
+                    var res_data = new Object();
+                    var add_data = new Object();
+
+                    res_data.code = "9999";
+                    add_data.id_email = doc[0].id_email;
+                    add_data.name = doc[0].name;
+                    add_data.state = doc[0].state;
+                    add_data.start_date = doc[0].start_date;
+                    add_data.end_date = doc[0].end_date;
+                    add_data.comments = doc[0].comments;
+                    add_data.message = doc[0].message;
+
+                    res_data.result = add_data;
+                    res.send(res_data);
+                    res.end();
+                }
+                else if(doc[i].state == 2){
+                    check = 1;
+                    var res_data = new Object();
+                    var add_data = new Object();
+
+                    res_data.code = "9999";
+                    add_data.id_email = doc[0].id_email;
+                    add_data.name = doc[0].name;
+                    add_data.state = doc[0].state;
+                    add_data.start_date = doc[0].start_date;
+                    add_data.end_date = doc[0].end_date;
+                    add_data.comments = doc[0].comments;
+                    add_data.message = doc[0].message;
+
+                    res_data.result = add_data;
+                    res.send(res_data);
+                    res.end();
+                }
             }
 
             if(check == 0) {
