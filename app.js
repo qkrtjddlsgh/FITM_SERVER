@@ -72,6 +72,9 @@ var list_remain_day = require('./routes/modify_member/update_member_data_stod/li
 var get_remain_day = require('./routes/modify_member/update_member_data_stod/get_remain_day');
 var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/cancel_remain_day');
 
+var createTransactionLog = require('./routes/transactionLog/createLog');
+var readTransactionLog = require('./routes/transactionLog/readLog');
+
 // mongodb connection
 var mongoose = require('mongoose');
 
@@ -162,6 +165,8 @@ app.use('/set_remain_day', set_remain_day);
 app.use('/list_remain_day', list_remain_day);
 app.use('/get_remain_day', get_remain_day);
 app.use('/cancel_remain_day', cancel_remain_day);
+app.use('/transactionLog', createTransactionLog);
+app.use('/transactionLog', readTransactionLog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
