@@ -33,10 +33,14 @@ router.post('/', function(req, res){
                     // 0이면 미확인 1이면 승인o 2이면 승인x
                     add_data.date = doc[0].remain_list[i].date;
                     add_data.state = doc[0].remain_list[i].state;
-                    add_data.start_date = doc[0].remain_list[i].start_date;
-                    add_data.end_date = doc[0].remain_list[i].end_date;
                     add_data.comments = doc[0].remain_list[i].comments;
                     add_data.message = doc[0].remain_list[i].message;
+
+                    add_data.start_date = doc[0].remain_list[i].start_date;
+                    add_data.end_date = doc[0].remain_list[i].end_date;
+
+                    add_data.start_date = doc[0].remain_list[i].start_date.substr(0,4)+"/"+doc[0].remain_list[i].start_date.substr(4,2)+"/"+doc[0].remain_list[i].start_date.substr(6,2);
+                    add_data.end_date = doc[0].remain_list[i].end_date.substr(0,4)+"/"+doc[0].remain_list[i].end_date.substr(4,2)+"/"+doc[0].remain_list[i].end_date.substr(6,2);
 
                     res_data.result = add_data;
 

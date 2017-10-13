@@ -70,6 +70,7 @@ var upload_image = require('./routes/small_market/market_to_desktop/upload_image
 var set_remain_day = require('./routes/modify_member/update_member_data_stod/set_remain_day');
 var list_remain_day = require('./routes/modify_member/update_member_data_stod/list_remain_day');
 var get_remain_day = require('./routes/modify_member/update_member_data_stod/get_remain_day');
+var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/cancel_remain_day');
 
 // mongodb connection
 var mongoose = require('mongoose');
@@ -160,6 +161,7 @@ app.use('/upload_image', upload_image);
 app.use('/set_remain_day', set_remain_day);
 app.use('/list_remain_day', list_remain_day);
 app.use('/get_remain_day', get_remain_day);
+app.use('/cancel_remain_day', cancel_remain_day);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -35,7 +35,7 @@ router.post('/', function(req, res){
         if(err){
             console.error(err.message);
         }
-        if(result.length == 0){
+        if(result.length == 0 || result[0].remain_list.length == 0){
             var new_remain_list = new members();
             new_remain_list.doc_type = "remain_list";
             new_remain_list.remain_list = [{date: today(new Date()), state: 0, name: name, access_key: access_key, comments: comments, start_date: start_date, end_date: end_date, message: "", diff: diff}];
@@ -67,7 +67,7 @@ router.post('/', function(req, res){
             }
             else {
                 for (var i = 0; i < result[0].remain_list.length; i++) {
-                    if (result[0].remain_list[i].state == 0 && result[0].remain_list[i].access_key == access_key) {
+                    if (result[0].remain_list[i].state == 0 && result[0].remain_list[i].access_key == access_key && result[0].remain_list[i].date >= today(new Date())) {
                         check = 0;
 
                         var res_data = new Object();
@@ -77,7 +77,7 @@ router.post('/', function(req, res){
                         res.send(res_data);
                         res.end();
                     }
-                    else if (result[0].remain_list[i].state == 1 && result[0].remain_list[i].access_key == access_key) {
+                    else if (result[0].remain_list[i].state == 1 && result[0].remain_list[i].access_key == access_key && result[0].remain_list[i].date >= today(new Date())) {
                         check = 0;
 
                         var res_data = new Object();
