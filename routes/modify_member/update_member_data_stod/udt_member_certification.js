@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var remains = require('../../../models/Remain_List');
 var members = require('../../../models/Member');
+var push = require('../../../push_modules/push_notification');
 
 router.post('/', function(req, res) {
     var recv_data = req.body;
@@ -42,6 +43,7 @@ router.post('/', function(req, res) {
                         var res_data = new Object();
                         res_data.code = "9999";
                         res_data.message = "정상적으로 승인되었습니다.";
+                        push.breakApprovalNotification(id_email);
 
                         res.send(res_data);
                         res.end();
@@ -50,6 +52,7 @@ router.post('/', function(req, res) {
                         var res_data = new Object();
                         res_data.code = "9999";
                         res_data.message = "정상적으로 거절되었습니다.";
+                        push.breakRejectNotification(id_email);
 
                         res.send(res_data);
                         res.end();
