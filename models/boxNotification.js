@@ -8,11 +8,11 @@ var boxNotification = new Schema({
     notification_idx : Number,
     create_date : { type : String, default : time },
     create_date_obj : {
-        yy : { type : String, default : timeObj().year },
-        mm : { type : String, default : timeObj().month },
-        dd : { type : String, default : timeObj().day },
-        h : { type : String, default : timeObj().hour },
-        m : { type : String, default : timeObj().minute }
+        yy : { type : String, default : timeObj(dateObj()).year },
+        mm : { type : String, default : timeObj(dateObj()).month },
+        dd : { type : String, default : timeObj(dateObj()).day },
+        h : { type : String, default : timeObj(dateObj()).hour },
+        m : { type : String, default : timeObj(dateObj()).minute }
     },
     title : String,
     body : String
