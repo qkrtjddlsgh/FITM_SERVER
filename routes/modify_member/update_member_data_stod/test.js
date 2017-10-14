@@ -2,40 +2,15 @@
 // state_date에 certification 1과 remain_break_day - diff
 // end_date + 1에 certification 2과 state 3
 
-var cron = require('node-cron');
+//check_certification
+
 var express = require('express');
 var router = express.Router();
+var remains = require('../../../models/Remain_List');
+var today = require('../../../util_modules/date_manip/getToday');
+var members = require('../../../models/Member');
 
-var today = require('../../util_modules/date_manip/getToday');
-var remains = require('../../models/Remain_List');
-var member = require('../../models/Member');
-
-// 매일 AM 12:00 마다 실행 됨
-cron.schedule('0 9 * * *', function () {
-    console.log('info', 'running a task every day / ' + new Date());
-
-    //console.log(today(new Date());
-
-    member.find({certification: 2}, function(err, doc){
-        if(err){
-            console.error(err.message);
-        }
-        else{
-            for(var i=0; i<doc.length; i++) {
-                if(doc[i].finish_date < today(new Date())){
-                    // 회원기간만료이므로 certification 1로 수정
-                    var query = {$set: {certification : 1}};
-
-                    member.update({certification : 2}, query, function(err, result){
-                        if(err){
-                            console.error(err.message);
-                        }
-                    });
-
-                }
-            }
-        }
-    });
+router.post('/', function(req, res){
 
     var TODAY = today(new Date());
     var year = Number(TODAY.substr(0,4));
@@ -50,7 +25,11 @@ cron.schedule('0 9 * * *', function () {
             console.error(err.message);
         }
         if(doc.length == 0){
+            var res_data = new Object();
+            res_data.code = "8888";
 
+            res.send(res_data);
+            res.end();
         }
         else{
             for(var i=0; i<doc.length; i++){
@@ -72,6 +51,7 @@ cron.schedule('0 9 * * *', function () {
                 var eddd = new Date(eyear, emonth, eday);
 
                 if(sddd - ddd == 0){
+                    // 휴회 시작할떄
 
                     members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){
@@ -91,6 +71,7 @@ cron.schedule('0 9 * * *', function () {
                     });
                 }
                 else if(eddd + 86400000 == ddd){
+                    // 휴회 끝날때, finish_date 추가해야됨.
 
                     members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){
@@ -119,8 +100,12 @@ cron.schedule('0 9 * * *', function () {
 
             }
         }
-    });
+        var res_data = new Object();
+        res_data.code = "9999";
 
-}).start();
+        res.send(res_data);
+        res.end();
+    });
+});
 
 module.exports = router;

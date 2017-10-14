@@ -1,45 +1,63 @@
-// certification을 1로 수정하여 휴회원으로 등록하는 모듈
-
 var express = require('express');
 var router = express.Router();
+var remains = require('../../../models/Remain_List');
 var members = require('../../../models/Member');
 
-router.post('/', function(req, res){
+router.post('/', function(req, res) {
     var recv_data = req.body;
 
-    var access_key = recv_data.access_key;
+    var id_email = recv_data.id_email;
+    var new_state = recv_data.state;
+    var new_message = recv_data.message;
+    // state 0 : 미확인 state 1 : 수락 state 2 : 거절 state 3 : 옛날것
 
-    members.find({access_key: access_key}, function(err, result){
+    if(new_state == 1){
+        new_message = "휴회 요청이 승인되었습니다.";
+    }
+    else if(new_state == 2){
+        new_message = "휴회 요청이 거절되었습니다.";
+    }
+
+    remains.find({id_email: id_email, state: 0}, function(err, doc){
         if(err){
             console.error(err.message);
         }
-        if(result.length == 0){
+        if(doc.length == 0){
             var res_data = new Object();
             res_data.code = "8888";
-            res_data.message = "Access_key is not exist";
+            res_data.message = "id_email이 존재하지 않습니다.";
 
             res.send(res_data);
             res.end();
         }
         else{
-            var query = {$set: {certification: 1}};
+            var query = {$set: {state: new_state, message: new_message}};
 
-            members.update({access_key: access_key}, query, function(err, result){
+            remains.update({id_email: id_email, state: 0}, query, function(err, result){
                 if(err){
                     console.error(err.message);
                 }
-                else{
-                    var res_data = new Object();
-                    res_data.code = "9999";
-                    res_data.message = "Update Correctly"
+                else if(result.ok){
+                    if(new_state == 1) {
+                        var res_data = new Object();
+                        res_data.code = "9999";
+                        res_data.message = "정상적으로 승인되었습니다.";
 
-                    res.send(res_data);
-                    res.end();
+                        res.send(res_data);
+                        res.end();
+                    }
+                    else if(new_state == 2) {
+                        var res_data = new Object();
+                        res_data.code = "9999";
+                        res_data.message = "정상적으로 거절되었습니다.";
+
+                        res.send(res_data);
+                        res.end();
+                    }
                 }
             });
         }
     });
-
 });
 
 module.exports = router;

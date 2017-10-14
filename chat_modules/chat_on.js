@@ -2,6 +2,7 @@ var http = require('http');
 var io = require('socket.io')(http);
 var messageLog = require('../models/message_log');
 var getTime = require('../util_modules/date_manip/getTodayObj');
+var dateObj = require('../util_modules/date_manip/getTodayDateObj');
 
 io.on('connection', function (socket) {
     console.log(socket.id + " has connected. [" + Date.now() + "]");
@@ -69,7 +70,7 @@ io.on('connection', function (socket) {
     socket.on('send_message', function (data) {
         console.log(JSON.stringify(data));
         var send_data = new Object();
-        var timeObj = getTime();
+        var timeObj = getTime(dateObj());
         var unixTime = new Date().getTime();
         var cur_time = {year : timeObj.year, month : timeObj.month, day : timeObj.day, hour : timeObj.hour, minute : timeObj.minute};
         send_data.access_key = data.access_key;

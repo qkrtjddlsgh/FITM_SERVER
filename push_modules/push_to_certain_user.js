@@ -6,6 +6,7 @@ var fcm = require('./set_fcm_server');
 var express = require('express');
 var router = express.Router();
 var member = require('../models/Member');
+var push = require('./push_notification');
 
 var message = {
     to : null,
@@ -16,14 +17,15 @@ var message = {
 router.post('/', function (req, res) {
     var recv_data = req.body;
 
-    var access_key = recv_data.access_key;
-    var push_title = recv_data.title;
-    var push_body = recv_data.body;
+    var id_email = recv_data.id_email;
+    //var push_title = recv_data.title;
+    //var push_body = recv_data.body;
 
+    /*
     message.data = {title : push_title, body : push_body};
     message.notification = {title : push_title, body : push_body};
 
-    member.find({access_key : access_key}, function (err, result) {
+    member.find({doc_type : 'member_data', id_email : id_email}, function (err, result) {
         if(err){
             console.error(JSON.stringify(err));
             var send_obj = new Object();
@@ -44,6 +46,7 @@ router.post('/', function (req, res) {
                 var token = tmp.device_token;
                 message.to = token;
                 console.log(JSON.stringify(tmp));
+                push.pushChatNotification(id_email);
 
                 fcm.send(message, function (err, response) {
                     if(err){
@@ -61,9 +64,13 @@ router.post('/', function (req, res) {
                         res.end();
                     }
                 });
+
             }
         }
     });
+    */
+    push.pushChatNotification(id_email);
+    res.end();
 });
 
 module.exports = router;

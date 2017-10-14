@@ -96,6 +96,25 @@ router.post('/', function(req, res){
                         //add_data.check_register = result[0].check_register;
                         res_data.response = result[0];
 
+                        /*var send_data = new Object();
+                        send_data.check_register = result[0].check_register;
+                        send_data.locker_finish = result[0].locker_finish.substr(0,4) + "/" + result[0].locker_finish.substr(4,2) + "/" + result[0].locker_finish.substr(6,2);
+                        send_data.locker_start = result[0].locker_start.substr(0,4) + "/" + result[0].locker_start.substr(4,2) + "/" + result[0].locker_start.substr(6,2);
+                        send_data.locker_num = result[0].locker_num;
+                        send_data.gender = result[0].gender;
+                        send_data.birthday = result[0].birthday;
+                        send_data.doc_type = result[0].doc_type;
+                        send_data.certification = result[0].certification;
+                        send_data.remain_break_day = result[0].remain_break_day;
+                        send_data.finish_date = result[0].finish_date.substr(0,4) + "/" + result[0].finish_date.substr(4,2) + "/" + result[0].finish_date.substr(6,2);;
+                        send_data.start_date = result[0].start_date.substr(0,4) + "/" + result[0].start_date.substr(4,2) + "/" + result[0].start_date.substr(6,2);
+                        send_data.phone_number = result[0].phone_number;
+                        send_data.name = result[0].name;
+                        send_data.id_email = result[0].id_email;
+                        send_data.access_key = result[0].access_key;
+
+                        res_data.response = send_data;*/
+
                         // Login 과정에 대한 logger
                         var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
                         if (user_ip.substr(0, 7) == "::ffff:") {

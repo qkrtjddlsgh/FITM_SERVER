@@ -33,7 +33,7 @@ router.post('/list', function (req, res) {
            res.send(send_obj);
            res.end();
        }
-    });
+    }).sort({notification_idx : -1});
 
 });
 
@@ -65,7 +65,7 @@ router.post('/item', function (req, res) {
                 res.end();
             }
         }
-    });
+    }).sort({notification_idx : -1});
 
 });
 

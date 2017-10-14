@@ -29,7 +29,6 @@ router.post('/', function(req, res){
                         chk_data.found = 1;
 
                         var name = result[0].classes[i].participant[j].name;
-                        var comments = result[0].classes[i].participant[j].comments;
 
                         var add_data = new Object();
 
@@ -42,8 +41,7 @@ router.post('/', function(req, res){
                             $pull: {
                                 "classes.$.participant": {
                                     "name": name,
-                                    "access_key": access_key,
-                                    "comments": comments
+                                    "access_key": access_key
                                 }
                             }
                         };
@@ -53,8 +51,7 @@ router.post('/', function(req, res){
                                 $elemMatch: {
                                     participant: {
                                         "name": name,
-                                        "access_key": access_key,
-                                        "comments": comments
+                                        "access_key": access_key
                                     }
                                 }
                             }

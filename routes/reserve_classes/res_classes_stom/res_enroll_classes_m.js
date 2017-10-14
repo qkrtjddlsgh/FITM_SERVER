@@ -9,9 +9,8 @@ router.post('/', function (req, res) {
     var class_num = recv_data.class_num;
     var name = recv_data.name;
     var access_key = recv_data.access_key;
-    var comments = recv_data.comments;
 
-    if(!req.body.access_key || !req.body.date || !req.body.class_num || !req.body.name || !req.body.comments){
+    if(!req.body.access_key || !req.body.date || !req.body.class_num || !req.body.name){
         var send_data = new Object();
         send_data.code = "5000";
         send_data.message = "Incorrect Request";
@@ -24,8 +23,7 @@ router.post('/', function (req, res) {
             $addToSet: {
                 "classes.$.participant": {
                     "name": name,
-                    "access_key": access_key,
-                    "comments": comments
+                    "access_key": access_key
                 }
             }
         };
@@ -49,8 +47,7 @@ router.post('/', function (req, res) {
                         $pull: {
                             "classes.$.participant": {
                                 "name": name,
-                                "access_key": access_key,
-                                "comments": comments
+                                "access_key": access_key
                             }
                         }
                     };
@@ -60,8 +57,7 @@ router.post('/', function (req, res) {
                             $elemMatch: {
                                 participant: {
                                     "name": name,
-                                    "access_key": access_key,
-                                    "comments": comments
+                                    "access_key": access_key
                                 }
                             }
                         }
@@ -73,7 +69,6 @@ router.post('/', function (req, res) {
                             var add_data = new Object();
                             add_data.message = "Full Reservation";
                             add_data.name = recv_data.name;
-                            add_data.comments = recv_data.comments;
 
                             var res_data = new Object();
                             // 참가인원이 꽉차서 더 못받는 경우
@@ -105,8 +100,7 @@ router.post('/', function (req, res) {
                                 $pull: {
                                     "classes.$.participant": {
                                         "name": name,
-                                        "access_key": access_key,
-                                        "comments": comments
+                                        "access_key": access_key
                                     }
                                 }
                             };
@@ -116,8 +110,7 @@ router.post('/', function (req, res) {
                                     $elemMatch: {
                                         participant: {
                                             "name": name,
-                                            "access_key": access_key,
-                                            "comments": comments
+                                            "access_key": access_key
                                         }
                                     }
                                 }
@@ -129,7 +122,6 @@ router.post('/', function (req, res) {
                                     var add_data = new Object();
                                     add_data.message = "Already Reservation";
                                     add_data.name = recv_data.name;
-                                    add_data.comments = recv_data.comments;
 
                                     var res_data = new Object();
                                     // 이미 등록된 회원이 다시 등록하려는 경우
@@ -149,7 +141,6 @@ router.post('/', function (req, res) {
                             add_data.start_time = result[0].classes[class_num - 1].start_time;
                             add_data.finish_time = result[0].classes[class_num - 1].finish_time;
                             add_data.name = recv_data.name;
-                            add_data.comments = recv_data.comments;
                             add_data.cur_count = result[0].classes[class_num - 1].participant.length;
 
                             var res_data = new Object();

@@ -30,7 +30,13 @@ router.post('/', function (req, res) {
                 else {
                     var send_data = new Object();
                     send_data.code = "2130";
+
+                    result.sort(function(a, b){
+                        return a.certification > b.certification ? -1 : a.certification < b.certification ? 1 : 0;
+                    });
+
                     send_data.response = result;
+
                     res.send(send_data);
                     res.end();
                 }

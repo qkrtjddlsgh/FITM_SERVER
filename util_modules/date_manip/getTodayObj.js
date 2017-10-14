@@ -2,14 +2,13 @@
  * Created by Myown on 2017-07-17.
  */
 
-var getTodayObj = function(){
-    var today = new Date();
-    today.setHours(today.getHours() + 9);
-    var yyyy = today.getUTCFullYear();
-    var mm = today.getUTCMonth() + 1;
-    var dd = today.getUTCDate();
-    var h = today.getUTCHours();
-    var m = today.getUTCMinutes();
+var getTodayObj = function(dateObj){
+    var date = new Date(dateObj);
+    var yyyy = date.getUTCFullYear();
+    var mm = date.getUTCMonth() + 1;
+    var dd = date.getUTCDate();
+    var h = date.getUTCHours();
+    var m = date.getUTCMinutes();
 
     var str_yyyy = yyyy.toString();
     var str_mm;
