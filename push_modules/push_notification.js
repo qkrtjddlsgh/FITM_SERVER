@@ -69,7 +69,7 @@ var pushChatNotification = function (id_email) {
                 });
             }
         }
-    })
+    });
 }
 
 var pushClassUploadNotification = function () {
@@ -109,8 +109,43 @@ var pushClassUploadNotification = function () {
     });
 }
 
+var breakApprovalNotification = function (id_email, breakDays) {
+    members.find({doc_type : 'member_data', id_email : id_email}, function (err, result) {
+        if(err){
+            console.error(err);
+        }else{
+            if(result.length == 0){
+                console.log('error occur for finding database');
+            }else{
+                var message = {
+                    data : {
+                        title : '[휴회신청] 휴회신청이 승인되었습니다.',
+                        body : id_email + ' 님의 ' + breakDays + '일 휴회신청이 승인되었습니다.',
+                        notification_type : 2
+                    },
+                    to : result[0].device_token,
+                    priority : 'normal',
+                    notification : {
+                        title : '[휴회신청] 휴회신청이 승인되었습니다.',
+                        body : id_email + ' 님의 ' + breakDays + '일 휴회신청이 승인되었습니다.',
+                        notification_type : 2
+                    }
+                };
+                fcm.send(message, function (err, response) {
+                    if(err){
+                        console.error(err);
+                    }else{
+                        console.log(response);
+                    }
+                });
+            }
+        }
+    });
+}
+
 module.exports = {
     pushBoxNotification : pushBoxNotification,
     pushChatNotification : pushChatNotification,
-    pushClassUploadNotification : pushClassUploadNotification
+    pushClassUploadNotification : pushClassUploadNotification,
+    breakApprovalNotification : breakApprovalNotification
 }
