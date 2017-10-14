@@ -35,11 +35,11 @@ router.post('/', function (req, res) {
                 }
                 else {
 
-                    for (var i = 0; i < result[0].classes.length; i++) {
+                    /*for (var i = 0; i < result[0].classes.length; i++) {
                         for (var j = 0; j < result[0].classes[i].participant.length; j++) {
                             result[0].classes[i].participant[j].access_key = null;
                         }
-                    }
+                    }*/
 
                     var send_data = new Object();
 

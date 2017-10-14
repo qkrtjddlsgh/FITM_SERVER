@@ -51,6 +51,7 @@ router.post('/', function(req, res){
                 var eddd = new Date(eyear, emonth, eday);
 
                 if(sddd - ddd == 0){
+                    // 휴회 시작할떄
 
                     members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){
@@ -70,6 +71,7 @@ router.post('/', function(req, res){
                     });
                 }
                 else if(eddd + 86400000 == ddd){
+                    // 휴회 끝날때, finish_date 추가해야됨.
 
                     members.find({id_email: doc[0].id_email}, function(err, result){
                         if(err){

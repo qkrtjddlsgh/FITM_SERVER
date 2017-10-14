@@ -11,6 +11,13 @@ router.post('/', function(req, res) {
     var new_message = recv_data.message;
     // state 0 : 미확인 state 1 : 수락 state 2 : 거절 state 3 : 옛날것
 
+    if(new_state == 1){
+        new_message = "휴회 요청이 승인되었습니다.";
+    }
+    else if(new_state == 2){
+        new_message = "휴회 요청이 거절되었습니다.";
+    }
+
     remains.find({id_email: id_email, state: 0}, function(err, doc){
         if(err){
             console.error(err.message);
