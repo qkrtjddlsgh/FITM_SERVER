@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var member = require('../../models/Member');
 var message_log  = require('../../models/message_log');
+var smallmarket = require('../../models/smallmarket');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
@@ -36,11 +37,32 @@ router.post('/', function(req, res){
                     console.error(err.message);
                 }
                 else{
-                    res_data.message = "Id_email and Message_log are removed";
-                    res.send(res_data);
-                    res.end();
+
                 }
-            })
+            });
+
+            smallmarket.find().sort("submitted").exec(function(err, doc){
+                if(err){
+                    console.error(err.message);
+                }
+                else{
+                    for(var i=0; i<doc.length; i++){
+                        var query3 = {$pull: {purchase_list: {"id_email": id_email}}};
+
+                        smallmarket.update({name: doc[i].name}, query3, function(err, result){
+                            if(err){
+                                console.error(err.message);
+                            }
+                            else{
+                                res_data.message = "Id_email and Message_log and Smallmarket are removed";
+
+                                res.send(res_data);
+                                res.end();
+                            }
+                        });
+                    }
+                }
+            });
         }
     })
 });

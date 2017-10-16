@@ -106,13 +106,6 @@ cron.schedule('0 9 * * *', function () {
                                 }
                             });
 
-                            var query2 = {$set: {state: 3}};
-
-                            remains.update({id_email: doc[0].id_email}, query2, function(err, result){
-                                if(err){
-                                    console.error(err.message);
-                                }
-                            })
                         }
                     })
                 }
@@ -124,6 +117,14 @@ cron.schedule('0 9 * * *', function () {
     var query3 = {set: {state: 4}};
 
     remains.update({state: 2}, query3, function(err, doc){
+        if(err){
+            console.error(err.message);
+        }
+    })
+
+    var query4 = {set: {state: 3}};
+
+    remains.update({state: 1}, query3, function(err, doc){
         if(err){
             console.error(err.message);
         }
