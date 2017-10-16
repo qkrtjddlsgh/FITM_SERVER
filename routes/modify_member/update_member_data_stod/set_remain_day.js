@@ -126,9 +126,21 @@ router.post('/', function(req, res){
                         res.end();
                     }
                     else if(result[0].id_email == id_email && result[0].state == 2){
+                        var new_remains = new remains();
+                        new_remains.start_date = start_date;
+                        new_remains.end_date = end_date;
+                        new_remains.name = name;
+                        new_remains.id_email = id_email;
+                        new_remains.comments = comments;
+
+                        new_remains.state = 0;
+                        new_remains.diff = diff;
+                        new_remains.message = "신청중입니다.";
+                        new_remains.save();
+
                         var res_data = new Object();
-                        res_data.code = "4444";
-                        res_data.message = "이미 거절되었습니다.";
+                        res_data.code = "9999";
+                        res_data.message = "정상적으로 신청되었습니다.";
 
                         res.send(res_data);
                         res.end();
