@@ -11,12 +11,14 @@ var remains = require('../../models/Remain_List');
 var member = require('../../models/Member');
 
 // 매일 AM 12:00 마다 실행 됨
-cron.schedule('*/1 * * * *', function () {
+// 1분마다 */1 * * * *
+// 2시마다 * 2 * * *
+cron.schedule('* 1 * * *', function () {
     console.log('info', 'running a task every day / ' + new Date());
 
     //console.log(today(new Date());
 
-    /*member.find({certification: 2}, function(err, doc){
+    member.find({certification: 2}, function(err, doc){
         if(err){
             console.error(err.message);
         }
@@ -112,7 +114,7 @@ cron.schedule('*/1 * * * *', function () {
 
             }
         }
-    });*/
+    });
 
     var query3 = {$set: {state: 4}};
 
