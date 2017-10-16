@@ -19,7 +19,7 @@ router.post('/', function(req, res){
         }
         else{
             for(var i=0; i<doc.length; i++){
-                if(doc[i].locker_num == 0)
+                if(doc[i].locker_num == 0 || doc[i].locker_num == null)
                     continue;
                 else{
                     var add_data = new Object();

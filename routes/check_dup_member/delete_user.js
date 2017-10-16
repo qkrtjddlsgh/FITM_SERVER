@@ -3,6 +3,7 @@ var router = express.Router();
 var member = require('../../models/Member');
 var message_log  = require('../../models/message_log');
 var smallmarket = require('../../models/Smallmarket');
+var remain = require('../../models/Remain_List');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
@@ -54,13 +55,22 @@ router.post('/', function(req, res){
                                 console.error(err.message);
                             }
                             else{
-                                res_data.message = "Id_email and Message_log and Smallmarket are removed";
 
-                                res.send(res_data);
-                                res.end();
                             }
                         });
                     }
+                }
+            });
+
+            remain.remove({id_email: id_email}, function(err, doc){
+                if(err){
+                    console.error(err.message);
+                }
+                else{
+                    res_data.message = "Id_email and Message_log and Smallmarket and Remain_List are removed";
+
+                    res.send(res_data);
+                    res.end();
                 }
             });
         }
