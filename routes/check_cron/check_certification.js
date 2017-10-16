@@ -114,7 +114,7 @@ cron.schedule('*/1 * * * *', function () {
         }
     });*/
 
-    var query3 = {set: {state: 4}};
+    var query3 = {$set: {state: 4}};
 
     remains.update({state: 2}, query3, function(err, doc){
         if(err){
@@ -122,7 +122,7 @@ cron.schedule('*/1 * * * *', function () {
         }
     })
 
-    var query4 = {set: {state: 3}};
+    var query4 = {$set: {state: 3}};
 
     remains.update({state: 1}, query4, function(err, doc){
         if(err){
