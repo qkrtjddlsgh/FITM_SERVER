@@ -71,6 +71,7 @@ var set_remain_day = require('./routes/modify_member/update_member_data_stod/set
 var list_remain_day = require('./routes/modify_member/update_member_data_stod/list_remain_day');
 var get_remain_day = require('./routes/modify_member/update_member_data_stod/get_remain_day');
 var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/cancel_remain_day');
+var get_member_locker = require('./routes/modify_member/get_member_total_stod/get_member_locker');
 
 var createTransactionLog = require('./routes/transactionLog/createLog');
 var readTransactionLog = require('./routes/transactionLog/readLog');
@@ -167,6 +168,7 @@ app.use('/set_remain_day', set_remain_day);
 app.use('/list_remain_day', list_remain_day);
 app.use('/get_remain_day', get_remain_day);
 app.use('/cancel_remain_day', cancel_remain_day);
+app.use('/get_member_locker', get_member_locker);
 app.use('/transactionLog', createTransactionLog);
 app.use('/transactionLog', readTransactionLog);
 

@@ -25,14 +25,14 @@ router.post('/', function(req, res){
 
     var diff = end - start;
 
-    members.find({id_email: id_email}, function(err, doc){
+    members.find({id_email: id_email, certification: 2}, function(err, doc){
         if(err){
             console.error(err.message);
         }
         if(doc.length == 0){
             var res_data = new Object();
             res_data.code = "7777";
-            res_data.message = "id_email이 존재하지 않습니다.";
+            res_data.message = "id_email이 존재하지 않습니다. or 정회원이 아닙니다.";
 
             res.send(res_data);
             res.end();
