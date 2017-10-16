@@ -121,6 +121,14 @@ cron.schedule('0 9 * * *', function () {
         }
     });
 
+    var query3 = {set: {state: 4}};
+
+    remains.update({state: 2}, query3, function(err, doc){
+        if(err){
+            console.error(err.message);
+        }
+    })
+
 }).start();
 
 module.exports = router;
