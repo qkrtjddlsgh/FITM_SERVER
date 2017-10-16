@@ -11,7 +11,7 @@ var remains = require('../../models/Remain_List');
 var member = require('../../models/Member');
 
 // 매일 AM 12:00 마다 실행 됨
-cron.schedule('0 9 * * *', function () {
+cron.schedule('0 1 * * *', function () {
     console.log('info', 'running a task every day / ' + new Date());
 
     //console.log(today(new Date());
