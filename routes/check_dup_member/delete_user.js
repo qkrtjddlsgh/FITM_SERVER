@@ -4,6 +4,7 @@ var member = require('../../models/Member');
 var message_log  = require('../../models/message_log');
 var smallmarket = require('../../models/Smallmarket');
 var remain = require('../../models/Remain_List');
+var time_table = require('../../models/Time_Table');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
@@ -71,6 +72,14 @@ router.post('/', function(req, res){
 
                     res.send(res_data);
                     res.end();
+                }
+            });
+
+            var query4 = {$pull: {"classes.$.participant":{"access_key": doc[0].access_key, "name": doc[0].name}}};
+
+            time_table.update({classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key}}}}, query4, function(err, result){
+                if(err){
+                    console.error(err.message);
                 }
             });
         }
