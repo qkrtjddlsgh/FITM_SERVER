@@ -16,7 +16,7 @@ cron.schedule('*/1 * * * *', function () {
 
     //console.log(today(new Date());
 
-    member.find({certification: 2}, function(err, doc){
+    /*member.find({certification: 2}, function(err, doc){
         if(err){
             console.error(err.message);
         }
@@ -112,7 +112,7 @@ cron.schedule('*/1 * * * *', function () {
 
             }
         }
-    });
+    });*/
 
     var query3 = {set: {state: 4}};
 
