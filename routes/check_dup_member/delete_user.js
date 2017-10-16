@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var member = require('../../models/Member');
 var message_log  = require('../../models/message_log');
-var smallmarket = require('../../models/smallmarket');
+var smallmarket = require('../../models/Smallmarket');
 
 router.post('/', function(req, res){
     var recv_data = req.body;
