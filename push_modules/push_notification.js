@@ -17,7 +17,7 @@ var pushBoxNotification = function (title, body) {
                             body : '공지사항 : ' + title,
                             notification_type : 0
                         },
-                        priority : 'normal',
+                        priority : 'high',
                         to : result[i].device_token,
                         notification : {
                             title : '[공지사항] 새로운 공지사항이 등록되었습니다.',
@@ -53,7 +53,7 @@ var pushChatNotification = function (id_email) {
                         notification_type : 2
                     },
                     to : result[0].device_token,
-                    priority : 'normal',
+                    priority : 'high',
                     notification : {
                         title : '[1:1문의] 1:1 문의 답변이 등록되었습니다.',
                         body : id_email + ' 님의 1:1 문의에 대한 답변이 등록되었습니다.',
@@ -89,7 +89,7 @@ var pushClassUploadNotification = function () {
                             notification_type : 1
                         },
                         to : result[i].device_token,
-                        priority : 'normal',
+                        priority : 'high',
                         notification : {
                             title : '[W.O.D 등록] 내일의 W.O.D가 등록되었습니다.',
                             body : '내일의 W.O.D가 등록되었습니다.',
@@ -124,7 +124,7 @@ var breakApprovalNotification = function (id_email) {
                         notification_type : 3
                     },
                     to : result[0].device_token,
-                    priority : 'normal',
+                    priority : 'high',
                     notification : {
                         title : '[휴회신청] 휴회신청이 승인되었습니다.',
                         body : id_email + ' 님의 휴회신청이 승인되었습니다.',
@@ -158,7 +158,7 @@ var breakRejectNotification = function (id_email ){
                         notification_type : 4
                     },
                     to : result[0].device_token,
-                    priority : 'normal',
+                    priority : 'high',
                     notification : {
                         title : '[휴회신청] 휴회신청이 거절되었습니다.',
                         body : id_email + ' 님의 휴회신청이 거절되었습니다.',
