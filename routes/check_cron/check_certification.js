@@ -124,7 +124,7 @@ cron.schedule('0 9 * * *', function () {
 
     var query4 = {set: {state: 3}};
 
-    remains.update({state: 1}, query3, function(err, doc){
+    remains.update({state: 1}, query4, function(err, doc){
         if(err){
             console.error(err.message);
         }
