@@ -22,6 +22,9 @@ router.post('/', function(req, res){
         }
         else{
             for(var i=0; i<doc.length; i++){
+                if(doc[i].state == 3 || doc[i].state == 4){
+                    continue;
+                }
                 if(doc[i].state == 0){
                     check = 1;
                     var res_data = new Object();
