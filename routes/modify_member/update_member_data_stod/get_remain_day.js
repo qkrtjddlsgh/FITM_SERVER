@@ -31,13 +31,13 @@ router.post('/', function(req, res){
                     var add_data = new Object();
 
                     res_data.code = "9999";
-                    add_data.id_email = doc[0].id_email;
-                    add_data.name = doc[0].name;
-                    add_data.state = doc[0].state;
-                    add_data.start_date = doc[0].start_date;
-                    add_data.end_date = doc[0].end_date;
-                    add_data.comments = doc[0].comments;
-                    add_data.message = doc[0].message;
+                    add_data.id_email = doc[i].id_email;
+                    add_data.name = doc[i].name;
+                    add_data.state = doc[i].state;
+                    add_data.start_date = doc[i].start_date;
+                    add_data.end_date = doc[i].end_date;
+                    add_data.comments = doc[i].comments;
+                    add_data.message = doc[i].message;
 
                     res_data.result = add_data;
                     res.send(res_data);
@@ -49,13 +49,13 @@ router.post('/', function(req, res){
                     var add_data = new Object();
 
                     res_data.code = "9999";
-                    add_data.id_email = doc[0].id_email;
-                    add_data.name = doc[0].name;
-                    add_data.state = doc[0].state;
-                    add_data.start_date = doc[0].start_date;
-                    add_data.end_date = doc[0].end_date;
-                    add_data.comments = doc[0].comments;
-                    add_data.message = doc[0].message;
+                    add_data.id_email = doc[i].id_email;
+                    add_data.name = doc[i].name;
+                    add_data.state = doc[i].state;
+                    add_data.start_date = doc[i].start_date;
+                    add_data.end_date = doc[i].end_date;
+                    add_data.comments = doc[i].comments;
+                    add_data.message = doc[i].message;
 
                     res_data.result = add_data;
                     res.send(res_data);
@@ -67,13 +67,13 @@ router.post('/', function(req, res){
                     var add_data = new Object();
 
                     res_data.code = "9999";
-                    add_data.id_email = doc[0].id_email;
-                    add_data.name = doc[0].name;
-                    add_data.state = doc[0].state;
-                    add_data.start_date = doc[0].start_date;
-                    add_data.end_date = doc[0].end_date;
-                    add_data.comments = doc[0].comments;
-                    add_data.message = doc[0].message;
+                    add_data.id_email = doc[i].id_email;
+                    add_data.name = doc[i].name;
+                    add_data.state = doc[i].state;
+                    add_data.start_date = doc[i].start_date;
+                    add_data.end_date = doc[i].end_date;
+                    add_data.comments = doc[i].comments;
+                    add_data.message = doc[i].message;
 
                     res_data.result = add_data;
                     res.send(res_data);
