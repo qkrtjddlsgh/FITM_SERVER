@@ -57,7 +57,7 @@ router.post('/', function(req, res){
                 if(sddd - ddd == 0){
                     // 휴회 시작할떄
 
-                    members.find({id_email: doc[0].id_email}, function(err, result){
+                    members.find({id_email: doc[0].id_email, doc_type: "member_data"}, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
