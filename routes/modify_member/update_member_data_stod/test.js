@@ -64,13 +64,23 @@ router.post('/', function(req, res){
                         else{
                             var new_remain_break_day = (result[0].remain_break_day*86400000 - doc[0].diff) / 86400000;
 
+                            // 휴회시작시 finish_date 설정
+                            var before_finish = result[0].finish_date;
+                            var byear = Number(before_finish.substr(0,4));
+                            var bmonth = Number(before_finish.substr(4,2))-1;
+                            var bday = Number(before_finish.substr(6,2))+1;
+                            var bddd = new Date(byear, bmonth, bday);
+
+                            var new_finish_date = (bddd + doc[0].diff);
+
                             console.log(result[0].remain_break_day);
                             console.log(doc[0].diff);
                             console.log(new_remain_break_day);
+                            console.log(new_finish_date);
 
-                            var query = {$set: {certification: 1, remain_break_day: new_remain_break_day}};
+                            var query = {$set: {certification: 1, remain_break_day: new_remain_break_day, finish_date: new_finish_date}};
 
-                            members.update({id_email: doc[0].id_email}, query, function(err, result){
+                            members.update({id_email: doc[0].id_email, doc_type: "member_data"}, query, function(err, result){
                                 if(err){
                                     console.error(err.message);
                                 }
@@ -81,7 +91,7 @@ router.post('/', function(req, res){
                 else if(eddd + 86400000 == ddd){
                     // 휴회 끝날때, finish_date 추가해야됨.
 
-                    members.find({id_email: doc[0].id_email}, function(err, result){
+                    members.find({id_email: doc[0].id_email, doc_type: "member_data"}, function(err, result){
                         if(err){
                             console.error(err.message);
                         }
@@ -89,7 +99,7 @@ router.post('/', function(req, res){
                             // finish_date 늘리기
                             var query = {$set: {certification: 2}};
 
-                            members.update({id_email: doc[0].id_email}, query, function(err, result){
+                            members.update({id_email: doc[0].id_email, doc_type: "member_data"}, query, function(err, result){
                                 if(err){
                                     console.error(err.message);
                                 }

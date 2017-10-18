@@ -178,7 +178,7 @@ router.post('/', function(req, res){
     var start = new Date(s_year, s_month, s_day);
     var end = new Date(e_year, e_month, e_day);
 
-    var diff = end - start;
+    var diff = end - start + 86400000;
 
     members.find({id_email: id_email, certification: 2}, function(err, doc){
         if(err){

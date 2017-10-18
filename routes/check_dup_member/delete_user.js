@@ -69,9 +69,6 @@ router.post('/', function(req, res){
                 }
                 else{
                     res_data.message = "Id_email and Message_log and Smallmarket and Remain_List are removed";
-
-                    res.send(res_data);
-                    res.end();
                 }
             });
 
@@ -80,6 +77,10 @@ router.post('/', function(req, res){
             time_table.update({classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key}}}}, query4, function(err, result){
                 if(err){
                     console.error(err.message);
+                }
+                else{
+                    res.send(res_data);
+                    res.end();
                 }
             });
         }
