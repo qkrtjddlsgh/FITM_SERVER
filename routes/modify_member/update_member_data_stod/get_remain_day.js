@@ -34,8 +34,8 @@ router.post('/', function(req, res){
                     add_data.id_email = doc[i].id_email;
                     add_data.name = doc[i].name;
                     add_data.state = doc[i].state;
-                    add_data.start_date = doc[i].start_date;
-                    add_data.end_date = doc[i].end_date;
+                    add_data.start_date = doc[i].start_date.substr(0, 4) + "/" + doc[i].start_date.substr(4, 2) + "/" + doc[i].start_date.substr(6, 2);
+                    add_data.end_date = doc[i].end_date.substr(0, 4) + "/" + doc[i].end_date.substr(4, 2) + "/" + doc[i].end_date.substr(6, 2);
                     add_data.comments = doc[i].comments;
                     add_data.message = doc[i].message;
 
@@ -52,8 +52,8 @@ router.post('/', function(req, res){
                     add_data.id_email = doc[i].id_email;
                     add_data.name = doc[i].name;
                     add_data.state = doc[i].state;
-                    add_data.start_date = doc[i].start_date;
-                    add_data.end_date = doc[i].end_date;
+                    add_data.start_date = doc[i].start_date.substr(0, 4) + "/" + doc[i].start_date.substr(4, 2) + "/" + doc[i].start_date.substr(6, 2);
+                    add_data.end_date = doc[i].end_date.substr(0, 4) + "/" + doc[i].end_date.substr(4, 2) + "/" + doc[i].end_date.substr(6, 2);
                     add_data.comments = doc[i].comments;
                     add_data.message = doc[i].message;
 
@@ -70,8 +70,8 @@ router.post('/', function(req, res){
                     add_data.id_email = doc[i].id_email;
                     add_data.name = doc[i].name;
                     add_data.state = doc[i].state;
-                    add_data.start_date = doc[i].start_date;
-                    add_data.end_date = doc[i].end_date;
+                    add_data.start_date = doc[i].start_date.substr(0, 4) + "/" + doc[i].start_date.substr(4, 2) + "/" + doc[i].start_date.substr(6, 2);
+                    add_data.end_date = doc[i].end_date.substr(0, 4) + "/" + doc[i].end_date.substr(4, 2) + "/" + doc[i].end_date.substr(6, 2);
                     add_data.comments = doc[i].comments;
                     add_data.message = doc[i].message;
 

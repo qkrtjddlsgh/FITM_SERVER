@@ -33,7 +33,7 @@ router.post('/', function(req, res){
         }
         else{
             for(var i=0; i<doc.length; i++){
-
+                // state 3으로 넘어가기전에 수정해줘야함.
                 var sd = doc[i].start_date;
                 var syear = Number(sd.substr(0,4));
                 var smonth = Number(sd.substr(4,2))-1;
@@ -50,6 +50,10 @@ router.post('/', function(req, res){
                 // yyyymmdd
                 var eddd = new Date(eyear, emonth, eday);
 
+                console.log(ddd);
+                console.log(sddd);
+                console.log(eddd);
+
                 if(sddd - ddd == 0){
                     // 휴회 시작할떄
 
@@ -59,6 +63,10 @@ router.post('/', function(req, res){
                         }
                         else{
                             var new_remain_break_day = (result[0].remain_break_day*86400000 - doc[0].diff) / 86400000;
+
+                            console.log(result[0].remain_break_day);
+                            console.log(doc[0].diff);
+                            console.log(new_remain_break_day);
 
                             var query = {$set: {certification: 1, remain_break_day: new_remain_break_day}};
 
