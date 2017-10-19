@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var today = require('../../util_modules/date_manip/getToday');
 var member = require('../../models/Member');
 var message_log  = require('../../models/message_log');
 var smallmarket = require('../../models/Smallmarket');
@@ -74,7 +75,7 @@ router.post('/', function(req, res){
 
             var query4 = {$pull: {"classes.$.participant":{"access_key": doc[0].access_key, "name": doc[0].name}}};
 
-            time_table.update({classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key}}}}, query4, function(err, result){
+            time_table.update({date: today(new Date()), classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key}}}}, query4, function(err, result){
                 if(err){
                     console.error(err.message);
                 }
