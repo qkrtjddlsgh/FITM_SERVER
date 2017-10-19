@@ -27,20 +27,12 @@ router.post('/', function(req, res){
         else{
             var res_data = new Object();
 
-            member.remove({id_email: doc[0].id_email}, function(err, result){
-                if(err){
-                    console.error(err.message);
-                }
-                else{
-                    res_data.code = "9999";
-                }
-            })
             message_log.remove({room_name: doc[0].id_email}, function(err, result){
                 if(err){
                     console.error(err.message);
                 }
                 else{
-
+                    res_data.code = "9999";
                 }
             });
 
@@ -84,6 +76,15 @@ router.post('/', function(req, res){
                     res.end();
                 }
             });
+
+            member.remove({id_email: doc[0].id_email}, function(err, result){
+                if(err){
+                    console.error(err.message);
+                }
+                else{
+
+                }
+            })
         }
     })
 });
