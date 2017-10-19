@@ -8,6 +8,7 @@ router.post('/', function (req, res) {
     var date = recv_data.date;
     var class_num = recv_data.class_num;
     var name = recv_data.name;
+    var id_email = recv_data.id_email;
     var access_key = recv_data.access_key;
 
     if(!req.body.access_key || !req.body.date || !req.body.class_num || !req.body.name){
@@ -23,7 +24,8 @@ router.post('/', function (req, res) {
             $addToSet: {
                 "classes.$.participant": {
                     "name": name,
-                    "access_key": access_key
+                    "access_key": access_key,
+                    "id_email" : id_email
                 }
             }
         };
@@ -47,7 +49,8 @@ router.post('/', function (req, res) {
                         $pull: {
                             "classes.$.participant": {
                                 "name": name,
-                                "access_key": access_key
+                                "access_key": access_key,
+                                "id_email" : id_email
                             }
                         }
                     };
@@ -57,7 +60,8 @@ router.post('/', function (req, res) {
                             $elemMatch: {
                                 participant: {
                                     "name": name,
-                                    "access_key": access_key
+                                    "access_key": access_key,
+                                    "id_email" : id_email
                                 }
                             }
                         }
@@ -100,7 +104,8 @@ router.post('/', function (req, res) {
                                 $pull: {
                                     "classes.$.participant": {
                                         "name": name,
-                                        "access_key": access_key
+                                        "access_key": access_key,
+                                        "id_email" : id_email
                                     }
                                 }
                             };
@@ -110,7 +115,8 @@ router.post('/', function (req, res) {
                                     $elemMatch: {
                                         participant: {
                                             "name": name,
-                                            "access_key": access_key
+                                            "access_key": access_key,
+                                            "id_email" : id_email
                                         }
                                     }
                                 }
