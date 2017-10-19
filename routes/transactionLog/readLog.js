@@ -24,7 +24,7 @@ router.post('/read', function (req, res) {
     var date_to = date_to_obj.getTime();
     date_to += 100;
 
-    transaction.find({date : { $gte : date_from, $lte : date_to }}, function (err, result) {
+    transaction.find({date_idx : { $gte : date_from, $lte : date_to }}, function (err, result) {
         if(err){
             console.error(err);
             var sendObj = new Object();
