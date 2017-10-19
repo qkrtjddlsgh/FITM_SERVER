@@ -19,8 +19,13 @@ router.post('/create', function (req, res) {
     date_obj.setHours(date_obj.getHours() + 9);
     var date = date_obj.getTime();
 
+    var id_email = req.body.id_email;
+    var phone_number = req.body.phone_number;
+
     var newDoc = new transaction();
     newDoc.name = name;
+    newDoc.id_email = id_email;
+    newDoc.phone_number = phone_number;
     newDoc.date_year = date_year;
     newDoc.date_month = date_month;
     newDoc.date_month += 1;
@@ -29,7 +34,7 @@ router.post('/create', function (req, res) {
     newDoc.item_name = item_name;
     newDoc.amount = amount;
     newDoc.payment_type = payment_type;
-    newDoc.date = date;
+    newDoc.date_idx = date;
 
     newDoc.save(function (err, result) {
         if(err){

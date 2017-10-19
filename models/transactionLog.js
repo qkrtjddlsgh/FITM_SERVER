@@ -13,7 +13,9 @@ var transactionLog = new Schema({
     item_name : { type : String, default : 'NA' },
     amount : Number,
     payment_type : {type : String, default : 'cash' },
-    date : Number
+    date_idx : Number,
+    id_email : String,
+    phone_number : String
 });
 
 var transactionLogSchem = mongoose.model('transactionLog', transactionLog, 'transactionLogs');
