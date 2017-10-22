@@ -12,7 +12,7 @@ router.post('/', function(req, res){
 
     var id_email = recv_data.id_email;
 
-    member.find({id_email: id_email}, function(err, doc){
+    member.find({id_email: id_email, doc_type: "member_data"}, function(err, doc){
         if(err){
             console.error(err.message);
         }
@@ -65,9 +65,9 @@ router.post('/', function(req, res){
                 }
             });
 
-            var query4 = {$pull: {"classes.$.participant":{"access_key": doc[0].access_key, "name": doc[0].name}}};
+            var query4 = {$pull: {"classes.$.participant":{"access_key": doc[0].access_key, "name": doc[0].name, "id_email": id_email}}};
 
-            time_table.update({date: today(new Date()), classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key}}}}, query4, function(err, result){
+            time_table.update({date: today(new Date()), classes: {$elemMatch: {participant: {"name": doc[0].name, "access_key": doc[0].access_key, "id_email": id_email}}}}, query4, function(err, result){
                 if(err){
                     console.error(err.message);
                 }
