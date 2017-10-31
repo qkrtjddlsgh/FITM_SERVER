@@ -26,7 +26,7 @@ router.post('/', function(req, res){
             for(var i=0; i<doc[0].classes.length; i++){
                 for(var j=0; j<doc[0].classes[i].participant.length; j++){
                     temp.id_email = doc[0].classes[i].participant[j].id_email;
-                    temp.comment = doc[0].classes[i].participant[j].comment;
+                    temp.comments = doc[0].classes[i].participant[j].comments;
                     lists.push(temp);
                 }
             }
