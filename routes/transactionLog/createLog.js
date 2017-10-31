@@ -34,7 +34,7 @@ router.post('/create', function (req, res) {
     newDoc.item_name = item_name;
     newDoc.amount = amount;
     newDoc.payment_type = payment_type;
-    newDoc.date_idx = date;
+    newDoc.date_idx = (new Date()).getTime();
 
     newDoc.save(function (err, result) {
         if(err){
