@@ -20,20 +20,20 @@ router.post('/', function(req, res){
             res.end();
         }
         else{
-            var temp = new Object();
-            var lists = new Array();
+            var add_data = new Array();
 
             for(var i=0; i<doc[0].classes.length; i++){
                 for(var j=0; j<doc[0].classes[i].participant.length; j++){
+                    var temp = new Object();
                     temp.id_email = doc[0].classes[i].participant[j].id_email;
                     temp.comments = doc[0].classes[i].participant[j].comments;
-                    lists.push(temp);
+                    add_data.push(temp);
                 }
             }
 
             var res_data = new Object();
             res_data.code = "9999";
-            res_data.response = lists;
+            res_data.response = add_data;
 
             res.send(res_data);
             res.end();
