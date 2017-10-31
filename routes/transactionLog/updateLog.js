@@ -19,7 +19,7 @@ router.post('/update', function (req, res) {
             res.send(sendObj);
             res.end();
         }else{
-            console.log(result);
+            //console.log(result);
             if(result.n == 1 && result.ok == 1){
                 // document update success
                 var sendObj = new Object();
