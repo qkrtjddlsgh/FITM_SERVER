@@ -75,6 +75,7 @@ var get_member_locker = require('./routes/modify_member/get_member_total_stod/ge
 
 var createTransactionLog = require('./routes/transactionLog/createLog');
 var readTransactionLog = require('./routes/transactionLog/readLog');
+var updateTransactionLog = require('./routes/transactionLog/updateLog');
 
 var test = require('./routes/modify_member/update_member_data_stod/test');
 
@@ -171,6 +172,7 @@ app.use('/cancel_remain_day', cancel_remain_day);
 app.use('/get_member_locker', get_member_locker);
 app.use('/transactionLog', createTransactionLog);
 app.use('/transactionLog', readTransactionLog);
+app.use('/transactionLog', updateTransactionLog);
 
 app.use('/test', test);
 
