@@ -30,6 +30,7 @@ router.post('/', function(req, res){
 
                         var name = result[0].classes[i].participant[j].name;
                         var id_email = result[0].classes[i].participant[j].id_email;
+                        var comments = result[0].classes[i].participant[j].comments;
 
                         var add_data = new Object();
 
@@ -43,7 +44,8 @@ router.post('/', function(req, res){
                                 "classes.$.participant": {
                                     "name": name,
                                     "access_key": access_key,
-                                    "id_email": id_email
+                                    "id_email": id_email,
+                                    "comments": comments
                                 }
                             }
                         };
@@ -54,7 +56,8 @@ router.post('/', function(req, res){
                                     participant: {
                                         "name": name,
                                         "access_key": access_key,
-                                        "id_email": id_email
+                                        "id_email": id_email,
+                                        "comments": comments
                                     }
                                 }
                             }

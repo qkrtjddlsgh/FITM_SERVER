@@ -1,0 +1,44 @@
+var express = require('express');
+var router = express.Router();
+var time_table = require('../../../models/Time_Table');
+
+router.post('/', function(req, res){
+    var recv_data = req.body;
+
+    var date = recv_data.date;
+
+    time_table.find({date: date}, function(err, doc){
+        if(err){
+            console.error(err.message);
+        }
+        if(doc.length == 0){
+            var res_data = new Object();
+            res_data.code = "8888";
+            res_data.message = "해당 날짜에 수업이 없습니다.";
+
+            res.send(res_data);
+            res.end();
+        }
+        else{
+            var temp = new Object();
+            var lists = new Array();
+
+            for(var i=0; i<doc[0].classes.length; i++){
+                for(var j=0; j<doc[0].classes[i].participant.length; j++){
+                    temp.id_email = doc[0].classes[i].participant[j].id_email;
+                    temp.comment = doc[0].classes[i].participant[j].comment;
+                    lists.push(temp);
+                }
+            }
+
+            var res_data = new Object();
+            res_data.code = "9999";
+            res_data.response = lists;
+
+            res.send(res_data);
+            res.end();
+        }
+    })
+});
+
+module.exports = router;

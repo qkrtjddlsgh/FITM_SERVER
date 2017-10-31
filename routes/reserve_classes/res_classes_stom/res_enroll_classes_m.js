@@ -10,6 +10,7 @@ router.post('/', function (req, res) {
     var name = recv_data.name;
     var id_email = recv_data.id_email;
     var access_key = recv_data.access_key;
+    var comments = recv_data.comments;
 
     if(!req.body.access_key || !req.body.date || !req.body.class_num || !req.body.name){
         var send_data = new Object();
@@ -25,7 +26,8 @@ router.post('/', function (req, res) {
                 "classes.$.participant": {
                     "name": name,
                     "access_key": access_key,
-                    "id_email" : id_email
+                    "id_email": id_email,
+                    "comments": comments
                 }
             }
         };
@@ -50,7 +52,8 @@ router.post('/', function (req, res) {
                             "classes.$.participant": {
                                 "name": name,
                                 "access_key": access_key,
-                                "id_email" : id_email
+                                "id_email" : id_email,
+                                "comments": comments
                             }
                         }
                     };
@@ -61,7 +64,8 @@ router.post('/', function (req, res) {
                                 participant: {
                                     "name": name,
                                     "access_key": access_key,
-                                    "id_email" : id_email
+                                    "id_email" : id_email,
+                                    "comments": comments
                                 }
                             }
                         }
@@ -105,7 +109,8 @@ router.post('/', function (req, res) {
                                     "classes.$.participant": {
                                         "name": name,
                                         "access_key": access_key,
-                                        "id_email" : id_email
+                                        "id_email" : id_email,
+                                        "comments": comments
                                     }
                                 }
                             };
@@ -116,7 +121,8 @@ router.post('/', function (req, res) {
                                         participant: {
                                             "name": name,
                                             "access_key": access_key,
-                                            "id_email" : id_email
+                                            "id_email" : id_email,
+                                            "comments": comments
                                         }
                                     }
                                 }

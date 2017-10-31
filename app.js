@@ -73,6 +73,7 @@ var get_remain_day = require('./routes/modify_member/update_member_data_stod/get
 var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/cancel_remain_day');
 var get_member_locker = require('./routes/modify_member/get_member_total_stod/get_member_locker');
 var udt_superuser = require('./routes/modify_member/update_member_data_stod/udt_superuser');
+var res_get_comments = require('./routes/reserve_classes/res_classes_stom/res_get_comments');
 
 var createTransactionLog = require('./routes/transactionLog/createLog');
 var readTransactionLog = require('./routes/transactionLog/readLog');
@@ -151,6 +152,7 @@ app.use('/sync_message_log', sync_message_log); // 170821 채팅 테스트 모�
 app.use('/test_message_input', test_message_input); // 170821 채팅 테스트 모듈 2 추가
 app.use('/get_room_list', get_room_list);
 app.use('/udt_superuser', udt_superuser);
+app.use('/res_get_comments', res_get_comments);
 
 app.use('/create_notification', create_box_notification);
 app.use('/read_notification', read_box_notification);
