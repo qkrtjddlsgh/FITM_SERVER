@@ -26,6 +26,7 @@ router.post('/', function(req, res){
                 for(var j=0; j<doc[0].classes[i].participant.length; j++){
                     var temp = new Object();
                     temp.id_email = doc[0].classes[i].participant[j].id_email;
+                    temp.name = doc[0].classes[i].participant[j].name;
                     temp.comments = doc[0].classes[i].participant[j].comments;
                     add_data.push(temp);
                 }
