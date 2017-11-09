@@ -112,7 +112,7 @@ cron.schedule('* 1 * * *', function () {
                             var bday = Number(before_finish.substr(6,2))+1;
                             var bddd = new Date(byear, bmonth, bday);
 
-                            var new_finish_date = new Date(bddd + doc[0].diff);
+                            var new_finish_date = today(new Date(bddd + doc[0].diff));
 
                             console.log(result[0].remain_break_day);
                             console.log(doc[0].diff);
