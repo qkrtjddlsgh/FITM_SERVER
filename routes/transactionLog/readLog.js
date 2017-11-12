@@ -106,4 +106,32 @@ router.post('/read/phone_number', function (req, res){
     });
 });
 
+router.post('/read/name', function (req, res) {
+    var name = req.body.name;
+    transaction.find({name : name}, {_id : false, __v : false}, function (err, result) {
+        if(err){
+            console.error(err);
+            var sendObj = new Object();
+            sendObj.code = '5800';
+            sendObj.response = { message : 'database error' };
+            res.send(sendObj);
+            res.end();
+        }else{
+            if(result.length == 0){
+                var sendObj =  new Object();
+                sendObj.code = '3795';
+                sendObj.response = { message : 'no data' };
+                res.send(sendObj);
+                res.end();
+            }else{
+                var sendObj =  new Object();
+                sendObj.code = '1795';
+                sendObj.response = result;
+                res.send(sendObj);
+                res.end();
+            }
+        }
+    });
+})
+
 module.exports = router;
