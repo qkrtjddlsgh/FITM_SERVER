@@ -12,11 +12,16 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "fcm-push": "^1.1.2",
+    "fs": "0.0.1-security",
     "jade": "~1.11.0",
+    "mongodb-backup": "^1.6.9",
     "mongoose": "^4.11.5",
     "morgan": "~1.8.1",
     "node-cron": "^1.2.1",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.2",
     "serve-favicon": "~2.4.2",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "tar-fs": "^1.16.0"
   }
 }
