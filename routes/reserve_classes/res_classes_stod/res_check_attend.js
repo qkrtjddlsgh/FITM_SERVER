@@ -30,9 +30,13 @@ router.post('/', function(req, res){
                     if (doc[0].classes[i].participant[j].access_key == access_key) {
                         // access_key가 들어있는 수업을 찾았을때
 
-                        var qquery = {$set: {"classes.$.participant": {"attend": 1}}};
+                        var name = doc[0].classes[i].participant[j].name;
+                        var id_email = doc[0].classes[i].participant[j].id_email;
+                        var comments = doc[0].classes[i].participant[j].comments;
 
-                        time_table.update({classes: {$elemMatch: {participant: {"access_key": access_key}}}}, qquery, function (err, result) {
+                        var qquery = {$set: {"classes.$.participant": {"name": name, "id_email": id_email, "comments": comments, "access_key": access_key, "attend": 1}}};
+
+                        time_table.update({classes: {$elemMatch: {participant: {"name": name, "id_email": id_email, "comments": comments, "access_key": access_key, "attend": 0}}}}, qquery, function (err, result) {
                             if (err) {
                                 console.error(err.message);
                             }
