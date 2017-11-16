@@ -197,5 +197,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+// db 백업하는 코드 - 작업중이므로 나중에 활성화시킬것
+/*
+var dump = require('./util_modules/dbDump');
+dump();
+*/
 
 module.exports = app;
