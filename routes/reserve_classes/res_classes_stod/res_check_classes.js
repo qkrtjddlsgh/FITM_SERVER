@@ -43,7 +43,7 @@ router.post('/', function (req, res) {
                         var list = new Array();
 
                         for (var j = 0; j < result[0].classes[i].participant.length; j++) {
-                            list.push(result[0].classes[i].participant[j].name);
+                            list.push(result[0].classes[i].participant[j].name, result[0].classes[i].participant[j].attend);
                         }
                         add_data.push(i + 1);
                         add_data.push(list);

@@ -27,7 +27,8 @@ router.post('/', function (req, res) {
                     "name": name,
                     "access_key": access_key,
                     "id_email": id_email,
-                    "comments": comments
+                    "comments": comments,
+                    "attend": 0
                 }
             }
         };
@@ -53,7 +54,8 @@ router.post('/', function (req, res) {
                                 "name": name,
                                 "access_key": access_key,
                                 "id_email" : id_email,
-                                "comments": comments
+                                "comments": comments,
+                                "attend": 0
                             }
                         }
                     };
@@ -65,7 +67,8 @@ router.post('/', function (req, res) {
                                     "name": name,
                                     "access_key": access_key,
                                     "id_email" : id_email,
-                                    "comments": comments
+                                    "comments": comments,
+                                    "attend": 0
                                 }
                             }
                         }
@@ -110,7 +113,8 @@ router.post('/', function (req, res) {
                                         "name": name,
                                         "access_key": access_key,
                                         "id_email" : id_email,
-                                        "comments": comments
+                                        "comments": comments,
+                                        "attend": 0
                                     }
                                 }
                             };
@@ -122,7 +126,8 @@ router.post('/', function (req, res) {
                                             "name": name,
                                             "access_key": access_key,
                                             "id_email" : id_email,
-                                            "comments": comments
+                                            "comments": comments,
+                                            "attend": 0
                                         }
                                     }
                                 }
