@@ -8,7 +8,7 @@ router.post('/', function(req, res){
     var date = recv_data.date;
     var access_key = recv_data.access_key;
 
-    time_table({date: date}, function(err, doc){
+    time_table.find(({date: date}, function(err, doc){
         if(err){
             console.error(err.message);
         }
@@ -52,7 +52,7 @@ router.post('/', function(req, res){
                 }
             }
         }
-    });
+    }));
 });
 
 module.exports = router;
