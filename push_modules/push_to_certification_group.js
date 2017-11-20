@@ -13,7 +13,8 @@ router.post('/', function (req, res) {
 
     var push_obj = {
         title : recv_data.title,
-        body : recv_data.body
+        body : recv_data.body,
+        notification_type : 5
     }
 
     member.find({doc_type : "member_data", certification : {$gte : certification}}, function (err, result) {
@@ -39,6 +40,7 @@ router.post('/', function (req, res) {
                 for (var i = 0; i < result.length; i++) {
                     var message = {
                         to : result[i].device_token,
+                        priority : 'high',
                         data : push_obj,
                         notification : push_obj
                     }
