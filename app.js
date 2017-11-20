@@ -148,7 +148,7 @@ app.use('/count_down_movement', count_down_movement);
 app.use('/simple_push_to_m', simple_push_to_m);
 app.use('/udt_device_token', udt_device_token);
 app.use('/push_to_certain_user', push_to_certain_user);
-app.use('/push_to_certification_group', push_to_certification_group);
+app.use('/push/group', push_to_certification_group);
 app.use('/count_reset_movement', count_reset_movement);
 app.use('/remove_recent', remove_recent);
 app.use('/push_with_device_token', push_with_device_token);
