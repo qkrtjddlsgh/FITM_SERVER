@@ -78,6 +78,7 @@ var cancel_remain_day = require('./routes/modify_member/update_member_data_stod/
 var get_member_locker = require('./routes/modify_member/get_member_total_stod/get_member_locker');
 var udt_superuser = require('./routes/modify_member/update_member_data_stod/udt_superuser');
 var res_get_comments = require('./routes/reserve_classes/res_classes_stom/res_get_comments');
+var res_attend_list = require('./routes/reserve_classes/res_classes_stod/res_attend_list');
 
 var createTransactionLog = require('./routes/transactionLog/createLog');
 var readTransactionLog = require('./routes/transactionLog/readLog');
@@ -184,6 +185,7 @@ app.use('/transactionLog', updateTransactionLog);
 
 app.use('/res_cancel_attend', res_cancel_attend);
 app.use('/res_check_attend', res_check_attend);
+app.use('/res_attend_list', res_attend_list);
 
 app.use('/test', test);
 
