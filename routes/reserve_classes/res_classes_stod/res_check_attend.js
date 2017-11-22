@@ -34,9 +34,9 @@ router.post('/', function(req, res){
                         var id_email = doc[0].classes[i].participant[j].id_email;
                         var comments = doc[0].classes[i].participant[j].comments;
 
-                        var qquery = {$set: {"classes.$.attend": {"attend": 1}}};
+                        var qquery = {$set: {"classes.0.participant.$.attend": "1"}};
 
-                        time_table.update({classes: {$elemMatch: {participant: {"name": name, "id_email": id_email, "comments": comments, "access_key": access_key}}}}, qquery, function (err, result) {
+                        time_table.update({date: date, "classes.participant.name": name}, qquery, function (err, result) {
                             if (err) {
                                 console.error(err.message);
                             }
