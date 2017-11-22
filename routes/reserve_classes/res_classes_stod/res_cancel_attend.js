@@ -33,17 +33,59 @@ router.post('/', function(req, res){
                         var name = doc[0].classes[i].participant[j].name;
                         var id_email = doc[0].classes[i].participant[j].id_email;
                         var comments = doc[0].classes[i].participant[j].comments;
+                        var class_num = i+1;
 
-                        var qquery = {$set: {"classes.0.participant.$.attend": "0"}};
+                        var query = {
+                            $pull: {
+                                "classes.$.participant": {
+                                    "name": name,
+                                    "access_key": access_key,
+                                    "id_email": id_email,
+                                    "comments": comments,
+                                    "attend": "1"
+                                }
+                            }
+                        };
 
-                        time_table.update({date: date, "classes.participant.name": name}, qquery, function (err, result) {
+                        time_table.update({
+                            classes: {
+                                $elemMatch: {
+                                    participant: {
+                                        "name": name,
+                                        "access_key": access_key,
+                                        "id_email": id_email,
+                                        "comments": comments,
+                                        "attend": "1"
+                                    }
+                                }
+                            }
+                        }, query, function (err, result) {
+                            if (err) {
+                                console.error(err.message);
+                            }
+                        });
+
+
+                        var qquery = {
+                            $push: {
+                                "classes.$.participant": {
+                                    "name": name,
+                                    "access_key": access_key,
+                                    "id_email": id_email,
+                                    "comments": comments,
+                                    "attend": "0"
+                                }
+                            }
+                        };
+
+                        time_table.update({date: date, classes: {$elemMatch: {class_num: class_num}}}, qquery, function (err, result) {
                             if (err) {
                                 console.error(err.message);
                             }
                             else {
                                 var add_data = new Object();
                                 add_data.code = "9999";
-                                add_data.message = "attend complete";
+                                add_data.message = "attend cancel complete";
 
                                 var res_data = new Object();
                                 res_data.response = add_data;

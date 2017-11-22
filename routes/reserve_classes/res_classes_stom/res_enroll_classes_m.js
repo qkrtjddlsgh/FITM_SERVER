@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
                     "access_key": access_key,
                     "id_email": id_email,
                     "comments": comments,
-                    "attend": 0
+                    "attend": "0"
                 }
             }
         };
@@ -55,7 +55,7 @@ router.post('/', function (req, res) {
                                 "access_key": access_key,
                                 "id_email" : id_email,
                                 "comments": comments,
-                                "attend": 0
+                                "attend": "0"
                             }
                         }
                     };
@@ -68,7 +68,7 @@ router.post('/', function (req, res) {
                                     "access_key": access_key,
                                     "id_email" : id_email,
                                     "comments": comments,
-                                    "attend": 0
+                                    "attend": "0"
                                 }
                             }
                         }
@@ -114,7 +114,7 @@ router.post('/', function (req, res) {
                                         "access_key": access_key,
                                         "id_email" : id_email,
                                         "comments": comments,
-                                        "attend": 0
+                                        "attend": "0"
                                     }
                                 }
                             };
@@ -127,7 +127,7 @@ router.post('/', function (req, res) {
                                             "access_key": access_key,
                                             "id_email" : id_email,
                                             "comments": comments,
-                                            "attend": 0
+                                            "attend": "0"
                                         }
                                     }
                                 }
