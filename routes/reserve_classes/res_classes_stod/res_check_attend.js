@@ -66,7 +66,7 @@ router.post('/', function(req, res){
                         });
 
                         var qquery = {
-                            $push: {
+                            $addToSet: {
                                 "classes.$.participant": {
                                     "name": name,
                                     "access_key": access_key,
