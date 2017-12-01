@@ -80,6 +80,8 @@ router.post('/', function (req, res) {
         notification_type : 5
     }
 
+    console.log(certification);
+
     member.find({doc_type : "member_data"}, function (err, result) {
         if(err){
             console.error(JSON.stringify(err));
