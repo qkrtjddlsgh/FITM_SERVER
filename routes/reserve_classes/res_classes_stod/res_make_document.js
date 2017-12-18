@@ -66,7 +66,7 @@ router.post('/', function (req, res) {
                             res.end();
                         }
                     });
-                    push.pushClassUploadNotification();
+                    //push.pushClassUploadNotification();
                 }
                 else {
                     // 이미 겹치는 날짜가 있으므로 날짜를 다시 선택해야한다.

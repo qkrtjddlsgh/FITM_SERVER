@@ -47,10 +47,10 @@ router.post('/', function(req, res){
 
                         var query = {
                             classes : {
-                                $pull : {
-                                    participant: {
-                                        $elemMatch: {
-                                            access_key: access_key
+                                participant: {
+                                    $pull : {
+                                        $elemMatch : {
+                                            access_key : access_key
                                         }
                                     }
                                 }
