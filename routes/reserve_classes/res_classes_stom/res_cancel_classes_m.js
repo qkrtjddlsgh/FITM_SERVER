@@ -46,11 +46,11 @@ router.post('/', function(req, res){
                         add_data.access_key = result[0].classes[i].participant[j].access_key;
 
                         var query = {
-                            $pull : {
-                                classes : {
-                                    participant : {
-                                        $elemMatch : {
-                                            access_key : access_key
+                            classes : {
+                                $pull : {
+                                    participant: {
+                                        $elemMatch: {
+                                            access_key: access_key
                                         }
                                     }
                                 }
@@ -58,7 +58,7 @@ router.post('/', function(req, res){
                         }
                         
                         time_table.find({
-                            "classes.$.participant" : {
+                            "classes.participant" : {
                                 $elemMatch : {
                                     "access_key" : access_key
                                 }
