@@ -56,6 +56,27 @@ router.post('/', function(req, res){
                                 }
                             }
                         };
+                        
+                        time_table.find({
+                            classes: {
+                                $elemMatch: {
+                                    participant: {
+                                        "name": name,
+                                        "access_key": access_key,
+                                        "id_email": id_email,
+                                        "comments": comments,
+                                        "attend": attend,
+                                        "user_gender": user_gender
+                                    }
+                                }
+                            }
+                        },function (err, result) {
+                            if(err){
+                                console.error(err);
+                            }else{
+                                console.log('COMMENT_FIND : ' + JSON.stringify(result));
+                            }
+                        });
 
                         time_table.update({
                             classes: {
