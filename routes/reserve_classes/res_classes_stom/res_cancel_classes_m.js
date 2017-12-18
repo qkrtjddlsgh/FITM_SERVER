@@ -32,6 +32,7 @@ router.post('/', function(req, res){
                         var id_email = result[0].classes[i].participant[j].id_email;
                         var comments = result[0].classes[i].participant[j].comments;
                         var attend = result[0].classes[i].participant[j].attend;
+                        var user_gender = result[0].classes[i].participant[j].user_gender;
 
                         var add_data = new Object();
 
@@ -47,7 +48,8 @@ router.post('/', function(req, res){
                                     "access_key": access_key,
                                     "id_email": id_email,
                                     "comments": comments,
-                                    "attend": attend
+                                    "attend": attend,
+                                    "user_gender": user_gender
                                 }
                             }
                         };
@@ -60,7 +62,8 @@ router.post('/', function(req, res){
                                         "access_key": access_key,
                                         "id_email": id_email,
                                         "comments": comments,
-                                        "attend": attend
+                                        "attend": attend,
+                                        "user_gender": user_gender
                                     }
                                 }
                             }
