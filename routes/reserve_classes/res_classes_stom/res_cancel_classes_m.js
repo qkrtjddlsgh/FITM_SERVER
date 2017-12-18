@@ -46,10 +46,11 @@ router.post('/', function(req, res){
 
                         var query = {
                             $pull: {
-                                "classes.$.participant" : {
-                                    "access_key" : access_key
+                                "classes.$.participant": {
+                                    "access_key": access_key
                                 }
-                        };
+                            }
+                        }
                         
                         time_table.find({
                             "classes.$.participant" : {
