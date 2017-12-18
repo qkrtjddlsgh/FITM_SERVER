@@ -46,12 +46,15 @@ router.post('/', function(req, res){
 
                         var query = {
                             $pull: {
-                                "classes.$.participant.$.access_key": access_key
-                            }
+                                "classes.$.participant" : {
+                                    "access_key" : access_key
+                                }
                         };
                         
                         time_table.find({
-                            'classes.$.participant.$.access_key' : access_key
+                            "classes.$.participant" : {
+                                "access_key" : access_key
+                            }
                         },function (err, result) {
                             if(err){
                                 console.error(err);
@@ -61,7 +64,9 @@ router.post('/', function(req, res){
                         });
 
                         time_table.update({
-                            'classes.$.participant.$.access_key' : access_key
+                            "classes.$.participant" : {
+                                "access_key" : access_key
+                            }
                         }, query, function (err, result) {
                             if (err) {
                                 console.error(err.message);
