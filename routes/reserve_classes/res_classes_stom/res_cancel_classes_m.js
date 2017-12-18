@@ -46,21 +46,14 @@ router.post('/', function(req, res){
 
                         var query = {
                             $pull: {
-                                "classes.$.participant": {
-                                    "name": name,
-                                    "access_key": access_key,
-                                    "id_email": id_email,
-                                    "comments": comments,
-                                    "attend": attend,
-                                    "user_gender": user_gender
-                                }
+                                "classes.participant.access_key": access_key
                             }
                         };
                         
                         time_table.find({
-                            'classes.participant' : {
+                            'classes.$.participant' : {
                                 $elemMatch : {
-                                    "access_key": access_key
+                                    access_key : access_key
                                 }
                             }
                         },function (err, result) {
