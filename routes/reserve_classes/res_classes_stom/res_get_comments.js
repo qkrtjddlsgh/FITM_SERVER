@@ -28,6 +28,7 @@ router.post('/', function(req, res){
                     temp.id_email = doc[0].classes[i].participant[j].id_email;
                     temp.name = doc[0].classes[i].participant[j].name;
                     temp.comments = doc[0].classes[i].participant[j].comments;
+                    temp.user_gender = doc[0].classes[i].participant[j].user_gender;
                     add_data.push(temp);
                 }
             }
