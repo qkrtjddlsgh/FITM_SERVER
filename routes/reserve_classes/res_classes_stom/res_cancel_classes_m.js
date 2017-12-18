@@ -58,7 +58,7 @@ router.post('/', function(req, res){
                         };
                         
                         time_table.find({
-                            'classes.$.participants' : {
+                            'classes.$.participant' : {
                                 $elemMatch : {
                                     "access_key": access_key
                                 }
