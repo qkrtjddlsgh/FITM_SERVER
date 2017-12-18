@@ -58,16 +58,14 @@ router.post('/', function(req, res){
                         };
                         
                         time_table.find({
-                            classes: {
-                                $elemMatch: {
-                                    participant: {
-                                        "name": name,
-                                        "access_key": access_key,
-                                        "id_email": id_email,
-                                        "comments": comments,
-                                        "attend": attend,
-                                        "user_gender": user_gender
-                                    }
+                            'classes.participants' : {
+                                $elemMatch : {
+                                    "name": name,
+                                    "access_key": access_key,
+                                    "id_email": id_email,
+                                    "comments": comments,
+                                    "attend": attend,
+                                    "user_gender": user_gender
                                 }
                             }
                         },function (err, result) {
