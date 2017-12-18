@@ -70,6 +70,8 @@ router.post('/', function(req, res){
                         }, query, function (err, result) {
                             if (err) {
                                 console.error(err.message);
+                            }else{
+                                console.log('CANCEL CLASS : ' + JSON.stringify(result));
                             }
                         });
 
