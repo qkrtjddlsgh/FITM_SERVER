@@ -61,18 +61,7 @@ router.post('/', function(req, res){
                         });
 
                         time_table.update({
-                            classes: {
-                                $elemMatch: {
-                                    participant: {
-                                        "name": name,
-                                        "access_key": access_key,
-                                        "id_email": id_email,
-                                        "comments": comments,
-                                        "attend": attend,
-                                        "user_gender": user_gender
-                                    }
-                                }
-                            }
+                            'classes.participant.access_key' : access_key
                         }, query, function (err, result) {
                             if (err) {
                                 console.error(err.message);
