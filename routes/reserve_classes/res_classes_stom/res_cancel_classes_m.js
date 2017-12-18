@@ -28,15 +28,11 @@ router.post('/', function(req, res){
                         // access_key가 들어있는 수업을 찾았을때
                         chk_data.found = 1;
 
-                        console.log('ACCESS_KEY : ' + JSON.stringify(req.body));
-                        console.log('COMMENT : ' + JSON.stringify(result[0].classes[i].participant[j]));
-
                         var name = result[0].classes[i].participant[j].name;
                         var id_email = result[0].classes[i].participant[j].id_email;
                         var comments = result[0].classes[i].participant[j].comments;
                         var attend = result[0].classes[i].participant[j].attend;
                         var user_gender = result[0].classes[i].participant[j].user_gender;
-                        var class_num = result[0].classes[i].class_num;
 
                         var add_data = new Object();
 
@@ -46,38 +42,34 @@ router.post('/', function(req, res){
                         add_data.access_key = result[0].classes[i].participant[j].access_key;
 
                         var query = {
-                            $pull : {
-                                'classes.participant' : {
-                                    'access_key' : access_key
+                            $pull: {
+                                "classes.$.participant": {
+                                    "name": name,
+                                    "access_key": access_key,
+                                    "id_email": id_email,
+                                    "comments": comments,
+                                    "attend": attend,
+                                    "user_gender": user_gender
                                 }
                             }
-                        }
-                        
-                        time_table.find({
-                            "classes.participant" : {
-                                $elemMatch : {
-                                    "access_key" : access_key
-                                }
-                            }
-                        },function (err, result) {
-                            if(err){
-                                console.error(err);
-                            }else{
-                                console.log('COMMENT_FIND : ' + JSON.stringify(result));
-                            }
-                        });
+                        };
 
                         time_table.update({
-                            "classes.participant" : {
-                                $elemMatch : {
-                                    "access_key" : access_key
+                            classes: {
+                                $elemMatch: {
+                                    participant: {
+                                        "name": name,
+                                        "access_key": access_key,
+                                        "id_email": id_email,
+                                        "comments": comments,
+                                        "attend": attend,
+                                        "user_gender": user_gender
+                                    }
                                 }
                             }
                         }, query, function (err, result) {
                             if (err) {
                                 console.error(err.message);
-                            }else{
-                                console.log('CANCEL CLASS : ' + JSON.stringify(result));
                             }
                         });
 
