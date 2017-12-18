@@ -48,7 +48,9 @@ router.post('/', function(req, res){
                             $pull : {
                                 classes : {
                                     participant : {
-                                        access_key : access_key
+                                        $elemMatch : {
+                                            access_key : access_key
+                                        }
                                     }
                                 }
                             }
