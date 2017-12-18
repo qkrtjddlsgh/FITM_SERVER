@@ -28,6 +28,8 @@ router.post('/', function(req, res){
                         // access_key가 들어있는 수업을 찾았을때
                         chk_data.found = 1;
 
+                        console.log('COMMENT : ' + JSON.stringify(result[0].classes[i]));
+
                         var name = result[0].classes[i].participant[j].name;
                         var id_email = result[0].classes[i].participant[j].id_email;
                         var comments = result[0].classes[i].participant[j].comments;
