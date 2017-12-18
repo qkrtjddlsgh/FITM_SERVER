@@ -45,9 +45,11 @@ router.post('/', function(req, res){
                         add_data.access_key = result[0].classes[i].participant[j].access_key;
 
                         var query = {
-                            "classes.participant" :{
-                                $pull : {
-                                    "access_key" : access_key
+                            $pull : {
+                                classes : {
+                                    participant : {
+                                        access_key : access_key
+                                    }
                                 }
                             }
                         }
