@@ -36,6 +36,7 @@ router.post('/', function(req, res){
                         var comments = result[0].classes[i].participant[j].comments;
                         var attend = result[0].classes[i].participant[j].attend;
                         var user_gender = result[0].classes[i].participant[j].user_gender;
+                        var class_num = result[0].classes[i].class_num;
 
                         var add_data = new Object();
 
@@ -57,7 +58,7 @@ router.post('/', function(req, res){
                         }
                         
                         time_table.find({
-                            "classes.participant" : {
+                            "classes.$.participant" : {
                                 $elemMatch : {
                                     "access_key" : access_key
                                 }
